@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
         mCreateAProfileBtn=findViewById(R.id.create_a_profile_btn) as Button;
         mCreateAProfileBtn.setOnClickListener(this);
+        print("Here We Godasdasdasaadadasdada:");
     }
 
     override fun onClick(v: View?) {

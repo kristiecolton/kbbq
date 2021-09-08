@@ -55,31 +55,66 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 
                     val txtAge =
                         findViewById(R.id.age_et) as EditText
-                    val age= 0
+                    var age= 0
                     if (txtAge.text.toString()=="")
                     {
 
                     }else
                     {
-                        val age = txtAge.text.toString().toInt()
+                         age = txtAge.text.toString().toInt()
                     }
+
+// THIS IS WRONG BECAUSE OF REASONS
+//                    val txtSex =
+//                        findViewById(R.id.se) as EditText
+                    val sex= 0
+//                    if (txtAge.text.toString()=="")
+//                    {
+//
+//                    }else
+//                    {
+//                        age = txtAge.text.toString().toInt()
+//                    }
 
 
                     val txtFeet =
                         findViewById(R.id.feet_et) as EditText
-                    val feet = txtFeet.text.toString().toInt()
+                    var feet = 0
+                    if (txtFeet.text.toString()=="")
+                    {
+
+                    }else
+                    {
+                         feet = txtFeet.text.toString().toInt()
+                    }
 
                     val txtInch =
                         findViewById(R.id.inches_et) as EditText
-                    val inches = txtInch.text.toString().toInt()
+                    var inches = 0
+                    if (txtInch.text.toString()=="")
+                    {
+
+                    }else
+                    {
+                        inches = txtInch.text.toString().toInt()
+                    }
+
 
                     val txtLbs =
                         findViewById(R.id.weight_et) as EditText
-                    val lbs = txtLbs.text.toString().toInt()
+                    var lbs = 0
+                    if (txtLbs.text.toString()=="")
+                    {
+
+                    }else
+                    {
+                        lbs = txtLbs.text.toString().toInt()
+                    }
 
                     val txtCity =
                         findViewById(R.id.city_et) as EditText
                     val city = txtCity.text.toString()
+
 
                     val txtCountry =
                         findViewById(R.id.country_et) as EditText
@@ -98,34 +133,72 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     //added an automatic your fat and need to work out since our testing UI is so small
                     //please add the correct txt finder
 
+//                    val txtGoalType =
+//                        findViewById(R.id.city_et) as EditText
+                    var goalType = 0
+//                    if (txtGoalType.text.toString()=="")
+//                    {
+//
+//                    }else
+//                    {
+//                        goalType = txtGoalType.text.toString().toInt()
+//                    }
 
 
 
+//                    val txtLbsPerWeek =
+//                        findViewById(R.id.city_et) as EditText
+                        var lbsPerWeek = 0
+//                    if (txtLbsPerWeek.text.toString()=="")
+//                    {
+//
+//                    }else
+//                    {
+//                        lbsPerWeek = txtLbsPerWeek.text.toString().toInt()
+//                    }
 
+
+                    //                    val txtLbsPerWeek =
+//                        findViewById(R.id.city_et) as EditText
+                    var isActive = false
+//                    if (txtLbsPerWeek.text.toString()=="")
+//                    {
+//
+//                    }else
+//                    {
+//                        lbsPerWeek = txtLbsPerWeek.text.toString().toInt()
+//                    }
                     //end of Section TO DOOOOOOOOOOOOOOOOOOOOO
 
 
 
 
 
-                    //    firstName: String,
-                    //    lastName: String,
-                    //    age: Int,
-                    //    feet: Int,
-                    //    inches: Int,
-                    //    lbs: Int,
-                    //    city: String,
-                    //    country: String,
-                    //    profilePicture: String,
-                    //    backgroundPicture: String,
-                    //    goalType: Int,
-                    //    lbsPerWeek: Int
-
-
+//                    uuid: String,
+//                    firstName: String,
+//                    lastName: String,
+//                    age: Int,
+//                    sex: Int,
+//                    feet: Int,
+//                    inches: Int,
+//                    lbs: Int,
+//                    city: String,
+//                    country: String,
+//                    profilePicture: String,
+//                    backgroundPicture: String,
+//                    goalType: Int,
+//                    lbsPerWeek: Int,
+//                    isActive: Boolean
 
 //
-//                    var user:UserModel()
-                    showMainActivity()
+                    val user:UserModel = UserModel("BRADEN68",firstName,lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
+
+                    var dbManager : DBManager = DBManager(this);
+                    var addUserDidSucceed : Boolean = dbManager.addUser(user);
+                    var userResult : UserModel = dbManager.getUser("BRADEN68");
+                    print("Here We Go:");
+                    print(userResult.toString());
+                     showMainActivity()
                 }
                 else ->
                 { // Note the block
