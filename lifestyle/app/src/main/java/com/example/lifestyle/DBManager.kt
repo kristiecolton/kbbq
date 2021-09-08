@@ -6,18 +6,9 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.annotation.Nullable
-
-
-
-// Represents the recommended calories per day for the user
-private var recommendedDailyCalories : Int = 0;
-// Represents the user's Basal Metabolic Rate
-private var BMR : Int = 0;
-// Represents the user's Body Mass Index
-private var BMI : Int = 0;
-
+/* A class for managing the user database  */
 class DBManager : SQLiteOpenHelper  {
-
+    /* Static constants - for convenience */
     public final val USER_TABLE : String = "USER";
     public final val COLUMN_UUID : String = "UUID";
     public final val COLUMN_FIRST_NAME : String = "FIRST_NAME";
@@ -38,14 +29,13 @@ class DBManager : SQLiteOpenHelper  {
     public final val COLUMN_BMR : String = "BMR";
     public final val COLUMN_BMI : String = "BMI";
 
-
-
-
-    // Constructor that creates a database called "user.db"
+    /* Class constructor- creates a database called "user.db" */
     constructor(@Nullable context: Context) : super(context, "user.db",null, 1) {
 
     }
-    // Called when the db is being created for the first time
+
+    /* Method to create a table inside our database. This method only gets called once after the
+     creation of the database */
     override fun onCreate(db: SQLiteDatabase?) {
         var createTableStatement : String = "CREATE TABLE `USER` (\n" +
                 "\t`UUID` TEXT NOT NULL,\n" +
@@ -73,12 +63,15 @@ class DBManager : SQLiteOpenHelper  {
         db!!.execSQL(createTableStatement);
 
     }
-    // Called when app changes versions, where version change causes change to the database strucutre
+
+    /* Method called when table schemas are modified for different versions of the app.
+     It's safe to ignore for now. */
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         TODO("Not yet implemented")
     }
 
-    // Adds a  user to the user table. Returns true if the user was added successfully, false otherwise
+    /* Adds a  user to the user table. Returns true if the user was added successfully,
+     false otherwise */
     fun addUser(user: UserModel) : Boolean {
         var db : SQLiteDatabase = this.writableDatabase;
         var cv : ContentValues = ContentValues();
@@ -105,7 +98,8 @@ class DBManager : SQLiteOpenHelper  {
         // Return false if insertionResult == -1, true otherwsie
         return insertionResult != -1L
     }
-    // Returns the user with the given uuid
+
+    /* Returns the user with the given uuid */
     fun getUser(uuid: String) : UserModel {
         var query : String = "SELECT * FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;
@@ -138,6 +132,7 @@ class DBManager : SQLiteOpenHelper  {
             return user;
         } else {
             print("No user found.");
+            // Return default UserModel object
             return UserModel();
         }
     }

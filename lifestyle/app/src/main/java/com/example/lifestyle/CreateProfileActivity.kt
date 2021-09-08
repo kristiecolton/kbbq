@@ -23,18 +23,7 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 
 
     }
-//    firstName: String,
-//    lastName: String,
-//    age: Int,
-//    feet: Int,
-//    inches: Int,
-//    lbs: Int,
-//    city: String,
-//    country: String,
-//    profilePicture: String,
-//    backgroundPicture: String,
-//    goalType: Int,
-//    lbsPerWeek: Int
+
 
     override fun onClick(v: View?)
     {
@@ -42,162 +31,95 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
         {
             when (v.id)
             {
-
                 R.id.submit_btn->
                 {
+                    // Get first name from edit text
                     val txtFirstName =
                         findViewById(R.id.first_name_et) as EditText
                     val firstName = txtFirstName.text.toString()
 
+                    // Get last name from edit text
                     val txtLastName =
                         findViewById(R.id.last_name_et) as EditText
                     val lastName = txtLastName.text.toString()
 
+                    // Get age from edit text
                     val txtAge =
                         findViewById(R.id.age_et) as EditText
-                    var age= 0
+                    var age : Int;
                     if (txtAge.text.toString()=="")
                     {
-
+                        age = 0;
                     }else
                     {
                          age = txtAge.text.toString().toInt()
                     }
 
-// THIS IS WRONG BECAUSE OF REASONS
-//                    val txtSex =
-//                        findViewById(R.id.se) as EditText
-                    val sex= 0
-//                    if (txtAge.text.toString()=="")
-//                    {
-//
-//                    }else
-//                    {
-//                        age = txtAge.text.toString().toInt()
-//                    }
-
-
+                    // Get feet from edit text
                     val txtFeet =
                         findViewById(R.id.feet_et) as EditText
-                    var feet = 0
+                    var feet: Int;
                     if (txtFeet.text.toString()=="")
                     {
-
+                        feet = 0;
                     }else
                     {
                          feet = txtFeet.text.toString().toInt()
                     }
 
+                    // Get inches from edit text
                     val txtInch =
                         findViewById(R.id.inches_et) as EditText
-                    var inches = 0
+                    var inches : Int;
                     if (txtInch.text.toString()=="")
                     {
-
+                        inches = 0;
                     }else
                     {
                         inches = txtInch.text.toString().toInt()
                     }
 
-
+                    // Get weight from edit text
                     val txtLbs =
                         findViewById(R.id.weight_et) as EditText
-                    var lbs = 0
+                    var lbs: Int;
                     if (txtLbs.text.toString()=="")
                     {
-
+                        lbs = 0;
                     }else
                     {
                         lbs = txtLbs.text.toString().toInt()
                     }
 
+                    // Get city from edit text
                     val txtCity =
                         findViewById(R.id.city_et) as EditText
                     val city = txtCity.text.toString()
 
-
+                    // Get country from edit text
                     val txtCountry =
                         findViewById(R.id.country_et) as EditText
                     val country = txtCountry.text.toString()
 
-                    //to DO Add a way to find the file path going to auto write something for now
-//                    val txtProfilePicture =
-//                        findViewById(R.id.pr) as EditText
-                    val profilePicture = "WOW WHAT GREAT DOCUMENTATION"
 
 
-//                    val txtbackgroundPicture =
-//                        findViewById(R.id.pr) as EditText
+                    // We created dummy values for the rest of the necessary arguments to construct a
+                    // user model.
+                    // All the following variables are jst dummmy values/
+                    val profilePicture = ""
                     val backgroundPicture = ""
-
-                    //added an automatic your fat and need to work out since our testing UI is so small
-                    //please add the correct txt finder
-
-//                    val txtGoalType =
-//                        findViewById(R.id.city_et) as EditText
+                    val sex= 0
                     var goalType = 0
-//                    if (txtGoalType.text.toString()=="")
-//                    {
-//
-//                    }else
-//                    {
-//                        goalType = txtGoalType.text.toString().toInt()
-//                    }
-
-
-
-//                    val txtLbsPerWeek =
-//                        findViewById(R.id.city_et) as EditText
-                        var lbsPerWeek = 0
-//                    if (txtLbsPerWeek.text.toString()=="")
-//                    {
-//
-//                    }else
-//                    {
-//                        lbsPerWeek = txtLbsPerWeek.text.toString().toInt()
-//                    }
-
-
-                    //                    val txtLbsPerWeek =
-//                        findViewById(R.id.city_et) as EditText
+                    var lbsPerWeek = 0
                     var isActive = false
-//                    if (txtLbsPerWeek.text.toString()=="")
-//                    {
-//
-//                    }else
-//                    {
-//                        lbsPerWeek = txtLbsPerWeek.text.toString().toInt()
-//                    }
-                    //end of Section TO DOOOOOOOOOOOOOOOOOOOOO
 
-
-
-
-
-//                    uuid: String,
-//                    firstName: String,
-//                    lastName: String,
-//                    age: Int,
-//                    sex: Int,
-//                    feet: Int,
-//                    inches: Int,
-//                    lbs: Int,
-//                    city: String,
-//                    country: String,
-//                    profilePicture: String,
-//                    backgroundPicture: String,
-//                    goalType: Int,
-//                    lbsPerWeek: Int,
-//                    isActive: Boolean
-
-//
+                    // Create a user object
                     val user:UserModel = UserModel("BRADEN68",firstName,lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
-
+                    // Create a DBManager object
                     var dbManager : DBManager = DBManager(this);
+                    // Add the user to the database
                     var addUserDidSucceed : Boolean = dbManager.addUser(user);
-                    var userResult : UserModel = dbManager.getUser("BRADEN68");
-                    print("Here We Go:");
-                    print(userResult.toString());
+                    // Show the home screen 
                      showMainActivity()
                 }
                 else ->

@@ -125,23 +125,31 @@ class UserModel {
         this.BMI = BMI
     }
 
+    /* Generates an 8-character unique id */
+    fun generateUUID() : String {
+        val allowedChars = ('A'..'Z') + ('0'..'9')
+        return (1..8)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
     /* Health Metric Methods */
 
     // Calculates BMR using a user's weight and height
-    private fun calculateBMR(lbs: Int, feet: Int, inches: Int) : Int {
+    fun calculateBMR(lbs: Int, feet: Int, inches: Int) : Int {
         // TODO
         return 0;
     }
 
     // Calculates BMI using a user's weight and height
-    private fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
+    fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
         // TODO
         return 0F;
     }
 
     // Calculates the user's recommended daily calories based on their
     // BMR, type of goal (lose, maintain or gain weight) and the amount // of weight they'd like to change per week
-    private fun calculateRecommendedDailyCalories(BMR: Int, goalType: Int, lbsPerWeek: Int) : Int {
+    fun calculateRecommendedDailyCalories(BMR: Int, goalType: Int, lbsPerWeek: Int) : Int {
         // TODO
         return 0;
     }
