@@ -25,6 +25,8 @@
     <string name="title_activity_login">Login</string>
     <string name="select_a_profile">Select a Profile</string>
     <string name="create_a_profile">Create a Profile</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
 
 
 </resources>

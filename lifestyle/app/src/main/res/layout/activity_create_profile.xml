@@ -7,15 +7,29 @@
     tools:context=".CreateProfileActivity">
 
     <TextView
+        android:id="@+id/country_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:text="Activity"
+        app:layout_constraintEnd_toStartOf="@+id/activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country_tv" />
+
+    <TextView
         android:id="@+id/first_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/first_name"
         app:layout_constraintBottom_toTopOf="@+id/last_name_tv"
         app:layout_constraintEnd_toStartOf="@+id/first_name_et"
@@ -26,13 +40,12 @@
         android:id="@+id/last_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:text="@string/last_name"
-        app:layout_constraintBottom_toTopOf="@+id/age_tv"
         app:layout_constraintEnd_toStartOf="@+id/last_name_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_name_tv" />
@@ -41,13 +54,12 @@
         android:id="@+id/age_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginRight="73dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginRight="119dp"
         android:text="@string/age"
-        app:layout_constraintBottom_toTopOf="@+id/height_tv"
         app:layout_constraintEnd_toStartOf="@+id/age_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_name_tv" />
@@ -56,13 +68,12 @@
         android:id="@+id/height_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="103dp"
         android:text="@string/height"
-        app:layout_constraintBottom_toTopOf="@+id/weight_tv"
         app:layout_constraintEnd_toStartOf="@+id/feet_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/age_tv" />
@@ -71,11 +82,12 @@
         android:id="@+id/weight_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginRight="99dp"
         android:text="@string/weight"
-        app:layout_constraintBottom_toTopOf="@+id/sex_tv"
         app:layout_constraintEnd_toStartOf="@+id/weight_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/height_tv" />
@@ -84,13 +96,12 @@
         android:id="@+id/sex_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         android:text="@string/sex"
-        app:layout_constraintBottom_toTopOf="@+id/city_tv"
         app:layout_constraintEnd_toStartOf="@+id/sex_rbtn_group"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight_tv" />
@@ -99,15 +110,13 @@
         android:id="@+id/city_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
         android:text="@string/city"
-        app:layout_constraintBottom_toTopOf="@+id/country_tv"
         app:layout_constraintEnd_toStartOf="@+id/city_et"
-        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sex_tv" />
 
@@ -115,77 +124,69 @@
         android:id="@+id/country_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginRight="97dp"
         android:text="@string/country"
-        app:layout_constraintBottom_toTopOf="@+id/profile_picture_tv"
         app:layout_constraintEnd_toStartOf="@+id/country_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city_tv" />
 
     <TextView
         android:id="@+id/profile_picture_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="92dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/profile_picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/upload_profile_picture_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/activity" />
 
     <TextView
         android:id="@+id/background_picture_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="138dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
         android:text="@string/background_picture"
-        app:layout_constraintBottom_toTopOf="@+id/submit_btn"
-        app:layout_constraintEnd_toStartOf="@+id/upload_background_picture_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_picture_tv"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity" />
 
     <EditText
         android:id="@+id/first_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/last_name_et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/first_name_tv"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/last_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/age_et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/last_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/first_name_et" />
 
     <EditText
         android:id="@+id/age_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,6 +196,7 @@
         android:id="@+id/feet_et"
         android:layout_width="59dp"
         android:layout_height="41dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/feet_tv"
@@ -204,7 +206,9 @@
         android:id="@+id/feet_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:text="@string/feet"
         app:layout_constraintEnd_toStartOf="@+id/inches_et"
         app:layout_constraintTop_toBottomOf="@+id/age_et" />
@@ -213,7 +217,7 @@
         android:id="@+id/inches_et"
         android:layout_width="60dp"
         android:layout_height="39dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/inches_tv"
@@ -223,7 +227,9 @@
         android:id="@+id/inches_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:text="@string/inches"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/age_et" />
@@ -232,70 +238,99 @@
         android:id="@+id/weight_et"
         android:layout_width="57dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/lbs_tv"
-        app:layout_constraintTop_toBottomOf="@+id/inches_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/feet_et" />
 
     <TextView
         android:id="@+id/lbs_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginRight="145dp"
         android:text="@string/lbs"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inches_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/feet_tv" />
 
     <RadioGroup
         android:id="@+id/sex_rbtn_group"
-        android:layout_width="322dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="47dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/city_et"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sex_tv"
         app:layout_constraintTop_toBottomOf="@+id/weight_et">
 
         <RadioButton
-            android:id="@+id/male_rbtn"
-            android:layout_width="74dp"
-            android:layout_height="36dp"
-            android:text="@string/male" />
+            android:id="@+id/prefer_not_to_say_rbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prefer_not_to_say" />
 
         <RadioButton
             android:id="@+id/female_rbtn"
-            android:layout_width="wrap_content"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:text="@string/female" />
 
         <RadioButton
-            android:id="@+id/prefer_not_to_say_rbtn"
-            android:layout_width="148dp"
-            android:layout_height="45dp"
-            android:text="@string/prefer_not_to_say" />
-
+            android:id="@+id/male_rbtn"
+            android:layout_width="102dp"
+            android:layout_height="49dp"
+            android:text="@string/male" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/city_et"
         android:layout_width="206dp"
         android:layout_height="29dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sex_rbtn_group" />
 
+
+    <RadioGroup
+        android:id="@+id/activity"
+        android:layout_width="176dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country_et">
+
+        <RadioButton
+            android:id="@+id/Yes_rbtn"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Yes" />
+
+        <RadioButton
+            android:id="@+id/No_rbtn"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:text="@string/No" />
+    </RadioGroup>
+
     <EditText
         android:id="@+id/country_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -303,36 +338,35 @@
 
     <Button
         android:id="@+id/upload_profile_picture_btn"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
+        android:layout_width="118dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:text="@string/upload"
-        app:layout_constraintBottom_toTopOf="@+id/upload_background_picture_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_et"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintEnd_toStartOf="@+id/upload_background_picture_btn"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture_tv" />
 
     <Button
         android:id="@+id/upload_background_picture_btn"
-        android:layout_width="119dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
+        android:layout_width="115dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
         android:text="@string/upload"
-        app:layout_constraintBottom_toTopOf="@+id/submit_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_profile_picture_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/background_picture_tv" />
 
     <Button
         android:id="@+id/submit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_background_picture_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/country_et" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
