@@ -106,11 +106,16 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     // We created dummy values for the rest of the necessary arguments to construct a
                     // user model.
                     // All the following variables are jst dummmy values/
+                    // These variables will represent file paths to the photos
                     val profilePicture = ""
                     val backgroundPicture = ""
+                    // male = 0, female = 1
                     val sex= 0
+                    // -1 = lose weight, 0 = maintain weight, 1 = gain weight
                     var goalType = 0
+                    // the number of pounds the user wants to gain / loseper week
                     var lbsPerWeek = 0
+                    // represents whether the user is sedentary or active
                     var isActive = false
 
                     // Create a user object
@@ -119,11 +124,11 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     var dbManager : DBManager = DBManager(this);
                     // Add the user to the database
                     var addUserDidSucceed : Boolean = dbManager.addUser(user);
-                    // Show the home screen 
+                    // Show the home screen
                      showMainActivity()
                 }
                 else ->
-                { // Note the block
+                { // Note the block 
                     print("Invalid button press.")
                 }
             }
