@@ -126,12 +126,14 @@ class UserModel {
     }
 
     /* Generates an 8-character unique id */
-    fun generateUUID() : String {
+    companion object {fun generateUUID() : String {
         val allowedChars = ('A'..'Z') + ('0'..'9')
         return (1..8)
             .map { allowedChars.random() }
             .joinToString("")
-    }
+    }}
+
+
 
     /* Health Metric Methods */
 

@@ -119,7 +119,8 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     var isActive = false
 
                     // Create a user object
-                    val user:UserModel = UserModel("BRADEN68",firstName,lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
+                    var uuid: String = UserModel.generateUUID()
+                    val user:UserModel = UserModel(uuid,firstName,lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
                     // Create a DBManager object
                     var dbManager : DBManager = DBManager(this);
                     // Add the user to the database
