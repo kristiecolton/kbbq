@@ -126,7 +126,7 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     // Add the user to the database
                     var addUserDidSucceed : Boolean = dbManager.addUser(user);
                     // Show the home screen
-                     showMainActivity()
+                     showCreateUserProfile()
                 }
                 else ->
                 { // Note the block 
@@ -139,6 +139,11 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 
     private fun showMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun showCreateUserProfile() {
+        val intent = Intent(this, CreateUserProfile::class.java)
         startActivity(intent)
     }
 }

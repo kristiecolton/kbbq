@@ -27,6 +27,8 @@
     <string name="create_a_profile">Create a Profile</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
