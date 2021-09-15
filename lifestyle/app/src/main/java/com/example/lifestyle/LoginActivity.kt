@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     fun showCreateAProfileActivity() {
-        val intent = Intent(this, CreateProfileActivity::class.java)
+        val intent = Intent(this, CreateUserProfile::class.java)
         startActivity(intent)
     }
 

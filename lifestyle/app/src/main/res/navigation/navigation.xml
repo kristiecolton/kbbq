@@ -18,5 +18,32 @@
         android:id="@+id/fragmentAgeHeightWeight"
         android:name="com.example.lifestyle.FragmentAgeHeightWeight"
         android:label="fragment_age_height_weight"
-        tools:layout="@layout/fragment_age_height_weight" />
+        tools:layout="@layout/fragment_age_height_weight" >
+        <action
+            android:id="@+id/action_fragmentAgeHeightWeight_to_fragmentSex"
+            app:destination="@id/fragmentSex" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSex"
+        android:name="com.example.lifestyle.FragmentSex"
+        android:label="fragment_sex"
+        tools:layout="@layout/fragment_sex" >
+        <action
+            android:id="@+id/action_fragmentSex_to_fragmentCityCountry"
+            app:destination="@id/fragmentCityCountry" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCityCountry"
+        android:name="com.example.lifestyle.FragmentCityCountry"
+        android:label="fragment_city_country"
+        tools:layout="@layout/fragment_city_country" >
+        <action
+            android:id="@+id/action_fragmentCityCountry_to_fragmentProfileAndBackgroundPicture"
+            app:destination="@id/fragmentProfileAndBackgroundPicture" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProfileAndBackgroundPicture"
+        android:name="com.example.lifestyle.FragmentProfileAndBackgroundPicture"
+        android:label="fragment_profile_and_background_picture"
+        tools:layout="@layout/fragment_profile_and_background_picture" />
 </navigation>
