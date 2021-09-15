@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BMIFragment">
+    tools:context=".BmiStringFragment">
+
 
     <TextView
-        android:id="@+id/BMINumber_tv"
+        android:id="@+id/BMIString_tv"
         android:layout_width="296dp"
         android:layout_height="128dp"
-        android:textSize="40sp"
-        android:layout_gravity="center"/>
-
+        android:layout_gravity="center"
+        android:text="PLEASE"
+        android:textSize="40sp" />
 
 </FrameLayout>

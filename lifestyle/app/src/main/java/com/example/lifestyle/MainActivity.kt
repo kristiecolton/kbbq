@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener
 
     }
     private fun showBMIActivity() {
-        val intent = Intent(this, BMIactivity::class.java)
+        val intent = Intent(this, BmiActivity::class.java)
         startActivity(intent)
     }
 
