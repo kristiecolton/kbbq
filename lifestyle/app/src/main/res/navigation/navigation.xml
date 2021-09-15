@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/firstAndLastName">
+
+    <fragment
+        android:id="@+id/firstAndLastName"
+        android:name="com.example.lifestyle.FirstAndLastName"
+        android:label="fragment_first_and_last_name"
+        tools:layout="@layout/fragment_first_and_last_name" >
+        <action
+            android:id="@+id/action_firstAndLastName_to_fragmentAgeHeightWeight"
+            app:destination="@id/fragmentAgeHeightWeight" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAgeHeightWeight"
+        android:name="com.example.lifestyle.FragmentAgeHeightWeight"
+        android:label="fragment_age_height_weight"
+        tools:layout="@layout/fragment_age_height_weight" />
+</navigation>
