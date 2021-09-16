@@ -16,6 +16,9 @@
             android:label="@string/title_activity_b_m_iactivity"
             android:theme="@style/Theme.Lifestyle.NoActionBar" />
         <activity
+            android:name=".CreateUserProfile"
+            android:exported="true" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
@@ -30,6 +33,7 @@
             android:name=".CreateProfileActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>
