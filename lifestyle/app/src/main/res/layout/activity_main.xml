@@ -40,7 +40,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/BmiButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="6dp"
@@ -65,7 +65,7 @@
         android:layout_marginBottom="4dp"
         android:text="G"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/BmiButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -78,7 +78,7 @@
         android:layout_marginBottom="4dp"
         android:text="T"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintStart_toEndOf="@+id/HikingButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/HikingButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="36dp"
@@ -136,7 +136,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="13dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/BmiButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
