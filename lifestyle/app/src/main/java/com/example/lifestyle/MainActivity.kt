@@ -16,7 +16,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -27,13 +26,19 @@ import android.Manifest;
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
-     var longitude: String="40.7608"
-     var lattitude: String="-111.8910"
-    lateinit var bmiButton: Button;
-    lateinit var HikingButton:Button
+    // Hiking variables
+    var longitude: String="40.7608"
+    var lattitude: String="-111.8910"
     private lateinit var locationManager: LocationManager
     private lateinit var tvGpsLocation: TextView
     private val locationPermissionCode = 2
+
+    // UI Elements
+    lateinit var bmiButton: Button
+    lateinit var HikingButton:Button
+    lateinit var weatherButton: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,8 +65,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         bmiButton=findViewById(R.id.BmiButton) as Button;
         bmiButton.setOnClickListener(this);
+
         HikingButton=findViewById(R.id.HikingButton) as Button;
         HikingButton.setOnClickListener(this);
+
+        weatherButton = findViewById(R.id.weather_btn)
+        weatherButton.setOnClickListener(this)
 
 
     }
@@ -84,6 +93,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                     mapIntent.setPackage("com.google.android.apps.maps")
                     startActivity(mapIntent)
+                }
+                R.id.weather_btn-> {
+                    val intent = Intent(this, WeatherActivity::class.java)
+                    startActivity(intent)
                 }
 
                 }
