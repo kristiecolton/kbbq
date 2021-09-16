@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.content.ContextCompat.startActivity
 
 class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 {
@@ -81,7 +80,7 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 
                     // Get weight from edit text
                     val txtLbs =
-                        findViewById(R.id.weight_et) as EditText
+                        findViewById(R.id.lbs_et) as EditText
                     var lbs: Int;
                     if (txtLbs.text.toString()=="")
                     {

@@ -23,7 +23,7 @@
             android:text="@string/age" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/age_et"
             android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
@@ -49,7 +49,7 @@
             android:text="@string/height" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/feet_et"
             android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -66,8 +66,8 @@
             android:text="@string/feet" />
 
         <EditText
-            android:id="@+id/editTextNumber3"
-            android:layout_width="94dp"
+            android:id="@+id/inches_et"
+            android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
@@ -97,7 +97,7 @@
             android:text="@string/weight" />
 
         <EditText
-            android:id="@+id/editTextNumber4"
+            android:id="@+id/lbs_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
