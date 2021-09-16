@@ -137,5 +137,25 @@ class DBManager : SQLiteOpenHelper  {
         }
     }
 
+    fun getLastName(uuid: String) : String {
+        var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
+
+        var lastName : String;
+        // if there are any results from the query
+        if (cursor.moveToFirst()) {
+            lastName = cursor.getString(0);
+        } else {
+           lastName = ""
+           lastName = ""
+           lastName = ""
+        }
+        return lastName
+    }
+
+
+
+
 
 }

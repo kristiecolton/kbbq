@@ -87,6 +87,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "Hey Hey")
         Log.d("LOG", "firstName: " + this.firstName)
         Log.d("LOG", "Sex: $sex")
+        Log.d("LOG", "Database adding result: $addUserDidSucceed")
     }
 
     fun onRadioButtonClicked(view: View) {
