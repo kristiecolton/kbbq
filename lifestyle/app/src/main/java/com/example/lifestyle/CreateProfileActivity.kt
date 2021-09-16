@@ -125,7 +125,7 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     // Add the user to the database
                     var addUserDidSucceed : Boolean = dbManager.addUser(user);
                     // Show the home screen
-                     showCreateUserProfile()
+                     showMainActivity()
                 }
                 else ->
                 { // Note the block 

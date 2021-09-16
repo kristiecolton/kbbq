@@ -34,19 +34,25 @@
             android:id="@+id/prefer_not_to_say_rbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prefer_not_to_say" />
+            android:text="@string/prefer_not_to_say"
+            android:onClick="onRadioButtonClicked"/>
+            />
 
         <RadioButton
             android:id="@+id/female_rbtn"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
-            android:text="@string/female" />
+            android:text="@string/female"
+            android:onClick="onRadioButtonClicked"/>
+            />
 
         <RadioButton
             android:id="@+id/male_rbtn"
             android:layout_width="102dp"
             android:layout_height="49dp"
-            android:text="@string/male" />
+            android:text="@string/male"
+            android:onClick="onRadioButtonClicked"/>
+            />
     </RadioGroup>
 
     <Button

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
 import com.example.lifestyle.databinding.FragmentFirstAndLastNameBinding
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
@@ -33,11 +34,20 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "lastName: $lastName")
     }
 
+    fun isNumber(s: String?): Int {
+        return if (!s.isNullOrEmpty() && s.matches(Regex("\\d+"))) {
+            s.toInt()
+        } else {
+            0
+        }
+    }
+
     override fun onDataPass(age: String, feet: String, inches: String, lbs: String) {
-        this.age = age.toInt()
-        this.feet = feet.toInt()
-        this.inches = inches.toInt()
-        this.lbs = lbs.toInt()
+
+        this.age = isNumber(age)
+        this.feet = isNumber(feet)
+        this.inches = isNumber(inches)
+        this.lbs = isNumber(lbs)
 
         Log.d("LOG", "age: $age")
         Log.d("LOG", "feet: $feet")
@@ -58,8 +68,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         // user model.
         profilePicture = ""
         backgroundPicture = ""
-        // male = 0, female = 1
-        sex= 0
+
         // -1 = lose weight, 0 = maintain weight, 1 = gain weight
         var goalType = 0
         // the number of pounds the user wants to gain / loseper week
@@ -76,5 +85,33 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         var addUserDidSucceed : Boolean = dbManager.addUser(user);
 
         Log.d("LOG", "Hey Hey")
+        Log.d("LOG", "firstName: " + this.firstName)
+        Log.d("LOG", "Sex: $sex")
+    }
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.male_rbtn ->
+                    if (checked) {
+                        sex = 0
+                        Log.d("LOG", "You are Male")
+                    }
+                R.id.female_rbtn ->
+                    if (checked) {
+                        sex = 1
+                        Log.d("LOG", "You are Female")
+                    }
+                R.id.prefer_not_to_say_rbtn ->
+                    if (checked) {
+                        sex = 2
+                        Log.d("LOG", "You prefer not to say")
+                    }
+            }
+        }
     }
 }
