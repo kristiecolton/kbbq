@@ -7,7 +7,7 @@ import android.view.View
 import com.example.lifestyle.databinding.FragmentFirstAndLastNameBinding
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
-class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass {
+class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
 
     lateinit var firstName: String
     lateinit var lastName: String
@@ -53,5 +53,28 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "country: $country")
     }
 
+    override fun onDataPassProfileAndBackgroundPicture(firstName: String, lastName: String) {
+        // dummy values for the rest of the necessary arguments to construct a
+        // user model.
+        profilePicture = ""
+        backgroundPicture = ""
+        // male = 0, female = 1
+        sex= 0
+        // -1 = lose weight, 0 = maintain weight, 1 = gain weight
+        var goalType = 0
+        // the number of pounds the user wants to gain / loseper week
+        var lbsPerWeek = 0
+        // represents whether the user is sedentary or active
+        var isActive = false
 
+        // Create a user object
+        var uuid: String = UserModel.generateUUID()
+        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
+        // Create a DBManager object
+        var dbManager : DBManager = DBManager(this);
+        // Add the user to the database
+        var addUserDidSucceed : Boolean = dbManager.addUser(user);
+
+        Log.d("LOG", "Hey Hey")
+    }
 }
