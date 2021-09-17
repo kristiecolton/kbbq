@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import android.Manifest;
+import android.util.Log
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
@@ -77,7 +78,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     override fun onClick(v: View?)
     {
         if (v != null)
-        {
             when (v.id)
             {
                 R.id.BmiButton->
@@ -95,13 +95,19 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     startActivity(mapIntent)
                 }
                 R.id.weather_btn-> {
-                    val intent = Intent(this, WeatherActivity::class.java)
+//                    val intent = Intent(this, WeatherActivity::class.java)
+//                    startActivity(intent)
+
+                    Log.d("LOG", "edit profile button tapped")
+                    val intent = Intent(this, EditProfileActivity::class.java)
+                    intent.putExtra("uuid", "ABCDEFG");
                     startActivity(intent)
                 }
+                R.id.edit_profile_btn -> {
 
                 }
 
-        }
+                }
 
     }
     private fun showBMIActivity() {
