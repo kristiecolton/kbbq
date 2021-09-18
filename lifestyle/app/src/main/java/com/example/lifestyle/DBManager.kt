@@ -137,6 +137,34 @@ class DBManager : SQLiteOpenHelper  {
         }
     }
 
+    /* Updates a  user's info in the db */
+    fun updateUser(user: UserModel) : Boolean {
+        var db : SQLiteDatabase = this.writableDatabase;
+        var cv : ContentValues = ContentValues();
+
+        cv.put(COLUMN_FIRST_NAME, user.firstName);
+        cv.put(COLUMN_LAST_NAME, user.lastName);
+        cv.put(COLUMN_AGE, user.age);
+        cv.put(COLUMN_SEX, user.sex);
+        cv.put(COLUMN_FEET, user.feet);
+        cv.put(COLUMN_INCHES, user.inches);
+        cv.put(COLUMN_LBS, user.lbs);
+        cv.put(COLUMN_CITY, user.city);
+        cv.put(COLUMN_COUNTRY, user.country);
+        cv.put(COLUMN_PROFILE_PICTURE, user.profilePicture);
+        cv.put(COLUMN_BACKGROUND_PICTURE, user.backgroundPicture);
+        cv.put(COLUMN_GOAL_TYPE, user.goalType);
+        cv.put(COLUMN_LBS_PER_WEEK, user.lbsPerWeek);
+        cv.put(COLUMN_RECOMMENDED_DAILY_CALORIES, user.recommendedDailyCalories);
+        cv.put(COLUMN_BMR, user.BMI);
+        cv.put(COLUMN_BMI, user.BMI);
+        val whereClause : String = COLUMN_UUID+" = " + user.uuid
+
+        var updateResult : Int = db.update(USER_TABLE, cv, COLUMN_UUID + "= ?", arrayOf(user.uuid))
+        // Return false if insertionResult == -1, true otherwsie
+        return updateResult != -1
+    }
+
     fun getLastName(uuid: String) : String {
         var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;

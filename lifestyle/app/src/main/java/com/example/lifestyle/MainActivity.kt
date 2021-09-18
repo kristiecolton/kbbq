@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var bmiButton: Button
     lateinit var HikingButton:Button
     lateinit var weatherButton: Button
-
+    lateinit var editProfileButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +81,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         weatherButton = findViewById(R.id.weather_btn)
         weatherButton.setOnClickListener(this)
 
+        editProfileButton = findViewById(R.id.edit_profile_btn)
+        editProfileButton.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?)
@@ -103,15 +106,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     startActivity(mapIntent)
                 }
                 R.id.weather_btn-> {
-//                    val intent = Intent(this, WeatherActivity::class.java)
-//                    startActivity(intent)
+                    val intent = Intent(this, WeatherActivity::class.java)
+                    startActivity(intent)
 
+                }
+                R.id.edit_profile_btn -> {
                     val intent = Intent(this, EditProfileActivity::class.java)
                     intent.putExtra("uuid", this.uuid);
                     startActivity(intent)
-                }
-                R.id.edit_profile_btn -> {
-
                 }
 
                 }

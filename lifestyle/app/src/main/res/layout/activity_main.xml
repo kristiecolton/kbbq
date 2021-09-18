@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/view2"
         android:layout_width="135dp"
@@ -34,7 +33,7 @@
             android:layout_height="135dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/t_rac"
+            android:src="@drawable/ic_user"
             tools:layout_editor_absoluteX="-16dp"
             tools:layout_editor_absoluteY="211dp"></ImageView>
     </androidx.cardview.widget.CardView>

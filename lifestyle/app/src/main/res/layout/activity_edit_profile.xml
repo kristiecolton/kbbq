@@ -22,6 +22,7 @@
             android:background="@drawable/circle_border">
 
             <ImageView
+                android:id="@+id/edit_profile_profile_picture"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="9dp"
@@ -39,14 +40,14 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/edit_profile_edit_profile_picture_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile Picture"
-            android:textSize="13sp"
-            android:id="@+id/edit_profile_edit_profile_picture_btn"
+            android:layout_below="@id/imgUser"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:layout_below="@id/imgUser"/>
+            android:text="Edit Profile Picture"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/edit_profile_save_btn"
@@ -60,7 +61,7 @@
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
             android:text="Save"
-            android:textSize="16dp"/>
+            android:textSize="16dp" />
 
     </RelativeLayout>
 
@@ -95,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="First Name"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <EditText
@@ -129,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Last Name"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <EditText
@@ -163,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Age"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <EditText
@@ -196,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Height"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <LinearLayout
@@ -226,7 +227,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="wrap_content"
                                 android:text="feet"
-                                android:textColor="@color/teal_700"
+                                android:textColor="@color/purple_700"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -252,7 +253,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="inches"
-                                android:textColor="@color/teal_700"
+                                android:textColor="@color/purple_700"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -276,7 +277,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weight"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
                     <!-- Lbs -->
                     <LinearLayout
@@ -300,7 +301,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:text="lbs"
-                            android:textColor="@color/teal_700"
+                            android:textColor="@color/purple_700"
                             android:textSize="13sp" />
 
                     </LinearLayout>
@@ -323,7 +324,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sex"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -369,7 +370,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <EditText
@@ -402,7 +403,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Country"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <EditText
@@ -437,7 +438,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Are You Active?"
-                        android:textColor="@color/teal_700"
+                        android:textColor="@color/purple_700"
                         android:textSize="13sp" />
 
                     <RadioGroup
