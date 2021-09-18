@@ -173,7 +173,7 @@ class DBManager : SQLiteOpenHelper  {
         var lastName : String;
         // if there are any results from the query
         if (cursor.moveToFirst()) {
-            lastName = cursor.getString(0);
+            lastName = cursor.getString(2);
         } else {
            lastName = ""
            lastName = ""
@@ -182,6 +182,40 @@ class DBManager : SQLiteOpenHelper  {
         return lastName
     }
 
+    fun getFirstName(uuid: String) : String {
+        var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
+
+        var lastName : String;
+        // if there are any results from the query
+        if (cursor.moveToFirst()) {
+            lastName = cursor.getString(1);
+        } else {
+            lastName = ""
+            lastName = ""
+            lastName = ""
+        }
+        return lastName
+    }
+
+    fun getAllUid(): MutableList<String> {
+        var query : String = "SELECT UUID FROM " + USER_TABLE
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("select UUID from USER",null);
+
+        var UUIDList : MutableList<String> = ArrayList()
+        // if there are any results from the query
+        while (!cursor.isAfterLast)
+        {
+            if (cursor.moveToNext()) {
+                val name = cursor.getString(0)
+                UUIDList.add(name)
+            }
+
+        }
+        return UUIDList
+    }
 
 
 
