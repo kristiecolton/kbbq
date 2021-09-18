@@ -1,5 +1,6 @@
 package com.example.lifestyle
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,7 @@ import com.example.lifestyle.databinding.FragmentFirstAndLastNameBinding
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
 class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
-
+    lateinit var uuid : String
     lateinit var firstName: String
     lateinit var lastName: String
     var age: Int = 0
@@ -77,12 +78,17 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         var isActive = false
 
         // Create a user object
-        var uuid: String = UserModel.generateUUID()
+        this.uuid = UserModel.generateUUID()
         val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
         // Create a DBManager object
         var dbManager : DBManager = DBManager(this);
         // Add the user to the database
         var addUserDidSucceed : Boolean = dbManager.addUser(user);
+
+        // Navigate to home page
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("uuid", this.uuid);
+        startActivity(intent)
 
         Log.d("LOG", "Hey Hey")
         Log.d("LOG", "firstName: " + this.firstName)

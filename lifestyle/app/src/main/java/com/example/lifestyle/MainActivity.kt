@@ -27,6 +27,10 @@ import android.util.Log
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
+
+    // User's uuid
+    var uuid : String = ""
+
     // Hiking variables
     var longitude: String="40.7608"
     var lattitude: String="-111.8910"
@@ -43,6 +47,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Get user'ss uuid from previous activity
+        this.uuid = intent.getExtras()?.getString("uuid")!!
+
         val pieChart = findViewById<PieChart>(R.id.pieChart)
         val Cal = ArrayList<PieEntry>()
 
@@ -73,8 +81,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         weatherButton = findViewById(R.id.weather_btn)
         weatherButton.setOnClickListener(this)
 
-
     }
+
     override fun onClick(v: View?)
     {
         if (v != null)
@@ -98,9 +106,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 //                    val intent = Intent(this, WeatherActivity::class.java)
 //                    startActivity(intent)
 
-                    Log.d("LOG", "edit profile button tapped")
                     val intent = Intent(this, EditProfileActivity::class.java)
-                    intent.putExtra("uuid", "ABCDEFG");
+                    intent.putExtra("uuid", this.uuid);
                     startActivity(intent)
                 }
                 R.id.edit_profile_btn -> {
