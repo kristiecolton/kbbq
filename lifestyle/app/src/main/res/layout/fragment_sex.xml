@@ -7,52 +7,193 @@
     tools:context=".FragmentSex">
 
     <TextView
+        android:id="@+id/G_m_L"
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/Gain_Loss"
+        app:layout_constraintBottom_toTopOf="@+id/are_you_active_tv"
+        app:layout_constraintEnd_toStartOf="@+id/weight_gain_loss"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/sex_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginBottom="383dp"
         android:text="@string/sex"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sex_rbtn_group"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/are_you_active_tv"
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="215dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginBottom="77dp"
+        android:text="@string/are_you_active"
+        app:layout_constraintBottom_toTopOf="@+id/sex_tv"
+        app:layout_constraintEnd_toStartOf="@+id/sex_rbtn_group"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
-
+        app:layout_constraintTop_toTopOf="parent" />
     <RadioGroup
-        android:id="@+id/sex_rbtn_group"
+        android:id="@+id/amountToLose"
         android:layout_width="309dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/are_you_active"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/zero"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/zero" />
+        />
+
+        <RadioButton
+            android:id="@+id/one"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/one" />
+
+        <RadioButton
+            android:id="@+id/two"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/two" />
+        />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/weight_gain_loss"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/are_you_active"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/gain"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Gain" />
+        />
+
+        <RadioButton
+            android:id="@+id/Maintain"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Maintain" />
+
+        <RadioButton
+            android:id="@+id/Lose"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Lose" />
+        />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/are_you_active"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/are_you_active_tv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.307">
+
+        <RadioButton
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Yes" />
+        />
+
+        <RadioButton
+            android:id="@+id/no"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/no" />
+        />
+
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/sex_rbtn_group"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sex_tv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466">
 
         <RadioButton
             android:id="@+id/prefer_not_to_say_rbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prefer_not_to_say"
-            android:onClick="onRadioButtonClicked"/>
-            />
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/prefer_not_to_say" />
+        />
 
         <RadioButton
             android:id="@+id/female_rbtn"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
-            android:text="@string/female"
-            android:onClick="onRadioButtonClicked"/>
-            />
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/female" />
+        />
 
         <RadioButton
             android:id="@+id/male_rbtn"
             android:layout_width="102dp"
             android:layout_height="49dp"
-            android:text="@string/male"
-            android:onClick="onRadioButtonClicked"/>
-            />
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/male" />
+        />
     </RadioGroup>
 
     <Button

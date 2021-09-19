@@ -29,8 +29,9 @@ class FragmentSex : Fragment() {
     ): View? {
 
         _binding = FragmentSexBinding.inflate(inflater, container, false)
-        binding.button4.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_fragmentSex_to_fragmentCityCountry) }
+        binding.button4.setOnClickListener{ view : View ->
+            view.findNavController().navigate(R.id.action_fragmentSex_to_fragmentCityCountry)
+        }
         return binding.root
     }
 }

@@ -22,6 +22,9 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     lateinit var country: String
     lateinit var profilePicture: String
     lateinit var backgroundPicture: String
+    var isActive:Boolean=false
+    var goalType = 0
+    var lbsPerWeek = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,15 +74,14 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         backgroundPicture = ""
 
         // -1 = lose weight, 0 = maintain weight, 1 = gain weight
-        var goalType = 0
+
         // the number of pounds the user wants to gain / loseper week
-        var lbsPerWeek = 0
-        // represents whether the user is sedentary or active
-        var isActive = false
+
+
 
         // Create a user object
         this.uuid = UserModel.generateUUID()
-        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek,isActive)
+        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive)
         // Create a DBManager object
         var dbManager : DBManager = DBManager(this);
         // Add the user to the database
@@ -97,7 +99,8 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     }
 
     fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
+        if (view is RadioButton)
+        {
             // Is the button now checked?
             val checked = view.isChecked
 
@@ -117,6 +120,46 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
                     if (checked) {
                         sex = 2
                         Log.d("LOG", "You prefer not to say")
+                    }
+                R.id.yes ->
+                    if (checked) {
+                        isActive = true
+                        Log.d("LOG", "You are Male")
+                    }
+                R.id.no ->
+                    if (checked) {
+                        isActive = false
+                        Log.d("LOG", "You are Female")
+                    }
+                R.id.gain ->
+                    if (checked) {
+                        goalType = 1
+                        Log.d("LOG", "You are Male")
+                    }
+                R.id.Lose ->
+                    if (checked) {
+                        goalType = -1
+                        Log.d("LOG", "You are Female")
+                    }
+                R.id.Maintain ->
+                    if (checked) {
+                        goalType = 0
+                        Log.d("LOG", "You are Female")
+                    }
+                R.id.one ->
+                    if (checked) {
+                        lbsPerWeek = 1
+                        Log.d("LOG", "You are Male")
+                    }
+                R.id.two ->
+                    if (checked) {
+                        lbsPerWeek = 2
+                        Log.d("LOG", "You are Female")
+                    }
+                R.id.zero ->
+                    if (checked) {
+                        lbsPerWeek = 0
+                        Log.d("LOG", "You are Female")
                     }
             }
         }
