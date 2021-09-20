@@ -81,7 +81,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         var dbManager : DBManager = DBManager(this);
         // Create a user object
         this.uuid = UserModel.generateUUID()
-        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek), UserModel.calculateBMI(lbs,feet,inches).toInt(),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive))
+        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive), UserModel.calculateBMI(lbs,feet,inches))
         // Create a DBManager object
 
         // Add the user to the database
@@ -124,42 +124,42 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
                 R.id.yes ->
                     if (checked) {
                         isActive = true
-                        Log.d("LOG", "You are Male")
+                        Log.d("LOG", "yes to active")
                     }
                 R.id.no ->
                     if (checked) {
                         isActive = false
-                        Log.d("LOG", "You are Female")
+                        Log.d("LOG", "No to active")
                     }
                 R.id.gain ->
                     if (checked) {
                         goalType = 1
-                        Log.d("LOG", "You are Male")
+                        Log.d("LOG", "you want to gain")
                     }
                 R.id.Lose ->
                     if (checked) {
                         goalType = -1
-                        Log.d("LOG", "You are Female")
+                        Log.d("LOG", "you want to lose")
                     }
                 R.id.Maintain ->
                     if (checked) {
                         goalType = 0
-                        Log.d("LOG", "You are Female")
+                        Log.d("LOG", "you want to maintain")
                     }
                 R.id.one ->
                     if (checked) {
                         lbsPerWeek = 1
-                        Log.d("LOG", "You are Male")
+                        Log.d("LOG", "you selected one")
                     }
                 R.id.two ->
                     if (checked) {
                         lbsPerWeek = 2
-                        Log.d("LOG", "You are Female")
+                        Log.d("LOG", "you selected two")
                     }
                 R.id.zero ->
                     if (checked) {
                         lbsPerWeek = 0
-                        Log.d("LOG", "You are Female")
+                        Log.d("LOG", "You selected three")
                     }
             }
         }

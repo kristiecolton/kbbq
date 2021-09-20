@@ -55,7 +55,7 @@ class BmiStringFragment : Fragment() {
                 textView.setTextColor(Color.parseColor("yellow"))
             }else if(bmiFloat<40){
                 testString="Obese"
-                textView.setTextColor(Color.parseColor("orange"))
+                textView.setTextColor(Color.parseColor("red"))
             }else
             {
                 testString="Very Obese"

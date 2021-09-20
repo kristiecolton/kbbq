@@ -61,7 +61,7 @@ class BMIFragment : Fragment() {
                 textView.setTextColor(Color.parseColor("yellow"))
             }else if(bmiFloat<40){
 
-                textView.setTextColor(Color.parseColor("orange"))
+                textView.setTextColor(Color.parseColor("red"))
             }else
             {
 

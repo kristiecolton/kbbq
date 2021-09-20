@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/forstidio"
+        android:background="@drawable/weather_bg"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,14 +20,19 @@
         <TextView
             android:id="@+id/Cal_tv"
             android:layout_width="match_parent"
-            android:layout_height="107dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="2000"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="124dp"
-            android:layout_height="34dp"
-            android:text="Button" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="221dp"
+            android:text="Your Daily Calories"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
