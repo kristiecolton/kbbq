@@ -132,51 +132,52 @@ class UserModel {
         return (1..8)
             .map { allowedChars.random() }
             .joinToString("")
-    }}
-
-
-
-    /* Health Metric Methods */
-
-    // Calculates BMR using a user's weight and height
-    fun calculateBMR(lbs: Int, feet: Int, inches: Int,age:Int, sex: Int,isActive: Boolean) : Int
-    {
-        var intBMR=0.0
-
-        intBMR = if( sex==0)
-        {
-            66+(6.23*lbs)+(12.7*(feet*12+inches)) - (6.8 * age)
-        }else
-        {
-            655+(4.35*lbs)+(4.7*(feet*12+inches)) - (4.7 * age)
-        }
-       if (isActive)
-        {
-            intBMR += (90 * (0.035 * 0.453592 * lbs) + ((1.78816 * 1.78816) / (0.0254 * (feet * 12 + inches))) * (0.029) * (0.453592 * lbs))
-        }
-
-        return intBMR.toInt();
     }
+        /* Health Metric Methods */
+
+        // Calculates BMR using a user's weight and height
+        fun calculateBMR(lbs: Int, feet: Int, inches: Int,age:Int, sex: Int,isActive: Boolean) : Int
+        {
+            var intBMR=0.0
+
+            intBMR = if( sex==0)
+            {
+                66+(6.23*lbs)+(12.7*(feet*12+inches)) - (6.8 * age)
+            }else
+            {
+                655+(4.35*lbs)+(4.7*(feet*12+inches)) - (4.7 * age)
+            }
+            if (isActive)
+            {
+                intBMR += (90 * (0.035 * 0.453592 * lbs) + ((1.78816 * 1.78816) / (0.0254 * (feet * 12 + inches))) * (0.029) * (0.453592 * lbs))
+            }
+
+            return intBMR.toInt();
+        }
 //    Calories burned per minute = 90* (0.035  X 0.453592 * lbs) +
 //    ((1.78816 ^ 2) / (0.0254*Height in inches))) X (0.029) X ( 0.453592 * lbs)
 
 
 
-//    Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) – (4.7 x age in years)
+        //    Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) – (4.7 x age in years)
 //    Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) – (6.8 x age in years)
-    // Calculates BMI using a user's weight and height
-    fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
+        // Calculates BMI using a user's weight and height
+        fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
 
-        val intBMI=703*(lbs*((feet * 12 + inches)*(feet * 12 + inches)))
+            val intBMI=703*(lbs*((feet * 12 + inches)*(feet * 12 + inches)))
 
-        return intBMI.toFloat()
+            return intBMI.toFloat()
+        }
+
+        // Calculates the user's recommended daily calories based on their
+        // BMR, type of goal (lose, maintain or gain weight) and the amount // of weight they'd like to change per week
+        fun calculateRecommendedDailyCalories(BMR: Int, goalType: Int, lbsPerWeek: Int) : Int {
+            return BMR+((goalType)*((lbsPerWeek*3000)/7));
+        }
     }
 
-    // Calculates the user's recommended daily calories based on their
-    // BMR, type of goal (lose, maintain or gain weight) and the amount // of weight they'd like to change per week
-    fun calculateRecommendedDailyCalories(BMR: Int, goalType: Int, lbsPerWeek: Int) : Int {
-        return BMR+((goalType)*((lbsPerWeek*3000)/7));
-    }
+
+
 
     override fun toString(): String {
         return "UserModel(uuid='$uuid', firstName='$firstName', lastName='$lastName', age=$age, sex=$sex, feet=$feet, inches=$inches, lbs=$lbs, city='$city', country='$country', profilePicture='$profilePicture', backgroundPicture='$backgroundPicture', goalType=$goalType, lbsPerWeek=$lbsPerWeek, recommendedDailyCalories=$recommendedDailyCalories, isActive=$isActive, BMR=$BMR, BMI=$BMI)"
