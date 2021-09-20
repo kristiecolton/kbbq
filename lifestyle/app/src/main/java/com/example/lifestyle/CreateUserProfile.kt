@@ -78,12 +78,12 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         // the number of pounds the user wants to gain / loseper week
 
 
-
+        var dbManager : DBManager = DBManager(this);
         // Create a user object
         this.uuid = UserModel.generateUUID()
-        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive)
+        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek), UserModel.calculateBMI(lbs,feet,inches).toInt(),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive))
         // Create a DBManager object
-        var dbManager : DBManager = DBManager(this);
+
         // Add the user to the database
         var addUserDidSucceed : Boolean = dbManager.addUser(user);
 
