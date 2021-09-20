@@ -5,38 +5,29 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 
-class BmiActivity : AppCompatActivity() ,View.OnClickListener
+class BmiActivity : AppCompatActivity()
 {
-    lateinit var calculateButton:Button
+    var uuid:String =""
+    var dataBase:DBManager= DBManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmi)
-        calculateButton=findViewById(R.id.calculate_btn) as Button;
-        calculateButton.setOnClickListener(this);
-    }
-    override fun onClick(v: View?)
-    {
-        if (v != null)
-        {
-            when (v.id)
-            {
-                R.id.calculate_btn->
-                {
-                    supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragment_container_view_NumberBMI, BMIFragment.newInstance("24.4"))
-                    .commit()
 
-                    supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragment_container_view_stringBMI, BmiStringFragment.newInstance("24.5"))
-                    .commit()
 
-                }
+        this.uuid = intent.getExtras()?.getString("uuid")!!
 
-            }
 
-        }
+
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container_view_NumberBMI, BMIFragment.newInstance(dataBase.getBMI(uuid)))
+                .commit()
+
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container_view_stringBMI, BmiStringFragment.newInstance(dataBase.getBMI(uuid)))
+                .commit()
 
     }
+
 }

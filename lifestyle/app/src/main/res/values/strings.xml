@@ -47,6 +47,7 @@
     <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
+    <string name="how_many_lbs">How many pounds you want to gain/lose?</string>
 
 
 </resources>

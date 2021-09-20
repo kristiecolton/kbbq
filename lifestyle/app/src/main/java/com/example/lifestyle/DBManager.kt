@@ -124,7 +124,7 @@ class DBManager : SQLiteOpenHelper  {
             var isActive : Boolean = cursor.getInt(14) == 1;
             var recommendedDailyCalories : Int = cursor.getInt(15);
             var BMR : Int = cursor.getInt(16);
-            var BMI : Int = cursor.getInt(16);
+            var BMI : Float = cursor.getFloat(16);
 
             var user : UserModel = UserModel(uuid, firstName, lastName, age, sex, feet, inches, lbs, city, country, profilePicture, backgroundPicture,
                 goalType, lbsPerWeek, isActive, recommendedDailyCalories, BMR, BMI);
@@ -212,6 +212,21 @@ class DBManager : SQLiteOpenHelper  {
             lastName = ""
         }
         return lastName
+    }
+    fun getBMI(uuid: String) : String {
+        var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
+
+        var BMI : Int;
+        // if there are any results from the query
+        if (cursor.moveToFirst()) {
+            BMI = cursor.getInt(17);
+        } else {
+            BMI = 0
+
+        }
+        return BMI.toString()
     }
 
     fun getAllUuids(): MutableList<String> {

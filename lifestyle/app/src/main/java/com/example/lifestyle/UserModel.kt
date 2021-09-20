@@ -1,5 +1,7 @@
 package com.example.lifestyle
 
+import android.util.Log
+
 //  A class to represent a user
 class UserModel {
     // A unique identifier to identify users by
@@ -37,7 +39,7 @@ class UserModel {
     // Represents the user's Basal Metabolic Rate
     var BMR : Int = 0;
     // Represents the user's Body Mass Index
-    var BMI : Int = 0;
+    var BMI : Float = 0.0F;
 
     /* Constructors */
 
@@ -104,7 +106,7 @@ class UserModel {
         isActive: Boolean,
         recommendedDailyCalories: Int,
         BMR: Int,
-        BMI: Int)
+        BMI: Float)
     {
         this.uuid = uuid
         this.firstName = firstName
@@ -151,7 +153,7 @@ class UserModel {
             {
                 intBMR += (90 * (0.035 * 0.453592 * lbs) + ((1.78816 * 1.78816) / (0.0254 * (feet * 12 + inches))) * (0.029) * (0.453592 * lbs))
             }
-
+            Log.d("LOG",intBMR.toString()+" BMR" )
             return intBMR.toInt();
         }
 //    Calories burned per minute = 90* (0.035  X 0.453592 * lbs) +
@@ -164,15 +166,17 @@ class UserModel {
         // Calculates BMI using a user's weight and height
         fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
 
-            val intBMI=703*(lbs*((feet * 12 + inches)*(feet * 12 + inches)))
-
+            val intBMI= 703.00*(lbs.toFloat()/((feet.toFloat() * 12.0 + inches.toFloat())*(feet.toFloat() * 12.0 + inches.toFloat())))
+            Log.d("LOG",intBMI.toString()+" BMI"  )
             return intBMI.toFloat()
         }
 
         // Calculates the user's recommended daily calories based on their
         // BMR, type of goal (lose, maintain or gain weight) and the amount // of weight they'd like to change per week
         fun calculateRecommendedDailyCalories(BMR: Int, goalType: Int, lbsPerWeek: Int) : Int {
-            return BMR+((goalType)*((lbsPerWeek*3000)/7));
+            var cals:Int=BMR+((goalType)*((lbsPerWeek*3000)/7))
+            Log.d("LOG",cals.toString()+" cals" )
+            return cals ;
         }
     }
 
