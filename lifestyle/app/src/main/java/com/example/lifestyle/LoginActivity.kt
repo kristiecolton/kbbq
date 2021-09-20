@@ -139,6 +139,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
 
 
     override fun passData(position: Int) {
+        //Get the uuid of the profile tapped
+        val uuid : String = mCustomListData.getItemDetail(position)!!
+
+        //Put the uuid into a bundle
+        val detailBundle = Bundle()
+        detailBundle.putString("uuid", uuid)
+
+        //Start MainActivity, pass the uuid along
+        val sendIntent = Intent(this, MainActivity::class.java)
+        sendIntent.putExtras(detailBundle)
+        startActivity(sendIntent)
 //        //Get the string data corresponding to the detail view
 //        val itemDetailString: String = HikeActivity.mCustomListData.getItemDetail(position)
 //
