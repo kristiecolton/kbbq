@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/weather_bg"
     tools:context=".FirstAndLastName">
 
     <LinearLayout
@@ -16,6 +17,7 @@
 
         <TextView
             android:id="@+id/firstName"
+            style="@style/dark_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,6 +25,8 @@
 
         <EditText
             android:id="@+id/first_name_et"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,6 +43,7 @@
 
         <TextView
             android:id="@+id/lastName"
+            style="@style/dark_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -46,6 +51,8 @@
 
         <EditText
             android:id="@+id/last_name_et"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,10 +62,10 @@
 
     <Button
         android:id="@+id/firstAndLastNameNextButton"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30sp"
-        android:text="Next"
-        app:backgroundTint="#8BC34A" />
+        android:text="Next" />
 </LinearLayout>

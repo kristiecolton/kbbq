@@ -8,9 +8,9 @@
 
     <RelativeLayout
         android:id="@+id/rellay1"
+        android:background="@drawable/weather_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/grad"
         android:paddingBottom="20dp">
 
         <RelativeLayout
@@ -47,7 +47,11 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:text="Edit Profile Picture"
-            android:textSize="13sp" />
+            android:textColor="@color/dark_red"
+            android:textSize="13sp"/>
+        <!-- not sure if this is better
+            style="@style/dark_button"
+            android:text="Edit Profile Picture"-->
 
         <Button
             android:id="@+id/edit_profile_save_btn"
@@ -59,9 +63,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            style="@style/dark_button"
+            android:text="Save" />
+        <!-- not sure if this is better
             android:background="@android:color/transparent"
             android:text="Save"
-            android:textSize="16dp" />
+            android:textSize="16dp"-->
 
     </RelativeLayout>
 
@@ -96,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="First Name"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <EditText
@@ -130,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Last Name"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <EditText
@@ -164,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Age"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <EditText
@@ -197,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Height"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <LinearLayout
@@ -227,7 +234,7 @@
                                 android:layout_width="30dp"
                                 android:layout_height="wrap_content"
                                 android:text="feet"
-                                android:textColor="@color/purple_700"
+                                android:textColor="@color/black"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -253,7 +260,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="inches"
-                                android:textColor="@color/purple_700"
+                                android:textColor="@color/black"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -277,7 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weight"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
                     <!-- Lbs -->
                     <LinearLayout
@@ -301,7 +308,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:text="lbs"
-                            android:textColor="@color/purple_700"
+                            android:textColor="@color/black"
                             android:textSize="13sp" />
 
                     </LinearLayout>
@@ -324,7 +331,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sex"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -370,7 +377,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <EditText
@@ -403,7 +410,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Country"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <EditText
@@ -438,7 +445,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Are You Active?"
-                        android:textColor="@color/purple_700"
+                        android:textColor="@color/dark_red"
                         android:textSize="13sp" />
 
                     <RadioGroup

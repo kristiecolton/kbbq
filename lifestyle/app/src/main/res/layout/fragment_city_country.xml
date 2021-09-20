@@ -2,36 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentCityCountry"
-    android:id="@+id/frameLayout">
+    android:background="@drawable/weather_bg"
+    tools:context=".FragmentCityCountry">
 
     <TextView
         android:id="@+id/city_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="32dp"
         android:text="@string/city"
         app:layout_constraintBottom_toTopOf="@+id/country_tv"
         app:layout_constraintEnd_toStartOf="@+id/city_et"
-        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
         android:id="@+id/country_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="528dp"
         android:text="@string/country"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/country_et"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city_tv" />
 
@@ -39,12 +44,15 @@
         android:id="@+id/city_et"
         android:layout_width="206dp"
         android:layout_height="29dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
+        android:layout_marginTop="200dp
+"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="29dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/country_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,21 +62,21 @@
         android:id="@+id/country_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginLeft="73dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="524dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/country_tv"
         app:layout_constraintTop_toBottomOf="@+id/city_et"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button5"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
@@ -78,10 +86,10 @@
         android:layout_marginRight="159dp"
         android:layout_marginBottom="411dp"
         android:text="Next"
-        app:backgroundTint="#8BC34A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/country_et" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -10,11 +10,12 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:weightSum="2"
-       android:background="@drawable/grad"
+       android:background="@drawable/weather_bg"
        android:orientation="vertical">
 
        <TextView
            android:layout_width="wrap_content"
+           style="@style/dark_textview"
            android:layout_height="wrap_content"
            android:text="Select a Profile"
            android:textSize="30dp"
@@ -34,6 +35,7 @@
            android:layout_weight="1"
            tools:context=".RecycleView.HikesActivity"
            android:id="@+id/fl_frag_masterlist_container_phone"
+           android:background="@color/dark_blue"
            android:layout_above="@id/create_a_profile_btn">
 
        </FrameLayout>
@@ -47,6 +49,7 @@
 
 
            <TextView
+               style="@style/dark_textview"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="No account?"
@@ -55,13 +58,14 @@
                android:layout_gravity="center_horizontal">
            </TextView>
 
-           <FrameLayout
+           <!--<FrameLayout
                android:layout_width="match_parent"
                android:layout_height="0dp"
-               android:layout_weight="1">
+               android:layout_weight="1">-->
 
                <Button
                    android:id="@+id/create_a_profile_btn"
+                   style="@style/dark_button"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
@@ -71,7 +75,7 @@
                    app:layout_constraintHorizontal_bias="0.497"
                    app:layout_constraintStart_toStartOf="parent" />
 
-           </FrameLayout>
+           <!--</FrameLayout>-->
 
        </LinearLayout>
 

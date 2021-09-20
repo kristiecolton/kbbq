@@ -78,7 +78,7 @@ class WeatherActivity : AppCompatActivity() {
                 val address = jsonObj.getString("name")+", "+sys.getString("country")
 
                 //data into our views
-                /*
+
                 findViewById<TextView>(R.id.weatherAddress).text = address
                 findViewById<TextView>(R.id.updatedAddressAt).text =  updatedAtText
                 findViewById<TextView>(R.id.statusWeather).text = weatherDescription.capitalize()
@@ -94,11 +94,11 @@ class WeatherActivity : AppCompatActivity() {
                 //Views populated, Hiding the loader, Showing the main design
                 findViewById<ProgressBar>(R.id.loaderWeather).visibility = View.GONE
                 findViewById<RelativeLayout>(R.id.weatherContainer).visibility = View.VISIBLE
-                 */
+
 
             } catch (e: Exception) { //if any error
-                //findViewById<ProgressBar>(R.id.loaderWeather).visibility = View.GONE
-                //findViewById<TextView>(R.id.errorMessageWeather).visibility = View.VISIBLE
+                findViewById<ProgressBar>(R.id.loaderWeather).visibility = View.GONE
+                findViewById<TextView>(R.id.errorMessageWeather).visibility = View.VISIBLE
             }
 
         }

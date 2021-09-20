@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather_bg"
     tools:context=".FragmentSex">
 
     <TextView
         android:id="@+id/G_m_L"
+        style="@style/dark_textview"
         android:layout_width="40dp"
         android:layout_height="37dp"
         android:layout_marginStart="14dp"
@@ -24,6 +26,7 @@
 
     <TextView
         android:id="@+id/sex_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -38,6 +41,7 @@
 
     <TextView
         android:id="@+id/are_you_active_tv"
+        style="@style/dark_textview"
         android:layout_width="40dp"
         android:layout_height="37dp"
         android:layout_marginStart="16dp"
@@ -100,6 +104,8 @@
 
         <RadioButton
             android:id="@+id/gain"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -108,6 +114,8 @@
 
         <RadioButton
             android:id="@+id/Maintain"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -115,6 +123,8 @@
 
         <RadioButton
             android:id="@+id/Lose"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -139,6 +149,8 @@
 
         <RadioButton
             android:id="@+id/yes"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -147,6 +159,8 @@
 
         <RadioButton
             android:id="@+id/no"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -173,6 +187,8 @@
 
         <RadioButton
             android:id="@+id/prefer_not_to_say_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -181,6 +197,8 @@
 
         <RadioButton
             android:id="@+id/female_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -189,6 +207,8 @@
 
         <RadioButton
             android:id="@+id/male_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="102dp"
             android:layout_height="49dp"
             android:onClick="onRadioButtonClicked"
@@ -198,10 +218,10 @@
 
     <Button
         android:id="@+id/button4"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        app:backgroundTint="#8BC34A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

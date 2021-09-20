@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather_bg"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
@@ -40,6 +41,7 @@
 
     <Button
         android:id="@+id/BmiButton"
+        style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="6dp"
@@ -51,11 +53,13 @@
         android:text="B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Cal_btn"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Cal_btn"
+        style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="36dp"
@@ -69,6 +73,7 @@
 
     <Button
         android:id="@+id/button8"
+        style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="34dp"
@@ -82,6 +87,7 @@
 
     <Button
         android:id="@+id/weather_btn"
+        style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
@@ -98,29 +104,29 @@
 
     <Button
         android:id="@+id/HikingButton"
+        style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="630dp"
+        android:layout_marginBottom="4dp"
         android:text="H"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Cal_btn"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/edit_profile_btn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
+        style="@style/dark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="139dp"
         android:layout_marginLeft="139dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="139dp"
         android:layout_marginRight="139dp"
         android:text="Edit Profile"
-        android:textColor="@color/black"
-        android:textSize="5sp"
-        app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"

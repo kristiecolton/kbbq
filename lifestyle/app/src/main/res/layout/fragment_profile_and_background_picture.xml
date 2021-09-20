@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather_bg"
     tools:context=".FragmentProfileAndBackgroundPicture">
 
     <TextView
         android:id="@+id/profile_picture_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
@@ -22,6 +24,7 @@
 
     <TextView
         android:id="@+id/background_picture_tv"
+        style="@style/dark_textview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="25dp"
@@ -34,36 +37,36 @@
 
     <Button
         android:id="@+id/button11"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="76dp"
         android:text="@string/upload"
-        app:backgroundTint="#8BC34A"
         app:layout_constraintBottom_toTopOf="@+id/submit_button"
         app:layout_constraintEnd_toEndOf="@+id/profile_picture_tv" />
 
     <Button
         android:id="@+id/button12"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="29dp"
         android:text="@string/upload"
-        app:backgroundTint="#8BC34A"
         app:layout_constraintStart_toStartOf="@+id/background_picture_tv"
         app:layout_constraintTop_toBottomOf="@+id/background_picture_tv" />
 
     <Button
         android:id="@+id/submit_button"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:text="@string/submit"
-        app:backgroundTint="#8BC34A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button11"
         app:layout_constraintTop_toTopOf="parent" />

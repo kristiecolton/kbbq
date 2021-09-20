@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/weather_bg"
     tools:context=".CreateProfileActivity">
 
     <TextView
         android:id="@+id/country_tv2"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -22,6 +24,7 @@
 
     <TextView
         android:id="@+id/first_name_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -38,6 +41,7 @@
 
     <TextView
         android:id="@+id/last_name_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -52,6 +56,7 @@
 
     <TextView
         android:id="@+id/age_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -66,6 +71,7 @@
 
     <TextView
         android:id="@+id/height_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -80,6 +86,7 @@
 
     <TextView
         android:id="@+id/weight_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -94,6 +101,7 @@
 
     <TextView
         android:id="@+id/sex_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -108,6 +116,7 @@
 
     <TextView
         android:id="@+id/city_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -122,6 +131,7 @@
 
     <TextView
         android:id="@+id/country_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -136,6 +146,7 @@
 
     <TextView
         android:id="@+id/profile_picture_tv"
+        style="@style/dark_textview"
         android:layout_width="92dp"
         android:layout_height="32dp"
         android:layout_marginStart="10dp"
@@ -147,6 +158,7 @@
 
     <TextView
         android:id="@+id/background_picture_tv"
+        style="@style/dark_textview"
         android:layout_width="138dp"
         android:layout_height="19dp"
         android:layout_marginTop="20dp"
@@ -158,6 +170,8 @@
 
     <EditText
         android:id="@+id/first_name_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -170,6 +184,8 @@
 
     <EditText
         android:id="@+id/last_name_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -182,6 +198,8 @@
 
     <EditText
         android:id="@+id/age_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -194,6 +212,8 @@
 
     <EditText
         android:id="@+id/feet_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="59dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
@@ -204,6 +224,7 @@
 
     <TextView
         android:id="@+id/feet_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
@@ -215,6 +236,8 @@
 
     <EditText
         android:id="@+id/inches_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="60dp"
         android:layout_height="39dp"
         android:layout_marginTop="16dp"
@@ -225,6 +248,7 @@
 
     <TextView
         android:id="@+id/inches_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
@@ -236,6 +260,8 @@
 
     <EditText
         android:id="@+id/lbs_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="57dp"
         android:layout_height="40dp"
         android:layout_marginTop="28dp"
@@ -248,6 +274,7 @@
 
     <TextView
         android:id="@+id/lbs_tv"
+        style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -270,18 +297,24 @@
 
         <RadioButton
             android:id="@+id/prefer_not_to_say_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/prefer_not_to_say" />
 
         <RadioButton
             android:id="@+id/female_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:text="@string/female" />
 
         <RadioButton
             android:id="@+id/male_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="102dp"
             android:layout_height="49dp"
             android:text="@string/male" />
@@ -289,6 +322,8 @@
 
     <EditText
         android:id="@+id/city_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="206dp"
         android:layout_height="29dp"
         android:layout_marginTop="12dp"
@@ -313,12 +348,16 @@
 
         <RadioButton
             android:id="@+id/Yes_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="74dp"
             android:layout_height="wrap_content"
             android:text="@string/Yes" />
 
         <RadioButton
             android:id="@+id/No_rbtn"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
             android:layout_width="84dp"
             android:layout_height="match_parent"
             android:text="@string/No" />
@@ -326,6 +365,8 @@
 
     <EditText
         android:id="@+id/country_et"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -338,35 +379,46 @@
 
     <Button
         android:id="@+id/upload_profile_picture_btn"
-        android:layout_width="118dp"
-        android:layout_height="43dp"
+        style="@style/dark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/upload_background_picture_btn"
-        app:layout_constraintTop_toBottomOf="@+id/profile_picture_tv" />
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture_tv"
+        app:layout_constraintVertical_bias="0.438" />
 
     <Button
         android:id="@+id/upload_background_picture_btn"
+        style="@style/dark_button"
         android:layout_width="115dp"
         android:layout_height="47dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="140dp"
         android:layout_marginRight="140dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background_picture_tv" />
 
     <Button
         android:id="@+id/submit_btn"
+        style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_et" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/upload_background_picture_btn"
+        app:layout_constraintTop_toBottomOf="@+id/country_et"
+        app:layout_constraintVertical_bias="0.48" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

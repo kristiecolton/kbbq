@@ -8,6 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+    <!-- Light Themes Colors -->
+    <color name="light_yellow">#FCF876</color>
+    <color name="light_green">#CEE397</color>
+    <color name="light_blue">#8BCDCD</color>
+    <color name="light_teal">#3797A4</color>
+
+    <!-- Dark Themes Colors -->
+    <color name="dark_red">#E94560</color>
+    <color name="dark_blue">#0F3460</color>
+    <color name="dark_navy">#16213E</color>
+    <color name="dark_black">#1A1A2E</color>
+
     <!-- Edit Profile Colors -->
     <color name="solidCircle">#AAFFFFFF</color>
     <color name="circleBorder">#50FFFFFF</color>
