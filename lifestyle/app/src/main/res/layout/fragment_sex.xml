@@ -10,17 +10,16 @@
     <TextView
         android:id="@+id/G_m_L"
         style="@style/dark_textview"
-        android:layout_width="40dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="81dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:text="@string/Gain_Loss"
-        app:layout_constraintBottom_toTopOf="@+id/are_you_active_tv"
         app:layout_constraintEnd_toStartOf="@+id/weight_gain_loss"
+        app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,61 +28,67 @@
         style="@style/dark_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginBottom="383dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
         android:text="@string/sex"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sex_rbtn_group"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/prefer_not_to_say_rbtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/are_you_active_tv"
+        app:layout_constraintVertical_bias="0.021" />
 
     <TextView
         android:id="@+id/are_you_active_tv"
         style="@style/dark_textview"
-        android:layout_width="40dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginBottom="77dp"
+        android:layout_width="62dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="@string/are_you_active"
-        app:layout_constraintBottom_toTopOf="@+id/sex_tv"
-        app:layout_constraintEnd_toStartOf="@+id/sex_rbtn_group"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintEnd_toStartOf="@+id/are_you_active"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/G_m_L" />
+
     <RadioGroup
         android:id="@+id/amountToLose"
         android:layout_width="309dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="396dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/are_you_active"
         app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
             android:id="@+id/zero"
-            android:layout_width="120dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/zero" />
+            android:text="@string/zero"
+            android:textColor="@color/white" />
         />
 
         <RadioButton
             android:id="@+id/one"
-            android:layout_width="94dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/one" />
+            android:text="@string/one"
+            android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/two"
+            android:buttonTint="@color/white"
+            android:textColor="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -93,78 +98,83 @@
 
     <RadioGroup
         android:id="@+id/weight_gain_loss"
-        android:layout_width="309dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="177dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/are_you_active"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/Maintain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/G_m_L"
+        app:layout_constraintTop_toTopOf="parent"><![CDATA[
+
+
+        />
+
+
+
+        ]]>
 
         <RadioButton
             android:id="@+id/gain"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            android:layout_width="120dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/Gain" />
-        />
-
-        <RadioButton
-            android:id="@+id/Maintain"
-            android:textColor="@color/white"
             android:buttonTint="@color/white"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/Maintain" />
+            android:text="@string/Gain"
+            android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/Lose"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:buttonTint="@color/white"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/Lose" />
+            android:text="@string/Lose"
+            android:textColor="@color/white" /><![CDATA[
+
         />
+    ]]>
     </RadioGroup>
 
     <RadioGroup
         android:id="@+id/are_you_active"
-        android:layout_width="309dp"
+        android:layout_width="171dp"
         android:layout_height="60dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sex_rbtn_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/are_you_active_tv"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintTop_toBottomOf="@+id/weight_gain_loss"
+        app:layout_constraintVertical_bias="0.16000003">
 
         <RadioButton
             android:id="@+id/yes"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/Yes" />
+            android:text="@string/Yes"
+            android:textColor="@color/white" />
         />
 
         <RadioButton
             android:id="@+id/no"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/no" />
+            android:text="@string/no"
+            android:textColor="@color/white" />
         />
 
 
@@ -172,48 +182,56 @@
 
     <RadioGroup
         android:id="@+id/sex_rbtn_group"
-        android:layout_width="309dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/prefer_not_to_say_rbtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/sex_tv"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466">
+        app:layout_constraintTop_toBottomOf="@+id/are_you_active"
+        app:layout_constraintVertical_bias="1.0"><![CDATA[
 
-        <RadioButton
-            android:id="@+id/prefer_not_to_say_rbtn"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/prefer_not_to_say" />
         />
 
-        <RadioButton
-            android:id="@+id/female_rbtn"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/female" />
-        />
+
+
+        ]]>
 
         <RadioButton
             android:id="@+id/male_rbtn"
-            android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            android:layout_width="102dp"
+            android:layout_width="74dp"
             android:layout_height="49dp"
+            android:buttonTint="@color/white"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/male" />
+            android:text="@string/male"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/female_rbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/female"
+            android:textColor="@color/white" /><![CDATA[
+
+
+
+
+
+
         />
+
+        />
+
+
+
+    ]]>
     </RadioGroup>
 
     <Button
@@ -221,12 +239,50 @@
         style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="100dp"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sex_rbtn_group"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintTop_toBottomOf="@+id/prefer_not_to_say_rbtn"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+    <RadioButton
+        android:id="@+id/prefer_not_to_say_rbtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        android:buttonTint="@color/white"
+        android:onClick="onRadioButtonClicked"
+        android:text="@string/prefer_not_to_say"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.624"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/Maintain"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:buttonTint="@color/white"
+        android:onClick="onRadioButtonClicked"
+        android:text="@string/Maintain"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/are_you_active"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight_gain_loss"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
