@@ -199,7 +199,7 @@ class DBManager : SQLiteOpenHelper  {
         return lastName
     }
 
-    fun getAllUid(): MutableList<String> {
+    fun getAllUuids(): MutableList<String> {
         var query : String = "SELECT UUID FROM " + USER_TABLE
         var db : SQLiteDatabase = this.readableDatabase;
         var cursor : Cursor = db.rawQuery("select UUID from USER",null);

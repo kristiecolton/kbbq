@@ -113,7 +113,9 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             {
                 R.id.edit_profile_save_btn -> {
                     Log.d("LOG", "SAVE BUTTON IS PRESSED")
+                    // Saves the current edit text input to the activity (not to the database)
                     saveUserInput()
+                    // Saves the changes to the database
                     var updateSuccessful : Boolean = mDBManager.updateUser(this.user)
                     if (updateSuccessful) {
                         val toast = Toast.makeText(this, "Changes Successfully Saved", Toast.LENGTH_LONG)
