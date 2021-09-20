@@ -3,20 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="8dp">
-    <ImageView
+    android:background="@color/white"
+    android:layout_height="?android:attr/listPreferredItemHeightLarge"
+    android:gravity="center">
+
+    <!--    <ImageView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:src="@drawable/ic_user"-->
+    <!--        android:layout_marginRight="8dp"-->
+    <!--        />-->
+
+    <RelativeLayout
+        android:id="@+id/imgUser"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_marginRight="8dp"
-        />
+        android:layout_height="wrap_content"
+        android:background="@drawable/purple_circle_border"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp">
+
+        <ImageView
+            android:id="@+id/edit_profile_profile_picture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/circle"
+            android:padding="3dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_user" />
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Dummy"
+        android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="8dp"
         android:id="@+id/tv_data"
         />
 </LinearLayout>
