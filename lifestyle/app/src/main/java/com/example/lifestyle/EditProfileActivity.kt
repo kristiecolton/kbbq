@@ -13,6 +13,10 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 
 import android.content.Intent
 import android.provider.MediaStore
+import android.app.AlarmManager
+
+import android.app.PendingIntent
+import android.content.Context
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -40,6 +44,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var mProfilePicture : ImageView
     lateinit var mSaveButton : Button
+    lateinit var mDeleteProfileButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +70,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         // Get the save button
         mSaveButton = findViewById<Button>(R.id.edit_profile_save_btn)
         mSaveButton.setOnClickListener(this)
+
+        // Get the delete profile button
+        mDeleteProfileButton = findViewById<Button>(R.id.delete_profile_btn)
+        mDeleteProfileButton.setOnClickListener(this)
+
 
         // Get the user's uuid from previous activity
         val uuid : String? = intent.getExtras()?.getString("uuid")
@@ -129,6 +139,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
                 R.id.edit_profile_edit_profile_picture_btn -> {
+
+                }
+                R.id.delete_profile_btn -> {
+                    // Delete the user's profile from the database
+                    mDBManager.deleteUser(user.uuid)
+
+                    // Head back to login page
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
 
                 }
 

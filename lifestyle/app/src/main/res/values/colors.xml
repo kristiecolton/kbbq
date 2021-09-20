@@ -25,5 +25,6 @@
     <color name="solidCircle">#AAFFFFFF</color>
     <color name="circleBorder">#50FFFFFF</color>
     <color name="grey">#E5E5E5</color>
+    <color name="delete_profile_red">#FF3232</color>
 
 </resources>

@@ -480,6 +480,16 @@
 
                 </LinearLayout>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Profile"
+                    android:id="@+id/delete_profile_btn"
+                    android:backgroundTint="@color/delete_profile_red"
+                    android:layout_gravity="center_horizontal">
+
+                </Button>
+
 
             </LinearLayout>
 

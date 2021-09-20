@@ -232,6 +232,12 @@ class DBManager : SQLiteOpenHelper  {
         return UUIDList
     }
 
+    /* Deletes a user with the given uuid from the database  */
+    fun deleteUser(uuid : String) : Boolean {
+        var db : SQLiteDatabase = this.readableDatabase;
+        return db.delete(USER_TABLE, COLUMN_UUID + "= ?", arrayOf(uuid)) > 0;
+    }
+
 
 
 
