@@ -115,12 +115,23 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     intent.putExtra("uuid", this.uuid);
                     startActivity(intent)
                 }
+                R.id.Cal_btn->
+                {
+                    showCalActivity()
+                }
+
 
                 }
 
     }
     private fun showBMIActivity() {
         val intent = Intent(this, BmiActivity::class.java)
+        intent.putExtra("uid",uuid)
+        startActivity(intent)
+    }
+    private fun showCalActivity() {
+        val intent = Intent(this, CalTracker::class.java)
+        intent.putExtra("uid",uuid)
         startActivity(intent)
     }
 

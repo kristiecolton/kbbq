@@ -50,12 +50,12 @@
         android:layout_marginBottom="4dp"
         android:text="B"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/Cal_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/Cal_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="36dp"
@@ -104,7 +104,7 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="390dp"
         android:text="H"
-        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintStart_toEndOf="@+id/Cal_btn"
         app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn" />
 
     <Button

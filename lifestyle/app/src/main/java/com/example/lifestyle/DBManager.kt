@@ -181,6 +181,21 @@ class DBManager : SQLiteOpenHelper  {
         }
         return lastName
     }
+    fun getCals(uuid: String) : String {
+        var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
+
+        var cals : Int;
+        // if there are any results from the query
+        if (cursor.moveToFirst()) {
+            cals = cursor.getInt(14);
+        } else {
+            cals = 0
+
+        }
+        return cals.toString()
+    }
 
     fun getFirstName(uuid: String) : String {
         var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
