@@ -128,6 +128,56 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
+        if (user.BMI != curr_bmi) {
+            // Update the user's info
+            this.user = mDBManager.getUser(this.uuid)
+            val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+
+            if (idealWeight == 0) { // not enough data to calculate weight properly
+
+            } else {
+                val pieChart = findViewById<PieChart>(R.id.pieChart)
+                val Cal = ArrayList<PieEntry>()
+
+                var dataSet : PieDataSet;
+
+                if (user.lbs < idealWeight) { // underweight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry((idealWeight-user.lbs).toFloat(), "Pounds to gain"))
+                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                } else if (user.lbs == idealWeight) { // healthy weight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry(0f, "Pounds to gain"))
+                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                } else { // overweight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry((user.lbs - idealWeight).toFloat(), "Pounds to lose"))
+                    dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
+                }
+
+                dataSet.setDrawIcons(false)
+                dataSet.sliceSpace = 3f
+                dataSet.iconsOffset = MPPointF(0F, 40F)
+                dataSet.selectionShift = 5f
+                dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+                val data = PieData(dataSet)
+                data.setValueTextSize(11f)
+                data.setValueTextColor(Color.WHITE)
+                pieChart.data = data
+                pieChart.highlightValues(null)
+                pieChart.invalidate()
+                pieChart.getDescription().setEnabled(false)
+                pieChart.setCenterTextColor(Color.GREEN)
+                pieChart.animateXY(5000, 5000)
+
+            }
+        }
+    }
+
     override fun onClick(v: View?)
     {
         if (v != null)

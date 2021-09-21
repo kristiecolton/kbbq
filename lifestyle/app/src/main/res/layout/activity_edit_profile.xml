@@ -480,6 +480,108 @@
 
                 </LinearLayout>
 
+                <!-- Current Weight Goal -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Weight Goal"
+                        android:textColor="@color/dark_red"
+                        android:textSize="13sp" />
+
+                    <RadioGroup
+                        android:id="@+id/edit_profile_weight_goal_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/view_below"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_lose_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="Lose Weight" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_maintain_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Maintain Weight" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_gain_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Gain Weight" />
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <!-- Lbs Per Week  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pounds Per Week"
+                        android:textColor="@color/dark_red"
+                        android:textSize="13sp" />
+
+                    <RadioGroup
+                        android:id="@+id/edit_profile_lbs_per_week_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/view_below"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_one_lb_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="1 lb" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_two_lbs_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 lbs" />
+
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

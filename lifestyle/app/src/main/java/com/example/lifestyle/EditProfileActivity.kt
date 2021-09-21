@@ -17,6 +17,7 @@ import android.app.AlarmManager
 
 import android.app.PendingIntent
 import android.content.Context
+import android.view.ViewGroup
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -41,6 +42,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mAreYouActive_rgroup : RadioGroup
     lateinit var mIsActive_rbtn : RadioButton
     lateinit var mIsNotActive_rbtn : RadioButton
+    lateinit var mWeightGoal_rgroup : RadioGroup
+    lateinit var mLoseWeight_rbtn : RadioButton
+    lateinit var mMaintainWeight_rbtn : RadioButton
+    lateinit var mGainWeight_rbtn : RadioButton
+    lateinit var mLbsPerWeek_linear_layout : LinearLayout
+    lateinit var mLbsPerWeek_rgroup : RadioGroup
+    lateinit var mOneLb_rbtn : RadioButton
+    lateinit var mTwoLbs_rbtn : RadioButton
+
 
     lateinit var mProfilePicture : ImageView
     lateinit var mSaveButton : Button
@@ -65,6 +75,21 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         mAreYouActive_rgroup = findViewById(R.id.edit_profile_are_you_active_radio_group);
         mIsActive_rbtn = findViewById(R.id.edit_profile_is_active_rbtn)
         mIsNotActive_rbtn = findViewById(R.id.edit_profile_is_not_active_rbtn)
+        mWeightGoal_rgroup = findViewById(R.id.edit_profile_weight_goal_radio_group)
+        mLoseWeight_rbtn = findViewById(R.id.edit_profile_lose_weight_rbtn)
+        mMaintainWeight_rbtn = findViewById(R.id.edit_profile_maintain_weight_rbtn)
+        mGainWeight_rbtn = findViewById(R.id.edit_profile_gain_weight_rbtn)
+
+        // set click listeners for weight goal buttons
+        mLoseWeight_rbtn.setOnClickListener(this)
+        mMaintainWeight_rbtn.setOnClickListener(this)
+        mGainWeight_rbtn.setOnClickListener(this)
+
+
+        mLbsPerWeek_linear_layout = findViewById(R.id.edit_profile_lbs_per_week_linear_layout)
+        mLbsPerWeek_rgroup = findViewById(R.id.edit_profile_lbs_per_week_radio_group)
+        mOneLb_rbtn = findViewById(R.id.edit_profile_one_lb_rbtn)
+        mTwoLbs_rbtn = findViewById(R.id.edit_profile_two_lbs_rbtn)
 
         mProfilePicture = findViewById(R.id.edit_profile_profile_picture)
         // Get the save button
@@ -74,7 +99,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         // Get the delete profile button
         mDeleteProfileButton = findViewById<Button>(R.id.delete_profile_btn)
         mDeleteProfileButton.setOnClickListener(this)
-
 
         // Get the user's uuid from previous activity
         val uuid : String? = intent.getExtras()?.getString("uuid")
@@ -115,6 +139,33 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             mAreYouActive_rgroup.check(mIsNotActive_rbtn.id)
         }
 
+        if (user.goalType == -1) { // lose weight
+            mWeightGoal_rgroup.check(mLoseWeight_rbtn.id)
+        } else if (user.goalType == 0) {  // maintain weight
+            mWeightGoal_rgroup.check(mMaintainWeight_rbtn.id)
+        } else { // gain weight
+            mWeightGoal_rgroup.check(mGainWeight_rbtn.id)
+        }
+
+        if (user.goalType == 0) {
+            val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+            // Changes the height and width to the specified *pixels*
+            params.height = 0
+            mLbsPerWeek_linear_layout.setLayoutParams(params)
+        }
+        else if ((user.goalType == -1) || (user.goalType == 1)) {
+            val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+            // Changes the height and width to the specified *pixels*
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            mLbsPerWeek_linear_layout.setLayoutParams(params)
+
+            if (user.lbsPerWeek == 1) { // lose/gain 1 lb per week
+                mLbsPerWeek_rgroup.check(mOneLb_rbtn.id)
+            } else {
+                mLbsPerWeek_rgroup.check(mTwoLbs_rbtn.id)
+            }
+        }
+
     }
 
     override fun onClick(v: View?) {
@@ -138,6 +189,26 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                 }
+                R.id.edit_profile_lose_weight_rbtn -> {
+                    val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+                    // Changes the height and width to the specified *pixels*
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    mLbsPerWeek_linear_layout.setLayoutParams(params)
+
+                }
+                R.id.edit_profile_maintain_weight_rbtn -> {
+                    val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+                    // Changes the height and width to the specified *pixels*
+                    params.height = 0
+                    mLbsPerWeek_linear_layout.setLayoutParams(params)
+                }
+                R.id.edit_profile_gain_weight_rbtn -> {
+                    val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+                    // Changes the height and width to the specified *pixels*
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    mLbsPerWeek_linear_layout.setLayoutParams(params)
+                }
+
                 R.id.edit_profile_edit_profile_picture_btn -> {
 
                 }
@@ -172,6 +243,22 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         this.user.city = mCity_et.text.toString()
         this.user.country = mCountry_et.text.toString()
         this.user.isActive = mIsActive_rbtn.isChecked
+        if (mLoseWeight_rbtn.isChecked) {
+            this.user.goalType = -1
+        } else if (mMaintainWeight_rbtn.isChecked) {
+            this.user.goalType = 0
+        } else {
+            this.user.goalType = 1
+        }
+
+        var lbsPerWeek : Int = 0
+        if (mOneLb_rbtn.isChecked) {
+            lbsPerWeek = 1
+        } else if (mTwoLbs_rbtn.isChecked) {
+            lbsPerWeek = 2
+        }
+        this.user.lbsPerWeek = lbsPerWeek
+
         return
     }
 

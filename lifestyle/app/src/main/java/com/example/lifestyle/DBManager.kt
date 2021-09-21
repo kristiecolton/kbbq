@@ -189,6 +189,7 @@ class DBManager : SQLiteOpenHelper  {
         }
         return lastName
     }
+
     fun getCals(uuid: String) : String {
         var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;
@@ -221,6 +222,7 @@ class DBManager : SQLiteOpenHelper  {
         }
         return lastName
     }
+
     fun getBMI(uuid: String) : String {
         var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;
