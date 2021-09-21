@@ -7,68 +7,78 @@
     android:background="@drawable/weather_bg"
     tools:context=".FragmentProfileAndBackgroundPicture">
 
-    <TextView
-        android:id="@+id/profile_picture_tv"
-        style="@style/dark_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginRight="95dp"
-        android:layout_marginBottom="29dp"
-        android:text="@string/profile_picture"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toStartOf="@+id/background_picture_tv"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/background_picture_tv"
-        style="@style/dark_textview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:text="@string/background_picture"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_picture_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profile_picture_tv"
-        app:layout_constraintTop_toTopOf="@+id/profile_picture_tv" />
-
-    <Button
-        android:id="@+id/button11"
-        style="@style/dark_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="76dp"
-        android:text="@string/upload"
-        app:layout_constraintBottom_toTopOf="@+id/submit_button"
-        app:layout_constraintEnd_toEndOf="@+id/profile_picture_tv" />
-
-    <Button
-        android:id="@+id/button12"
-        style="@style/dark_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="29dp"
-        android:text="@string/upload"
-        app:layout_constraintStart_toStartOf="@+id/background_picture_tv"
-        app:layout_constraintTop_toBottomOf="@+id/background_picture_tv" />
-
     <Button
         android:id="@+id/submit_button"
         style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginTop="74dp"
         android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintEnd_toStartOf="@+id/upload_background_picture_btn"
+        app:layout_constraintTop_toBottomOf="@+id/upload_background_picture_btn" />
+
+    <Button
+        android:id="@+id/upload_background_picture_btn"
+        style="@style/dark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="@+id/upload_profile_picture_btn"
+        app:layout_constraintStart_toStartOf="@+id/background_picture_tv"
+        app:layout_constraintTop_toTopOf="@+id/upload_profile_picture_btn" />
+
+    <TextView
+        android:id="@+id/profile_picture_tv"
+        style="@style/dark_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginRight="105dp"
+        android:text="@string/profile_picture"
+        app:layout_constraintEnd_toStartOf="@+id/background_picture_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/upload_profile_picture_btn"
+        style="@style/dark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="@string/upload"
+        app:layout_constraintStart_toStartOf="@+id/profile_picture_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture_tv" />
+
+    <TextView
+        android:id="@+id/background_picture_tv"
+        style="@style/dark_textview"
+        android:layout_width="152dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="71dp"
+        android:text="@string/background_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/upload_background_picture_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_picture_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="89dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_picture_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

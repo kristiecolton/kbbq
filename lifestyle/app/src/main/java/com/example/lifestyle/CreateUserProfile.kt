@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
-import com.example.lifestyle.databinding.FragmentFirstAndLastNameBinding
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
 class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
@@ -25,6 +24,9 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     var isActive:Boolean=false
     var goalType = 0
     var lbsPerWeek = 0
+
+    private var _binding: FragmentProfileAndBackgroundPictureBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,17 +69,19 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "country: $country")
     }
 
-    override fun onDataPassProfileAndBackgroundPicture(firstName: String, lastName: String) {
-        // dummy values for the rest of the necessary arguments to construct a
-        // user model.
-        profilePicture = ""
-        backgroundPicture = ""
+    override fun onDataPassProfileAndBackgroundPicture(data: String) {
 
-        // -1 = lose weight, 0 = maintain weight, 1 = gain weight
+        if (data == "addUser") {
+            addUserToDatabase()
+        }
+        else {
+            profilePicture = data
+            backgroundPicture = ""
+        }
 
-        // the number of pounds the user wants to gain / loseper week
+    }
 
-
+    fun addUserToDatabase() {
         var dbManager : DBManager = DBManager(this);
         // Create a user object
         this.uuid = UserModel.generateUUID()
@@ -96,6 +100,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "firstName: " + this.firstName)
         Log.d("LOG", "Sex: $sex")
         Log.d("LOG", "Database adding result: $addUserDidSucceed")
+        Log.d("LOG", this.profilePicture)
     }
 
     fun onRadioButtonClicked(view: View) {
