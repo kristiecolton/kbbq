@@ -1,6 +1,8 @@
 package com.example.lifestyle
 
+import android.graphics.Color
 import android.util.Log
+import kotlin.math.pow
 
 //  A class to represent a user
 class UserModel {
@@ -165,7 +167,9 @@ class UserModel {
 //    Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) – (6.8 x age in years)
         // Calculates BMI using a user's weight and height
         fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
-
+            if (feet == 0) { // check if height has been entered
+                return 0F
+            }
             val intBMI= 703.00*(lbs.toFloat()/((feet.toFloat() * 12.0 + inches.toFloat())*(feet.toFloat() * 12.0 + inches.toFloat())))
             Log.d("LOG",intBMI.toString()+" BMI"  )
             return intBMI.toFloat()
@@ -177,6 +181,32 @@ class UserModel {
             var cals:Int=BMR+((goalType)*((lbsPerWeek*3000)/7))
             Log.d("LOG",cals.toString()+" cals" )
             return cals ;
+        }
+
+        /* Calculates the nearest weight a person should be to achieve a healthy BMI. Returns
+         the user's current weight if their BMI is healthy. */
+        fun calculateIdealWeight(lbs: Int, feet: Int, inches  : Int) : Int {
+            // calculate current BMI
+            val bmi : Float = calculateBMI(lbs, feet, inches)
+
+            if (bmi == 0F) { // no data entered
+                return 0
+            }
+
+            // calculate the person's height in inches
+            val heightInInches: Double = feet.toFloat() * 12.0 + inches.toFloat()
+
+            var idealWeight : Int;
+            if (bmi<19) { // underweight
+                idealWeight = (19* heightInInches.pow(2.0) / 703).toInt()
+            } else if(bmi<25) { // healthy
+                // ideal weight is the person's current weight
+                idealWeight = lbs
+            }else { // overweight
+                idealWeight = (24.9* heightInInches.pow(2.0) / 703).toInt()
+            }
+            return idealWeight
+
         }
     }
 

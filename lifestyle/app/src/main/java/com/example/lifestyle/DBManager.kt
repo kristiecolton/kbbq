@@ -155,9 +155,17 @@ class DBManager : SQLiteOpenHelper  {
         cv.put(COLUMN_BACKGROUND_PICTURE, user.backgroundPicture);
         cv.put(COLUMN_GOAL_TYPE, user.goalType);
         cv.put(COLUMN_LBS_PER_WEEK, user.lbsPerWeek);
-        cv.put(COLUMN_RECOMMENDED_DAILY_CALORIES, user.recommendedDailyCalories);
-        cv.put(COLUMN_BMR, user.BMI);
-        cv.put(COLUMN_BMI, user.BMI);
+
+        // Update user's biometric data (BMR, recommmended daily calories, BMI)
+        val bmr : Int = UserModel.calculateBMR(user.lbs, user.feet, user.inches, user.age, user.sex, user.isActive)
+        cv.put(COLUMN_BMR, bmr);
+
+        val recommendedDailyCalories : Int = UserModel.calculateRecommendedDailyCalories(bmr, user.goalType, user.lbsPerWeek)
+        cv.put(COLUMN_RECOMMENDED_DAILY_CALORIES, recommendedDailyCalories);
+
+        val bmi : Float = UserModel.calculateBMI(user.lbs, user.feet, user.inches)
+        cv.put(COLUMN_BMI, bmi);
+
         val whereClause : String = COLUMN_UUID+" = " + user.uuid
 
         var updateResult : Int = db.update(USER_TABLE, cv, COLUMN_UUID + "= ?", arrayOf(user.uuid))

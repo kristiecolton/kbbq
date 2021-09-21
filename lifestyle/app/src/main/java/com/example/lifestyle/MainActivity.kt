@@ -31,8 +31,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
     // User's uuid
     var uuid : String = ""
+
     var cals:String=""
-    var bmi:String=""
+    var bmiString:String=""
+
+    lateinit var user : UserModel
+    lateinit var mDBManager: DBManager
+    var bmi : Float = 0F
+
 
 
     // For Fragement
@@ -112,16 +118,71 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         }
 
 
-        // Get user'ss uuid from previous activity
+        // Get user's uuid from previous activity
         this.uuid = intent.getExtras()?.getString("uuid")!!
         cals= dataBase.getCals(uuid)
-        bmi= dataBase.getBMI(uuid)
+        bmiString= dataBase.getBMI(uuid)
 
 
 
 //        editProfileButton = findViewById(R.id.edit_profile_btn)
 //        editProfileButton.setOnClickListener(this)
         Log.d("LOG", "Cals: $cals")
+
+        // Create a DBManager object
+        mDBManager = DBManager(this);
+
+        try {
+
+            // Get the user's info from the database
+            this.user = mDBManager.getUser(uuid!!)
+
+        } catch (e: Exception) {
+            this.user = UserModel()
+        }
+        this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
+
+        val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+        if (idealWeight == 0) { // not enough data to calculate weight properly
+
+        } else {
+            val pieChart = findViewById<PieChart>(R.id.pieChart)
+            val Cal = ArrayList<PieEntry>()
+
+            var dataSet : PieDataSet;
+
+            if (user.lbs < idealWeight) { // underweight
+                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                Cal.add(PieEntry((idealWeight-user.lbs).toFloat(), "Pounds to gain"))
+                dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+            } else if (user.lbs == idealWeight) { // healthy weight
+                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                Cal.add(PieEntry(0f, "Pounds to gain"))
+                dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+            } else { // overweight
+                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                Cal.add(PieEntry((user.lbs - idealWeight).toFloat(), "Pounds to lose"))
+                dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
+            }
+
+            dataSet.setDrawIcons(false)
+            dataSet.sliceSpace = 3f
+            dataSet.iconsOffset = MPPointF(0F, 40F)
+            dataSet.selectionShift = 5f
+            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+            val data = PieData(dataSet)
+            data.setValueTextSize(11f)
+            data.setValueTextColor(Color.WHITE)
+            pieChart.data = data
+            pieChart.highlightValues(null)
+            pieChart.invalidate()
+            pieChart.getDescription().setEnabled(false)
+            pieChart.setCenterTextColor(Color.GREEN)
+            pieChart.animateXY(5000, 5000)
+
+        }
+
 
 
 
@@ -149,7 +210,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                         }
                         supportFragmentManager
                             .beginTransaction()
-                            .add(R.id.fragment_container_main, BMIFragment_Tablet.newInstance(bmi),"lol")
+                            .add(R.id.fragment_container_main, BMIFragment_Tablet.newInstance(bmiString),"lol")
                             .commit()
 
 
