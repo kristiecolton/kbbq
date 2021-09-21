@@ -105,10 +105,8 @@
         android:id="@+id/weight_gain_loss"
         android:layout_width="195dp"
         android:layout_height="60dp"
-        android:layout_marginTop="115dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/Maintain"
-        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="124dp"><![CDATA[
 
 
@@ -216,11 +214,11 @@
         style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="580dp"
-        android:layout_marginLeft="580dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginLeft="328dp"
         android:text="Next"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="109dp" />
+        tools:layout_editor_absoluteY="319dp" />
 
     <RadioButton
         android:id="@+id/Maintain"

@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RadioButton
-import com.example.lifestyle.databinding.FragmentFirstAndLastNameBinding
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
 class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
@@ -20,11 +21,15 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     var lbs: Int = 0;
     lateinit var city: String
     lateinit var country: String
-    lateinit var profilePicture: String
-    lateinit var backgroundPicture: String
+    var profilePicture: String = ""
+    var backgroundPicture: String = ""
     var isActive:Boolean=false
     var goalType = 0
     var lbsPerWeek = 0
+
+
+    private var _binding: FragmentProfileAndBackgroundPictureBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,17 +72,19 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "country: $country")
     }
 
-    override fun onDataPassProfileAndBackgroundPicture(firstName: String, lastName: String) {
-        // dummy values for the rest of the necessary arguments to construct a
-        // user model.
-        profilePicture = ""
-        backgroundPicture = ""
+    override fun onDataPassProfileAndBackgroundPicture(data: String) {
 
-        // -1 = lose weight, 0 = maintain weight, 1 = gain weight
+        if (data == "addUser") {
+            addUserToDatabase()
+        }
+        else {
+            profilePicture = data
+            backgroundPicture = ""
+        }
 
-        // the number of pounds the user wants to gain / loseper week
+    }
 
-
+    fun addUserToDatabase() {
         var dbManager : DBManager = DBManager(this);
         // Create a user object
         this.uuid = UserModel.generateUUID()
@@ -96,6 +103,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         Log.d("LOG", "firstName: " + this.firstName)
         Log.d("LOG", "Sex: $sex")
         Log.d("LOG", "Database adding result: $addUserDidSucceed")
+        Log.d("LOG", this.profilePicture)
     }
 
     fun onRadioButtonClicked(view: View) {
@@ -133,16 +141,31 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
                     }
                 R.id.gain ->
                     if (checked) {
+                        var pounds_per_week_lin_layout : LinearLayout = findViewById(R.id.pounds_per_week_linear_layout)
+                        val params: ViewGroup.LayoutParams = pounds_per_week_lin_layout.getLayoutParams()
+                        // Changes the height and width to the specified *pixels*
+                        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                        pounds_per_week_lin_layout.setLayoutParams(params)
                         goalType = 1
                         Log.d("LOG", "you want to gain")
                     }
                 R.id.Lose ->
                     if (checked) {
+                        var pounds_per_week_lin_layout : LinearLayout = findViewById(R.id.pounds_per_week_linear_layout)
+                        val params: ViewGroup.LayoutParams = pounds_per_week_lin_layout.getLayoutParams()
+                        // Changes the height and width to the specified *pixels*
+                        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                        pounds_per_week_lin_layout.setLayoutParams(params)
                         goalType = -1
                         Log.d("LOG", "you want to lose")
                     }
                 R.id.Maintain ->
                     if (checked) {
+                        var pounds_per_week_lin_layout : LinearLayout = findViewById(R.id.pounds_per_week_linear_layout)
+                        val params: ViewGroup.LayoutParams = pounds_per_week_lin_layout.getLayoutParams()
+                        // Changes the height and width to the specified *pixels*
+                        params.height = 0
+                        pounds_per_week_lin_layout.setLayoutParams(params)
                         goalType = 0
                         Log.d("LOG", "you want to maintain")
                     }
