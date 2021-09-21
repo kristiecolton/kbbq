@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/weather_bg"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/view2"
+        android:layout_width="135dp"
+        android:layout_height="124dp"
+        android:layout_centerHorizontal="true"
+
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_profile_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="138dp"
+            android:layout_height="135dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_user"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="211dp"></ImageView>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/BmiButton"
+        style="@style/dark_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="B"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Cal_btn" />
+
+    <Button
+        android:id="@+id/Cal_btn"
+        style="@style/dark_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="G"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        app:layout_constraintBottom_toTopOf="@id/BmiButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HikingButton" />
+
+    <Button
+        android:id="@+id/button8"
+        style="@style/dark_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="T"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        app:layout_constraintBottom_toTopOf="@id/HikingButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_btn" />
+
+    <Button
+        android:id="@+id/weather_btn"
+        style="@style/dark_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        android:text="W"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/HikingButton"
+        style="@style/dark_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        android:text="H"
+        app:layout_constraintBottom_toTopOf="@id/Cal_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/edit_profile_btn"
+        style="@style/dark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.776" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="282dp"
+        android:layout_height="248dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.503" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
