@@ -179,11 +179,6 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
                         lbsPerWeek = 2
                         Log.d("LOG", "you selected two")
                     }
-                R.id.zero ->
-                    if (checked) {
-                        lbsPerWeek = 0
-                        Log.d("LOG", "You selected three")
-                    }
             }
         }
     }
