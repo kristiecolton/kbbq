@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout-land/activity_bmi.xml" value="0.21" />
         <entry key="app/src/main/res/layout-land/activity_login.xml" value="0.11375661375661375" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-land/activity_weather.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout-land/fragment_age_height_weight.xml" value="0.11375661375661375" />
         <entry key="app/src/main/res/layout-land/fragment_city_country.xml" value="0.11375661375661375" />
         <entry key="app/src/main/res/layout-land/fragment_sex.xml" value="0.12" />
@@ -21,10 +22,15 @@
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main_tablet.xml" value="0.13451086956521738" />
+        <entry key="app/src/main/res/layout/activity_weather.xml" value="0.13903985507246377" />
         <entry key="app/src/main/res/layout/content_login.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/content_weather.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/fragment_age_height_weight.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_b_m_i.xml" value="0.134375" />
+        <entry key="app/src/main/res/layout/fragment_b_m_i__tablet.xml" value="0.13903985507246377" />
+        <entry key="app/src/main/res/layout/fragment_bmi_string.xml" value="0.13903985507246377" />
+        <entry key="app/src/main/res/layout/fragment_cal_tracker.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_city_country.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/fragment_first_and_last_name.xml" value="0.25" />
@@ -32,12 +38,13 @@
         <entry key="app/src/main/res/layout/fragment_profile_and_background_picture.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/fragment_sex.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_weather__tab.xml" value="0.13903985507246377" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.13385416666666666" />
         <entry key="app/src/main/res/layout/purple_circle_border.xml" value="0.13385416666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -8,24 +8,33 @@
     android:layout_height="match_parent">
 
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="387dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/view2"
         android:layout_width="135dp"
         android:layout_height="124dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginBottom="440dp"
+        android:layout_marginStart="576dp"
+        android:layout_marginLeft="576dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginRight="57dp"
+        android:layout_marginBottom="32dp"
         android:elevation="12dp"
         android:innerRadius="0dp"
         android:shape="ring"
         android:thicknessRatio="1.9"
         app:cardCornerRadius="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/edit_profile_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,35 +45,31 @@
             android:layout_height="135dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_user"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="211dp"></ImageView>
+            android:src="@drawable/ic_user"></ImageView>
     </androidx.cardview.widget.CardView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_main"
-        android:layout_width="645dp"
-        android:layout_height="348dp"
-        android:layout_marginStart="270dp"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="568dp"
-        android:layout_marginRight="568dp"
-        android:layout_marginBottom="6dp"
+        android:layout_width="737dp"
+        android:layout_height="461dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="19dp"
         app:layout_constraintBottom_toTopOf="@+id/BmiButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn" />
 
     <Button
         android:id="@+id/BmiButton"
         style="@style/dark_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="270dp"
-        android:layout_marginLeft="270dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="630dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
@@ -137,14 +142,15 @@
         style="@style/dark_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
-        android:layout_marginLeft="139dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginRight="139dp"
+        android:layout_marginStart="571dp"
+        android:layout_marginLeft="571dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginRight="57dp"
+        android:layout_marginBottom="21dp"
         android:text="Edit Profile"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 

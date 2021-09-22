@@ -79,31 +79,31 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         }else{
             Log.d("LOG","is NOT A TAB")
             setContentView(R.layout.activity_main)
-            val pieChart = findViewById<PieChart>(R.id.pieChart)
-            val Cal = ArrayList<PieEntry>()
-
-            Cal.add(PieEntry(10f, "Cal Precentage"))
-            Cal.add(PieEntry(90f, "Cal Failure"))
-            val dataSet = PieDataSet(Cal, "Your Cals")
-
-            dataSet.setDrawIcons(false)
-            dataSet.sliceSpace = 3f
-            dataSet.iconsOffset = MPPointF(0F, 40F)
-            dataSet.selectionShift = 5f
-            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
-            val data = PieData(dataSet)
-            data.setValueTextSize(11f)
-            data.setValueTextColor(Color.WHITE)
-
-            pieChart.data = data
-            pieChart.highlightValues(null)
-            pieChart.invalidate()
-            pieChart.setNoDataTextColor(Color.WHITE)
-            pieChart.setNoDataTextColor(Color.WHITE)
-            pieChart.setHoleColor(Color.WHITE)
-            pieChart.animateXY(5000, 5000)
-            pieChart.setCenterTextColor(Color.WHITE)
+//            val pieChart = findViewById<PieChart>(R.id.pieChart)
+//            val Cal = ArrayList<PieEntry>()
+//
+//            Cal.add(PieEntry(10f, "Cal Precentage"))
+//            Cal.add(PieEntry(90f, "Cal Failure"))
+//            val dataSet = PieDataSet(Cal, "Your Cals")
+//
+//            dataSet.setDrawIcons(false)
+//            dataSet.sliceSpace = 3f
+//            dataSet.iconsOffset = MPPointF(0F, 40F)
+//            dataSet.selectionShift = 5f
+//            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+//
+//            val data = PieData(dataSet)
+//            data.setValueTextSize(11f)
+//            data.setValueTextColor(Color.WHITE)
+//
+//            pieChart.data = data
+//            pieChart.highlightValues(null)
+//            pieChart.invalidate()
+//            pieChart.setNoDataTextColor(Color.WHITE)
+//            pieChart.setNoDataTextColor(Color.WHITE)
+//            pieChart.setHoleColor(Color.WHITE)
+//            pieChart.animateXY(5000, 5000)
+//            pieChart.setCenterTextColor(Color.WHITE)
             bmiButton=findViewById(R.id.BmiButton) as Button;
             bmiButton.setOnClickListener(this);
 
@@ -237,6 +237,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                             supportFragmentManager.beginTransaction().remove(fragment!!)
                                 .commit()
                         }
+                        supportFragmentManager
+                            .beginTransaction()
+                            .add(R.id.fragment_container_main, weatherFragment_Tab.newInstance(),"lol")
+                            .commit()
+
 
                     }else
                     {
