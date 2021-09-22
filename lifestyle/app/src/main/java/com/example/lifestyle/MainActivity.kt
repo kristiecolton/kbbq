@@ -24,6 +24,8 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import android.Manifest;
 import android.util.Log
+import android.widget.ImageView
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
@@ -42,11 +44,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     private val locationPermissionCode = 2
 
     // UI Elements
+    lateinit var mProfilePicture : ImageView
     lateinit var bmiButton: Button
     lateinit var HikingButton:Button
     lateinit var weatherButton: Button
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +113,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         }
 
+        mProfilePicture = findViewById(R.id.imageView1)
+        if (this.user.profilePicture != "") { // Check if the user has a profile picture to show
+            var profile_pic_uri : Uri = user.profilePicture.toUri()
+            mProfilePicture.setImageURI(profile_pic_uri)
+
+        }
 
         bmiButton=findViewById(R.id.BmiButton) as Button;
         bmiButton.setOnClickListener(this);
@@ -128,8 +138,19 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
     }
 
+    /* Note: This method gets called after we navigate back to the Main Activity from a different
+     activity. In the case of Edit Profile, the Main Activity does not get re-created after
+     navigating back from the Edit Profile activity.  Thus, we need to check for changes that
+     may have been saved to the database, but are not reflected in MainActivity.user
+     (like a different BMI or profile picture) since these affect the main activity UI */
     override fun onStart() {
         super.onStart()
+
+        // Check if the user has changed their profile picture
+        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
+            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
+        }
+
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
         if (user.BMI != curr_bmi) {
             // Update the user's info

@@ -40,7 +40,7 @@ class FragmentProfileAndBackgroundPicture : Fragment() {
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) { uri: Uri? ->
-            binding.profilePicture.setImageURI(uri)
+            binding.profilePicture?.setImageURI(uri)
             passData(uri.toString())
         }
 

@@ -190,6 +190,22 @@ class DBManager : SQLiteOpenHelper  {
         return lastName
     }
 
+    fun getProfilePictureURI(uuid: String) : String {
+        var query : String = "SELECT "  + COLUMN_PROFILE_PICTURE + " FROM " + USER_TABLE + "WHERE UUID = " + uuid;
+        var db : SQLiteDatabase = this.readableDatabase;
+        var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
+
+        var uri : String;
+        // if there are any results from the query
+        if (cursor.moveToFirst()) {
+            uri = cursor.getString(2);
+        } else {
+            uri = ""
+
+        }
+        return uri
+    }
+
     fun getCals(uuid: String) : String {
         var query : String = "SELECT LAST_NAME FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;

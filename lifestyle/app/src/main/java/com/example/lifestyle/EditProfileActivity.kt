@@ -17,7 +17,10 @@ import android.app.AlarmManager
 
 import android.app.PendingIntent
 import android.content.Context
+import android.net.Uri
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -54,6 +57,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var mProfilePicture : ImageView
     lateinit var mSaveButton : Button
+    lateinit var mEditProfilePictureButton : Button
     lateinit var mDeleteProfileButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,6 +96,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         mTwoLbs_rbtn = findViewById(R.id.edit_profile_two_lbs_rbtn)
 
         mProfilePicture = findViewById(R.id.edit_profile_profile_picture)
+
         // Get the save button
         mSaveButton = findViewById<Button>(R.id.edit_profile_save_btn)
         mSaveButton.setOnClickListener(this)
@@ -99,6 +104,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         // Get the delete profile button
         mDeleteProfileButton = findViewById<Button>(R.id.delete_profile_btn)
         mDeleteProfileButton.setOnClickListener(this)
+
+        // Get the Edit Profile Picture button
+        mEditProfilePictureButton = findViewById(R.id.edit_profile_edit_profile_picture_btn)
+        mEditProfilePictureButton.setOnClickListener(this)
 
         // Get the user's uuid from previous activity
         val uuid : String? = intent.getExtras()?.getString("uuid")
@@ -118,6 +127,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         if (user.profilePicture == "") {
             mProfilePicture.setImageResource(R.drawable.ic_user)
         }
+
+        // Set the user's profile picture
+        var profile_pic_uri : Uri = user.profilePicture.toUri()
+        mProfilePicture.setImageURI(profile_pic_uri)
 
         // Set the text with user's details
         mFirstName_et.setText(user.firstName)
@@ -189,6 +202,17 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                 }
+                R.id.edit_profile_edit_profile_picture_btn -> {
+//                    val getImage = registerForActivityResult(
+//                        ActivityResultContracts.GetContent()
+//                    ) { uri: Uri? ->
+//                        this.mProfilePicture?.setImageURI(uri)
+//                        //  Update the user model variable. When Save button gets taped, it saves the user model  associated with the activity
+//                        this.user.profilePicture = uri.toString()
+//                    }
+//                    getImage.launch("image/*")
+
+                }
                 R.id.edit_profile_lose_weight_rbtn -> {
                     val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
                     // Changes the height and width to the specified *pixels*
@@ -207,10 +231,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     // Changes the height and width to the specified *pixels*
                     params.height = ViewGroup.LayoutParams.WRAP_CONTENT
                     mLbsPerWeek_linear_layout.setLayoutParams(params)
-                }
-
-                R.id.edit_profile_edit_profile_picture_btn -> {
-
                 }
                 R.id.delete_profile_btn -> {
                     // Delete the user's profile from the database
