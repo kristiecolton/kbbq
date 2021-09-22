@@ -1,6 +1,5 @@
 package com.example.lifestyle
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,11 +9,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -25,6 +20,11 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+
+import android.Manifest;
+import android.util.Log
+import android.widget.*
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
@@ -51,12 +51,15 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     private val locationPermissionCode = 2
 
     // UI Elements
+    lateinit var mProfilePicture : ImageView
     lateinit var bmiButton: Button
     lateinit var HikingButton:Button
     lateinit var weatherButton: Button
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
+
     var dataBase:DBManager= DBManager(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(isTablet())
@@ -115,6 +118,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
             calButton = findViewById(R.id.Cal_btn)
             calButton.setOnClickListener(this)
+
+            editProfileButton = findViewById(R.id.edit_profile_btn)
+            editProfileButton.setOnClickListener(this)
         }
 
 
@@ -183,12 +189,79 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         }
 
+        mProfilePicture = findViewById(R.id.imageView1)
+        if (this.user.profilePicture != "") { // Check if the user has a profile picture to show
+            var profile_pic_uri : Uri = user.profilePicture.toUri()
+            mProfilePicture.setImageURI(profile_pic_uri)
+
+        }
 
 
 
 
 
 
+    }
+
+    /* Note: This method gets called after we navigate back to the Main Activity from a different
+     activity. In the case of Edit Profile, the Main Activity does not get re-created after
+     navigating back from the Edit Profile activity.  Thus, we need to check for changes that
+     may have been saved to the database, but are not reflected in MainActivity.user
+     (like a different BMI or profile picture) since these affect the main activity UI */
+    override fun onStart() {
+        super.onStart()
+
+        // Check if the user has changed their profile picture
+        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
+            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
+        }
+
+        val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
+        if (user.BMI != curr_bmi) {
+            // Update the user's info
+            this.user = mDBManager.getUser(this.uuid)
+            val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+
+            if (idealWeight == 0) { // not enough data to calculate weight properly
+
+            } else {
+                val pieChart = findViewById<PieChart>(R.id.pieChart)
+                val Cal = ArrayList<PieEntry>()
+
+                var dataSet : PieDataSet;
+
+                if (user.lbs < idealWeight) { // underweight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry((idealWeight-user.lbs).toFloat(), "Pounds to gain"))
+                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                } else if (user.lbs == idealWeight) { // healthy weight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry(0f, "Pounds to gain"))
+                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                } else { // overweight
+                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
+                    Cal.add(PieEntry((user.lbs - idealWeight).toFloat(), "Pounds to lose"))
+                    dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
+                }
+
+                dataSet.setDrawIcons(false)
+                dataSet.sliceSpace = 3f
+                dataSet.iconsOffset = MPPointF(0F, 40F)
+                dataSet.selectionShift = 5f
+                dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+                val data = PieData(dataSet)
+                data.setValueTextSize(11f)
+                data.setValueTextColor(Color.WHITE)
+                pieChart.data = data
+                pieChart.highlightValues(null)
+                pieChart.invalidate()
+                pieChart.getDescription().setEnabled(false)
+                pieChart.setCenterTextColor(Color.GREEN)
+                pieChart.animateXY(5000, 5000)
+
+            }
+        }
     }
 
     override fun onClick(v: View?)

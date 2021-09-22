@@ -11,31 +11,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/weather_bg"
-        android:paddingBottom="10dp">
+        android:paddingBottom="5dp">
 
         <RelativeLayout
             android:id="@+id/imgUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:background="@drawable/circle_border">
 
-            <ImageView
-                android:id="@+id/edit_profile_profile_picture"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginRight="9dp"
-                android:layout_marginBottom="9dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/circle"
-                android:padding="3dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_user" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="250dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="250dp">
+
+                    <ImageView
+                        android:id="@+id/edit_profile_profile_picture"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_user" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
@@ -469,6 +477,107 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="No" />
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <!-- Current Weight Goal -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Weight Goal"
+                        android:textColor="@color/dark_red"
+                        android:textSize="13sp" />
+
+                    <RadioGroup
+                        android:id="@+id/edit_profile_weight_goal_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/view_below"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_lose_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="Lose Weight" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_maintain_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Maintain Weight" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_gain_weight_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Gain Weight" />
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <!-- Lbs Per Week  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pounds Per Week"
+                        android:textColor="@color/dark_red"
+                        android:textSize="13sp" />
+
+                    <RadioGroup
+                        android:id="@+id/edit_profile_lbs_per_week_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/view_below"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_one_lb_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="1 lb" />
+
+                        <RadioButton
+                            android:id="@+id/edit_profile_two_lbs_rbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 lbs" />
+
 
                     </RadioGroup>
 

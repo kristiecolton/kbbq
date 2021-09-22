@@ -9,17 +9,23 @@
         <entry key="app/src/main/res/drawable/grad.xml" value="0.2786458333333333" />
         <entry key="app/src/main/res/drawable/weather_bg.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/layout-land/activity_bmi.xml" value="0.21" />
+        <entry key="app/src/main/res/layout-land/activity_edit_profile.xml" value="0.1472663139329806" />
         <entry key="app/src/main/res/layout-land/activity_login.xml" value="0.11375661375661375" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.18" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout-land/activity_weather.xml" value="0.15989583333333332" />
+=======
+        <entry key="app/src/main/res/layout-land/activity_weather.xml" value="0.2109375" />
+>>>>>>> 4a81e2151591463c50666da6cbacf108853a9179
         <entry key="app/src/main/res/layout-land/fragment_age_height_weight.xml" value="0.11375661375661375" />
         <entry key="app/src/main/res/layout-land/fragment_city_country.xml" value="0.11375661375661375" />
+        <entry key="app/src/main/res/layout-land/fragment_profile_and_background_picture.xml" value="0.11596119929453262" />
         <entry key="app/src/main/res/layout-land/fragment_sex.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_bmi.xml" value="0.134375" />
         <entry key="app/src/main/res/layout/activity_cal_tracker.xml" value="0.134375" />
         <entry key="app/src/main/res/layout/activity_create_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_create_user_profile.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.3751522533495737" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_tablet.xml" value="0.13451086956521738" />
