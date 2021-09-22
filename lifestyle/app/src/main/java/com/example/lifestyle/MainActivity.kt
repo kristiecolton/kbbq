@@ -8,20 +8,22 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
+import android.widget.TextViewµ
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+
 import android.Manifest;
 import android.util.Log
 import android.widget.ImageView
@@ -32,10 +34,18 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
     // User's uuid
     var uuid : String = ""
+
+    var cals:String=""
+    var bmiString:String=""
+
     lateinit var user : UserModel
     lateinit var mDBManager: DBManager
     var bmi : Float = 0F
 
+
+
+    // For Fragement
+    var frag: Fragment? =null
     // Hiking variables
     var longitude: String="40.7608"
     var lattitude: String="-111.8910"
@@ -51,13 +61,82 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
 
+    var dataBase:DBManager= DBManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        if(isTablet())
+        {
+            Log.d("LOG","is Tablet")
+            setContentView(R.layout.activity_main_tablet)
+
+            bmiButton=findViewById(R.id.BmiButton) as Button;
+            bmiButton.setOnClickListener(this);
+
+            HikingButton=findViewById(R.id.Hiking) as Button;
+            HikingButton.setOnClickListener(this);
+
+            weatherButton = findViewById(R.id.weather_btn)
+            weatherButton.setOnClickListener(this)
+
+            calButton = findViewById(R.id.Cal_btn)
+            calButton.setOnClickListener(this)
+
+        }else{
+            Log.d("LOG","is NOT A TAB")
+            setContentView(R.layout.activity_main)
+            val pieChart = findViewById<PieChart>(R.id.pieChart)
+            val Cal = ArrayList<PieEntry>()
+
+            Cal.add(PieEntry(10f, "Cal Precentage"))
+            Cal.add(PieEntry(90f, "Cal Failure"))
+            val dataSet = PieDataSet(Cal, "Your Cals")
+
+            dataSet.setDrawIcons(false)
+            dataSet.sliceSpace = 3f
+            dataSet.iconsOffset = MPPointF(0F, 40F)
+            dataSet.selectionShift = 5f
+            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+            val data = PieData(dataSet)
+            data.setValueTextSize(11f)
+            data.setValueTextColor(Color.WHITE)
+
+            pieChart.data = data
+            pieChart.highlightValues(null)
+            pieChart.invalidate()
+            pieChart.setNoDataTextColor(Color.WHITE)
+            pieChart.setNoDataTextColor(Color.WHITE)
+            pieChart.setHoleColor(Color.WHITE)
+            pieChart.animateXY(5000, 5000)
+            pieChart.setCenterTextColor(Color.WHITE)
+            bmiButton=findViewById(R.id.BmiButton) as Button;
+            bmiButton.setOnClickListener(this);
+
+            HikingButton=findViewById(R.id.Hiking) as Button;
+            HikingButton.setOnClickListener(this);
+
+            weatherButton = findViewById(R.id.weather_btn)
+            weatherButton.setOnClickListener(this)
+
+            calButton = findViewById(R.id.Cal_btn)
+            calButton.setOnClickListener(this)
+
+            editProfileButton = findViewById(R.id.edit_profile_btn)
+            editProfileButton.setOnClickListener(this)
+        }
+
 
         // Get user's uuid from previous activity
         this.uuid = intent.getExtras()?.getString("uuid")!!
+        cals= dataBase.getCals(uuid)
+        bmiString= dataBase.getBMI(uuid)
+
+
+
+//        editProfileButton = findViewById(R.id.edit_profile_btn)
+//        editProfileButton.setOnClickListener(this)
+        Log.d("LOG", "Cals: $cals")
 
         // Create a DBManager object
         mDBManager = DBManager(this);
@@ -120,21 +199,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         }
 
-        bmiButton=findViewById(R.id.BmiButton) as Button;
-        bmiButton.setOnClickListener(this);
-
-        HikingButton=findViewById(R.id.HikingButton) as Button;
-        HikingButton.setOnClickListener(this);
-
-        weatherButton = findViewById(R.id.weather_btn)
-        weatherButton.setOnClickListener(this)
-
-        editProfileButton = findViewById(R.id.edit_profile_btn)
-        editProfileButton.setOnClickListener(this)
 
 
-        calButton = findViewById(R.id.Cal_btn)
-        calButton.setOnClickListener(this)
+
+
 
     }
 
@@ -206,11 +274,32 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             {
                 R.id.BmiButton->
                 {
-                    showBMIActivity()
+                    if (isTablet())
+                    {
+
+
+
+
+                        for (fragment in supportFragmentManager.fragments) {
+                            supportFragmentManager.beginTransaction().remove(fragment!!)
+                                .commit()
+                        }
+                        supportFragmentManager
+                            .beginTransaction()
+                            .add(R.id.fragment_container_main, BMIFragment_Tablet.newInstance(bmiString),"lol")
+                            .commit()
+
+
+                    }else{
+                        showBMIActivity()
+
+                    }
+
 
                 }
-                R.id.HikingButton->
+                R.id.Hiking->
                 {
+
                     getLocation()
                     // Search for Hikes nearby
                     val gmmIntentUri = Uri.parse("geo:"+lattitude+","+longitude+"?q=hikes")
@@ -219,8 +308,18 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     startActivity(mapIntent)
                 }
                 R.id.weather_btn-> {
-                    val intent = Intent(this, WeatherActivity::class.java)
-                    startActivity(intent)
+                    if(isTablet()) {
+                        for (fragment in supportFragmentManager.fragments) {
+                            supportFragmentManager.beginTransaction().remove(fragment!!)
+                                .commit()
+                        }
+
+                    }else
+                    {
+                        val intent = Intent(this, WeatherActivity::class.java)
+                        startActivity(intent)
+
+                    }
 
                 }
                 R.id.edit_profile_btn -> {
@@ -230,8 +329,31 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                 }
                 R.id.Cal_btn->
                 {
-                    showCalActivity()
+                    if(isTablet())
+                    {
+//
+
+
+                            for (fragment in supportFragmentManager.fragments) {
+                                supportFragmentManager.beginTransaction().remove(fragment!!)
+                                    .commit()
+                            }
+//
+                        supportFragmentManager
+                            .beginTransaction()
+                            .add(R.id.fragment_container_main, CalTrackerFragment.newInstance(cals),"lol")
+                            .commit()
+
+
+                    }else
+                    {
+                        showCalActivity()
+                    }
+
                 }
+
+
+
 
 
                 }
@@ -276,6 +398,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
 
+    }
+    fun isTablet(): Boolean {
+        return resources.getBoolean(R.bool.isTablet)
     }
 
 }
