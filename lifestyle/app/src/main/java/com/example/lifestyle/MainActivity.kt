@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     var cals:String=""
     var bmiString:String=""
 
-    lateinit var user : UserModel
+    var user : UserModel= UserModel()
     lateinit var mDBManager: DBManager
     var bmi : Float = 0F
 
@@ -67,61 +67,30 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             Log.d("LOG","is Tablet")
             setContentView(R.layout.activity_main_tablet)
 
-            bmiButton=findViewById(R.id.BmiButton) as Button;
-            bmiButton.setOnClickListener(this);
 
-            HikingButton=findViewById(R.id.Hiking) as Button;
-            HikingButton.setOnClickListener(this);
-
-            weatherButton = findViewById(R.id.weather_btn)
-            weatherButton.setOnClickListener(this)
-
-            calButton = findViewById(R.id.Cal_btn)
-            calButton.setOnClickListener(this)
 
         }else{
             Log.d("LOG","is NOT A TAB")
             setContentView(R.layout.activity_main)
-//            val pieChart = findViewById<PieChart>(R.id.pieChart)
-//            val Cal = ArrayList<PieEntry>()
-//
-//            Cal.add(PieEntry(10f, "Cal Precentage"))
-//            Cal.add(PieEntry(90f, "Cal Failure"))
-//            val dataSet = PieDataSet(Cal, "Your Cals")
-//
-//            dataSet.setDrawIcons(false)
-//            dataSet.sliceSpace = 3f
-//            dataSet.iconsOffset = MPPointF(0F, 40F)
-//            dataSet.selectionShift = 5f
-//            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-//
-//            val data = PieData(dataSet)
-//            data.setValueTextSize(11f)
-//            data.setValueTextColor(Color.WHITE)
-//
-//            pieChart.data = data
-//            pieChart.highlightValues(null)
-//            pieChart.invalidate()
-//            pieChart.setNoDataTextColor(Color.WHITE)
-//            pieChart.setNoDataTextColor(Color.WHITE)
-//            pieChart.setHoleColor(Color.WHITE)
-//            pieChart.animateXY(5000, 5000)
-//            pieChart.setCenterTextColor(Color.WHITE)
-            bmiButton=findViewById(R.id.BmiButton) as Button;
-            bmiButton.setOnClickListener(this);
 
-            HikingButton=findViewById(R.id.Hiking) as Button;
-            HikingButton.setOnClickListener(this);
 
-            weatherButton = findViewById(R.id.weather_btn)
-            weatherButton.setOnClickListener(this)
-
-            calButton = findViewById(R.id.Cal_btn)
-            calButton.setOnClickListener(this)
-
-            editProfileButton = findViewById(R.id.edit_profile_btn)
-            editProfileButton.setOnClickListener(this)
         }
+        bmiButton=findViewById(R.id.BmiButton) as Button;
+        bmiButton.setOnClickListener(this);
+
+        HikingButton=findViewById(R.id.Hiking) as Button;
+        HikingButton.setOnClickListener(this);
+
+        weatherButton = findViewById(R.id.weather_btn)
+        weatherButton.setOnClickListener(this)
+
+        calButton = findViewById(R.id.Cal_btn)
+        calButton.setOnClickListener(this)
+
+        editProfileButton = findViewById(R.id.edit_profile_btn)
+        editProfileButton.setOnClickListener(this)
+
+
 
 
         // Get user's uuid from previous activity
@@ -131,8 +100,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
 
 
-//        editProfileButton = findViewById(R.id.edit_profile_btn)
-//        editProfileButton.setOnClickListener(this)
         Log.d("LOG", "Cals: $cals")
 
         // Create a DBManager object
@@ -188,13 +155,16 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             pieChart.animateXY(5000, 5000)
 
         }
-
         mProfilePicture = findViewById(R.id.imageView1)
+        Log.d("LOG","this is the issue  "+user.profilePicture)
         if (this.user.profilePicture != "") { // Check if the user has a profile picture to show
             var profile_pic_uri : Uri = user.profilePicture.toUri()
+            Log.d("LOG","this is the issue  "+user.profilePicture.toUri())
             mProfilePicture.setImageURI(profile_pic_uri)
 
         }
+
+
 
 
 
@@ -212,9 +182,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         super.onStart()
 
         // Check if the user has changed their profile picture
-        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
-            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
-        }
+//        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
+//            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
+//        }
 
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
         if (user.BMI != curr_bmi) {
@@ -401,6 +371,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
 
     }
+
     fun isTablet(): Boolean {
         return resources.getBoolean(R.bool.isTablet)
     }

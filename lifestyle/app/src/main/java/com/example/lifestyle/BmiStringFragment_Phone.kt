@@ -36,38 +36,38 @@ class BmiStringFragment : Fragment() {
     ): View? {
 //
         val view: View = inflater.inflate(R.layout.fragment_bmi_string, container, false)
-//        val textView = view.findViewById(R.id.BMIString_tv) as TextView
-//        var testString=""
-//
-//        val bmiFloat= BMIString?.toFloat()
-//        if (bmiFloat != null) {
-//            if (bmiFloat<19)
-//            {
-//                testString="Underweight"
-//                textView.setTextColor(Color.parseColor("blue"))
-//            }else if(bmiFloat<25)
-//            {
-//                testString="Healthy"
-//                textView.setTextColor(Color.parseColor("green"))
-//            }else if (bmiFloat<30)
-//            {
-//                testString="Overweight"
-//                textView.setTextColor(Color.parseColor("yellow"))
-//            }else if(bmiFloat<40){
-//                testString="Obese"
-//                textView.setTextColor(Color.parseColor("red"))
-//            }else
-//            {
-//                testString="Very Obese"
-//                textView.setTextColor(Color.parseColor("red"))
-//            }
-//        }else
-//        {
-//            testString="Not Real Number"
-//        }
-//        textView.setText(testString).toString();
-//
-//
+        val textView = view.findViewById(R.id.BMIString_tv) as TextView
+        var testString=""
+
+        val bmiFloat= BMIString?.toFloat()
+        if (bmiFloat != null) {
+            if (bmiFloat<19)
+            {
+                testString="Underweight"
+                textView.setTextColor(Color.parseColor("blue"))
+            }else if(bmiFloat<25)
+            {
+                testString="Healthy"
+                textView.setTextColor(Color.parseColor("green"))
+            }else if (bmiFloat<30)
+            {
+                testString="Overweight"
+                textView.setTextColor(Color.parseColor("yellow"))
+            }else if(bmiFloat<40){
+                testString="Obese"
+                textView.setTextColor(Color.parseColor("red"))
+            }else
+            {
+                testString="Very Obese"
+                textView.setTextColor(Color.parseColor("red"))
+            }
+        }else
+        {
+            testString="Not Real Number"
+        }
+        textView.setText(testString).toString();
+
+
 //
 //
 //

@@ -198,7 +198,7 @@ class DBManager : SQLiteOpenHelper  {
         var uri : String;
         // if there are any results from the query
         if (cursor.moveToFirst()) {
-            uri = cursor.getString(2);
+            uri = cursor.getString(10);
         } else {
             uri = ""
 

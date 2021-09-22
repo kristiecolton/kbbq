@@ -5,7 +5,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.camera"
         android:required="false" />
 
@@ -27,11 +28,8 @@
             android:label="@string/title_activity_weather"
             android:theme="@style/Theme.Lifestyle.NoActionBar" />
         <activity android:name=".BmiActivity" />
-        <activity android:name=".BMIActivity" />
-        <activity
-            android:name=".BMIactivity"
-            android:label="@string/title_activity_b_m_iactivity"
-            android:theme="@style/Theme.Lifestyle.NoActionBar" />
+
+
         <activity
             android:name=".CreateUserProfile"
             android:exported="true" />

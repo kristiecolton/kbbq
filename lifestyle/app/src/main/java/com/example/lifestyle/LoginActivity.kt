@@ -1,6 +1,8 @@
 package com.example.lifestyle
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 
@@ -20,6 +23,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
 
     lateinit var mCreateAProfileBtn: Button;
     private var mMasterListFragment: MasterListFragment? = null
+    private val locationPermissionCode = 2
     // Contains all the user's data for the recycle view
     lateinit var mCustomListData : CustomListData
 
@@ -28,7 +32,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+        }
 
+
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+        }
         // Get all users' data for "Select a Profile" Recycle View
         var dbManager : DBManager = DBManager(this);
         // Get a list of all uuids saved in the database

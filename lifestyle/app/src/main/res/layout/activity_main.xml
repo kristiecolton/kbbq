@@ -36,7 +36,9 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_user"
             tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="211dp"></ImageView>
+            tools:layout_editor_absoluteY="211dp">
+
+        </ImageView>
     </androidx.cardview.widget.CardView>
 
     <Button
