@@ -14,8 +14,6 @@ class BmiActivity : AppCompatActivity()
 
         this.uuid = intent.getExtras()?.getString("uuid")!!
 
-
-
         supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container_view_NumberBMI, BMIFragment.newInstance(dataBase.getBMI(uuid)))

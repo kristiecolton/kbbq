@@ -104,17 +104,22 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         // Get the user's uuid from previous activity
         val uuid : String? = intent.getExtras()?.getString("uuid")
 
+
+
         // Create a DBManager object
         mDBManager = DBManager(this);
 
-        try {
+//        try {
+//
+//            // Get the user's info from the database
+//            this.user = mDBManager.getUser(uuid!!)
+//
+//        } catch (e: Exception) {
+//            this.user = UserModel()
+//        }
 
-            // Get the user's info from the database
-            this.user = mDBManager.getUser(uuid!!)
-
-        } catch (e: Exception) {
-            this.user = UserModel()
-        }
+        // Get user object from Repository instead
+        this.user = Repository.getUserFromLocalDatabase()!!
 
         if (user.profilePicture == "") {
             mProfilePicture.setImageResource(R.drawable.ic_user)

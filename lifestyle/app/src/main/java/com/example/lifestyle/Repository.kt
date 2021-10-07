@@ -17,6 +17,8 @@ object Repository {
 
     fun updateUser(user: UserModel, dbManager: DBManager): Boolean {
         if (dbManager.updateUser(user)) {
+
+            // get user from database after it has been updated
             this.user = dbManager.getUser(user.uuid)
 
             return true
