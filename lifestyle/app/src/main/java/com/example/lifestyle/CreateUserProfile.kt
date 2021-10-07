@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
-import android.widget.Toast
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
 class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
@@ -86,20 +85,27 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     }
 
     fun addUserToDatabase() {
-        var dbManager : DBManager = DBManager(this);
+        // Create a DBManager object
+        var dbManager = DBManager(this);
+
         // Create a user object
         this.uuid = UserModel.generateUUID()
-        val user:UserModel = UserModel(uuid, this.firstName, this.lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive), UserModel.calculateBMI(lbs,feet,inches))
-        // Create a DBManager object
+        val user: UserModel = UserModel(uuid, firstName, lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive), UserModel.calculateBMI(lbs,feet,inches))
+
 
         // Add the user to the database
-        var addUserDidSucceed : Boolean = dbManager.addUser(user);
+        var addUserDidSucceed : Boolean = Repository.addUser(user, dbManager);
 
         // Navigate to home page
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("uuid", this.uuid);
         startActivity(intent)
 
+        var testUser = Repository.getUserFromLocalDatabase()
+
+        if (testUser != null) {
+            Log.d("LOG", "USERID: " + testUser.uuid)
+        }
         Log.d("LOG", "Hey Hey")
         Log.d("LOG", "firstName: " + this.firstName)
         Log.d("LOG", "Sex: $sex")

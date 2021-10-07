@@ -1,7 +1,5 @@
 package com.example.lifestyle
 
-import android.app.Activity
-import android.app.Instrumentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,17 +7,11 @@ import android.view.View
 import java.lang.Exception
 import android.view.Gravity
 import android.widget.*
-import androidx.core.app.ActivityCompat.startActivityForResult
 
 import android.content.Intent
-import android.provider.MediaStore
-import android.app.AlarmManager
 
-import android.app.PendingIntent
-import android.content.Context
 import android.net.Uri
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 
 
@@ -190,7 +182,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     // Saves the current edit text input to the activity (not to the database)
                     saveUserInput()
                     // Saves the changes to the database
-                    var updateSuccessful : Boolean = mDBManager.updateUser(this.user)
+                    var updateSuccessful : Boolean = Repository.updateUser(this.user, mDBManager)
+
                     if (updateSuccessful) {
                         val toast = Toast.makeText(this, "Changes Successfully Saved", Toast.LENGTH_LONG)
                         toast.setGravity(Gravity.CENTER, 0, 0)

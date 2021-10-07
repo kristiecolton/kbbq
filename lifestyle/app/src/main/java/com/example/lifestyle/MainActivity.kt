@@ -95,25 +95,40 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         // Get user's uuid from previous activity
         this.uuid = intent.getExtras()?.getString("uuid")!!
+        // Get user's uuid from Repository
+//        this.uuid = Repository.user?.uuid.toString()
+
+
         cals= dataBase.getCals(uuid)
+        var repoCals = Repository.user?.recommendedDailyCalories.toString()
         bmiString= dataBase.getBMI(uuid)
-
-
+        var repo_bmiString = Repository.user?.BMI.toString()
 
         Log.d("LOG", "Cals: $cals")
+        Log.d("LOG", "CalsFromRepo: $repoCals")
+        Log.d("LOG", "bmiString: $bmiString")
+        Log.d("LOG", "bmiStringFromRepo: $repo_bmiString")
+
+
 
         // Create a DBManager object
         mDBManager = DBManager(this);
+//
+//        try {
+//
+//            // Get the user's info from the database
+//            this.user = mDBManager.getUser(uuid!!)
+//
+//        } catch (e: Exception) {
+//            this.user = UserModel()
+//        }
 
-        try {
+        // Get user object from repository instead
+        this.user = Repository.user!!
 
-            // Get the user's info from the database
-            this.user = mDBManager.getUser(uuid!!)
-
-        } catch (e: Exception) {
-            this.user = UserModel()
-        }
         this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
+        Log.d("LOG", "calculatedBMI: $bmi")
+        Log.d("LOG", "bmiFromRepo: $repo_bmiString")
 
         val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
         if (idealWeight == 0) { // not enough data to calculate weight properly
@@ -187,6 +202,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 //        }
 
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
+        Log.d("LOG", "CurrentBMIOnStart: $curr_bmi")
+        Log.d("LOG", "CurrentBMIFromRepoOnStart: ${Repository.user?.BMI}")
         if (user.BMI != curr_bmi) {
             // Update the user's info
             this.user = mDBManager.getUser(this.uuid)
