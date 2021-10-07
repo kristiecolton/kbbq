@@ -101,13 +101,6 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         intent.putExtra("uuid", this.uuid);
         startActivity(intent)
 
-        var testUser = Repository.getUserFromLocalDatabase()
-
-        if (testUser != null) {
-            Log.d("LOG", "USERID: " + testUser.uuid)
-        }
-        Log.d("LOG", "Hey Hey")
-        Log.d("LOG", "firstName: " + this.firstName)
         Log.d("LOG", "Sex: $sex")
         Log.d("LOG", "Database adding result: $addUserDidSucceed")
         Log.d("LOG", this.profilePicture)

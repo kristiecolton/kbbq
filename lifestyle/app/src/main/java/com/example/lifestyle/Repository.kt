@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 
 object Repository {
 
-    var user: UserModel? = null
+    private lateinit var user: UserModel
 
     fun addUser(user: UserModel, dbManager: DBManager): Boolean {
         if (dbManager.addUser(user)) {
