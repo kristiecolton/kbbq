@@ -1,5 +1,6 @@
 package com.example.lifestyle
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 
 object Repository {
@@ -16,7 +17,8 @@ object Repository {
 
     fun updateUser(user: UserModel, dbManager: DBManager): Boolean {
         if (dbManager.updateUser(user)) {
-            this.user = user
+            this.user = dbManager.getUser(user.uuid)
+
             return true
         }
         return false
