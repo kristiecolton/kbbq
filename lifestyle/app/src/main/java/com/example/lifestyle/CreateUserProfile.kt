@@ -93,8 +93,8 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         val user: UserModel = UserModel(uuid, firstName, lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive), UserModel.calculateBMI(lbs,feet,inches))
 
 
-        // Add the user to the database
-        var addUserDidSucceed : Boolean = Repository.addUser(user, dbManager);
+//        // Add the user to the database
+//        var addUserDidSucceed : Boolean = Repository.addUser(user, dbManager);
 
         // Navigate to home page
         val intent = Intent(this, MainActivity::class.java)
@@ -102,7 +102,7 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         startActivity(intent)
 
         Log.d("LOG", "Sex: $sex")
-        Log.d("LOG", "Database adding result: $addUserDidSucceed")
+//        Log.d("LOG", "Database adding result: $addUserDidSucceed")
         Log.d("LOG", this.profilePicture)
     }
 

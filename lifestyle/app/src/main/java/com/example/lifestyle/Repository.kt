@@ -1,36 +1,52 @@
 package com.example.lifestyle
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import android.app.Application
+import androidx.lifecycle.LiveData
 
-object Repository {
+import android.os.AsyncTask
 
-    private lateinit var user: UserModel
 
-    fun addUser(user: UserModel, dbManager: DBManager): Boolean {
-        if (dbManager.addUser(user)) {
-            this.user = user
-            return true
+
+
+
+class Repository {
+
+
+    private lateinit var mUidds: LiveData<List<String>>
+    var db: RoomDBClass.UsersDatabase? = null
+    var mDaoRoom:DAORoom?=null
+    lateinit var users:RoomUserClass.User
+    constructor(application: Application) {
+        db = RoomDBClass.UsersDatabase.getInstance(application)
+
+        if (db != null) {
+             mDaoRoom = db!!.userDao()
+            mUidds= mDaoRoom!!.getAllUIDDs()
         }
-        return false
+
     }
 
-    fun updateUser(user: UserModel, dbManager: DBManager): Boolean {
-        if (dbManager.updateUser(user)) {
-
-            // get user from database after it has been updated
-            this.user = dbManager.getUser(user.uuid)
-
-            return true
-        }
-        return false
+    fun getAllUsers(): LiveData<List<String>> {
+        return mUidds
+    }
+    fun getBmi(uuid: String): Int? {
+        return mDaoRoom?.getBMI(uuid)
     }
 
-    fun getUserFromLocalDatabase(): UserModel? {
-        return user
+    fun getOneUser(uuid:String): RoomUserClass.User {
+        users= mDaoRoom?.getUser(uuid)!!
+        return users
     }
 
+     fun insert(user: RoomUserClass.User?) {
+         mDaoRoom!!.insertAll(user)
+    }
 
 
 
 }
+
+
+
+
+

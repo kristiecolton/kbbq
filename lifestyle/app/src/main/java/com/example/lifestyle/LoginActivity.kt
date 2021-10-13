@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.room.Room
+import kotlin.concurrent.thread
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.DataPasser {
@@ -34,14 +36,45 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
         }
+
+
         // Get all users' data for "Select a Profile" Recycle View
         var dbManager : DBManager = DBManager(this);
+        var viewModel:ViewModelUserRoom=ViewModelUserRoom(application)
+        var neverGoingToWork=viewModel.getAllUsers()
+        thread {
+            viewModel.insertMultipleUsers(
+                RoomUserClass.User(
+                    "10294031",
+                    "braden",
+                    "mcclean",
+                    25,
+                    1,
+                    6,
+                    1,
+                    220,
+                    "lehi",
+                    "usa",
+                    null,
+                    null,
+                    1,
+                    200,
+                    300,
+                    false,
+                    2103,
+                    23.0f
+                )
+            )
+        }
+
         // Get a list of all uuids saved in the database
         var uuids =dbManager.getAllUuids().toCollection(ArrayList())
 
         //Populate the item list with data
         //and populate the details list with details at the same time
         var names : ArrayList<String> = ArrayList()
+
+
 
         uuids.forEach{
             val firstName : String = dbManager.getFirstName(it)

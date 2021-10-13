@@ -119,7 +119,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 //        }
 
         // Get user object from Repository instead
-        this.user = Repository.getUserFromLocalDatabase()!!
+//        this.user = Repository.getUserFromLocalDatabase()!!
 
         if (user.profilePicture == "") {
             mProfilePicture.setImageResource(R.drawable.ic_user)
@@ -187,7 +187,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     // Saves the current edit text input to the activity (not to the database)
                     saveUserInput()
                     // Saves the changes to the database
-                    var updateSuccessful : Boolean = Repository.updateUser(this.user, mDBManager)
+                    //CHANGE THIS
+                    var updateSuccessful : Boolean = true
 
                     if (updateSuccessful) {
                         val toast = Toast.makeText(this, "Changes Successfully Saved", Toast.LENGTH_LONG)
