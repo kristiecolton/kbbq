@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 //        this.uuid = intent.getExtras()?.getString("uuid")!!
 
         // Get user's uuid from Repository
-//        this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
+        this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
 
 
         cals= dataBase.getCals(uuid)
@@ -106,7 +106,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         // Create a DBManager object
         mDBManager = DBManager(this);
-
 //
 //        try {
 //
@@ -118,7 +117,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 //        }
 
         // Get user object from repository instead
-//        this.user = Repository.getUserFromLocalDatabase()!!
+        this.user = Repository.getUserFromLocalDatabase()!!
 
         this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
 
@@ -152,13 +151,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
 
             val data = PieData(dataSet)
-            data.setValueTextSize(11f)
-            data.setValueTextColor(Color.WHITE)
             pieChart.data = data
             pieChart.highlightValues(null)
             pieChart.invalidate()
             pieChart.getDescription().setEnabled(false)
-            pieChart.setCenterTextColor(Color.GREEN)
+            pieChart.setEntryLabelColor(Color.WHITE)
+            pieChart.setHoleColor(Color.TRANSPARENT)
+            pieChart.legend.setTextColor(Color.WHITE)
+            pieChart.legend.setTextSize(11f)
             pieChart.animateXY(5000, 5000)
 
         }
@@ -194,9 +194,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 //        }
 
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
-
         Log.d("LOG", "CurrentBMIOnStart: $curr_bmi")
-//        Log.d("LOG", "CurrentBMIFromRepoOnStart: ${Repository.getUserFromLocalDatabase()?.BMI}")
+        Log.d("LOG", "CurrentBMIFromRepoOnStart: ${Repository.getUserFromLocalDatabase()?.BMI}")
         if (user.BMI != curr_bmi) {
             // Update the user's info
             this.user = mDBManager.getUser(this.uuid)
