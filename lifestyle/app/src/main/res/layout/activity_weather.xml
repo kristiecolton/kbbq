@@ -26,7 +26,7 @@
                 android:id="@+id/weatherAddress"
                 android:textSize="24sp"
                 android:text="Salt Lake City"
-                android:textColor="@color/dark_red"
+                android:textColor="?attr/colorSecondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -63,8 +63,9 @@
                 android:textSize="90sp"
                 android:fontFamily="sans-serif-thin"
                 android:layout_gravity="center"
-                android:textColor="@color/dark_red"
+                android:textColor="?attr/colorSecondary"
                 android:text="75°F"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -114,14 +115,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:background="#0f3460"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunrise"
-                        android:tint="@color/white">
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -155,14 +156,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:background="#0f3460"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunset"
-                        android:tint="@color/white">
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -196,14 +197,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:background="#0f3460"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/wind"
-                        android:tint="@color/white">
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -246,14 +247,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:background="#0f3460"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/pressure"
-                        android:tint="@color/white">
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -287,14 +288,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:background="#0f3460"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/humidity"
-                        android:tint="@color/white">
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -327,15 +328,16 @@
                     android:orientation="vertical"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#0f3460"
+                    android:padding="5dp"
+                    android:background="?attr/colorPrimaryVariant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/info"
-                        android:tint="@color/white">
+                        android:layout_width="80dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/logo"
+                        app:tint="@color/white">
 
                     </ImageView>
                     <Space
@@ -343,23 +345,6 @@
                         android:layout_height="5dp">
 
                     </Space>
-                    <TextView
-                        android:textSize="12sp"
-                        android:text="Created by"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
-                    <TextView
-                        android:id="@+id/infoWeather"
-                        android:textSize="14sp"
-                        android:text="KBBQ"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
                 </LinearLayout>
                 <Space
                     android:layout_width="10dp"

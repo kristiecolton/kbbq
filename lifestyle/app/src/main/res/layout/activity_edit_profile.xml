@@ -55,14 +55,15 @@
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:text="Edit Profile Picture"
-            android:textColor="@color/dark_red"
-            android:textSize="13sp"/>
+            android:textColor="?attr/colorSecondary"
+            android:textSize="13sp" />
         <!-- not sure if this is better
             style="@style/dark_button"
             android:text="Edit Profile Picture"-->
 
         <Button
             android:id="@+id/edit_profile_save_btn"
+            style="@style/samll_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -71,7 +72,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            style="@style/dark_button"
             android:text="Save" />
         <!-- not sure if this is better
             android:background="@android:color/transparent"
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="First Name"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -123,7 +123,7 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:text="Joey"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="18sp" />
 
                     <View
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Last Name"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -157,7 +157,7 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:text="Tribulani"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="18sp" />
 
                     <View
@@ -179,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Age"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -191,7 +191,7 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="number"
                         android:text="45"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="18sp" />
 
                     <View
@@ -212,7 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Height"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <LinearLayout
@@ -235,7 +235,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:inputType="number"
                                 android:text="5"
-                                android:textColor="#000000"
+                                android:textColor="?attr/colorOnPrimary"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -261,7 +261,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:inputType="number"
                                 android:text="11"
-                                android:textColor="#000000"
+                                android:textColor="?attr/colorOnPrimary"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -292,7 +292,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weight"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
                     <!-- Lbs -->
                     <LinearLayout
@@ -309,7 +309,7 @@
                             android:fontFamily="sans-serif-light"
                             android:inputType="number"
                             android:text="190"
-                            android:textColor="#000000"
+                            android:textColor="?attr/colorOnPrimary"
                             android:textSize="18sp" />
 
                         <TextView
@@ -339,7 +339,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sex"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -385,7 +385,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -397,7 +397,7 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:text="Salt Lake City"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="18sp" />
 
                     <View
@@ -418,7 +418,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Country"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <EditText
@@ -430,7 +430,7 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="textPersonName"
                         android:text="United States"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="18sp" />
 
                     <View
@@ -453,7 +453,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Are You Active?"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -499,7 +499,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Weight Goal"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -543,17 +543,17 @@
 
                 <!-- Lbs Per Week  -->
                 <LinearLayout
+                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pounds Per Week"
-                        android:textColor="@color/dark_red"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="13sp" />
 
                     <RadioGroup
@@ -591,12 +591,13 @@
 
 
                 <Button
+                    android:id="@+id/delete_profile_btn"
+                    style="@style/samll_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delete Profile"
-                    android:id="@+id/delete_profile_btn"
+                    android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/delete_profile_red"
-                    android:layout_gravity="center_horizontal">
+                    android:text="Delete Profile">
 
                 </Button>
 

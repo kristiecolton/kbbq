@@ -7,28 +7,53 @@
     android:background="@drawable/weather_bg"
     tools:context=".BmiActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view_NumberBMI"
-        android:layout_width="356dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view_stringBMI"
-        android:layout_width="356dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_container_view_NumberBMI"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/BMI_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="Your body mass index (BMI) value is:"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="20dp"
+            >
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bmi_bg">
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_view_NumberBMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="24dp"/>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_view_stringBMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+                android:textSize="24dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

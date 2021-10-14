@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:paddingLeft="20dp"
             android:inputType="number" />
     </LinearLayout>
 
@@ -53,11 +54,11 @@
             android:id="@+id/feet_et"
             android:backgroundTint="@color/white"
             android:textColor="@color/white"
-            android:layout_width="80dp
-"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:paddingLeft="10dp"
             android:inputType="number" />
 
         <TextView
@@ -72,11 +73,11 @@
             android:id="@+id/inches_et"
             android:backgroundTint="@color/white"
             android:textColor="@color/white"
-            android:layout_width="80dp
-"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:paddingLeft="10dp"
             android:inputType="number" />
 
         <TextView
@@ -111,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:paddingLeft="20dp"
             android:inputType="number" />
 
         <TextView

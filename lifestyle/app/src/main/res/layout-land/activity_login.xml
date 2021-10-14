@@ -13,29 +13,46 @@
        android:background="@drawable/weather_bg"
        android:orientation="vertical">
 
-       <!-- User Profiles Recycle View -->
-       <TextView
-           style="@style/dark_textview"
-           android:layout_width="wrap_content"
+       <LinearLayout
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_gravity="center_horizontal"
-           android:layout_marginTop="20dp"
-           android:layout_marginBottom="20dp"
-           android:text="Select a Profile"
-           android:textColor="@color/white"
-           android:textSize="30dp"></TextView>
+           android:gravity="center_horizontal"
+           android:orientation="horizontal">
 
-       <FrameLayout
-           android:id="@+id/fl_frag_masterlist_container_phone"
-           android:layout_width="484dp"
-           android:layout_height="150dp"
-           android:layout_above="@id/create_a_profile_btn"
-           android:layout_gravity="center_horizontal"
-           android:layout_weight="1"
-           android:background="@color/dark_blue"
+           <ImageView
+               android:layout_width="100dp"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginRight="50dp"
+               android:layout_marginBottom="20dp"
+               android:src="@drawable/logo_small"></ImageView>
+
+           <TextView
+               style="@style/dark_textview"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center|center_horizontal|center_vertical"
+               android:layout_marginTop="20dp"
+               android:layout_marginBottom="20dp"
+               android:text="Select a Profile"
+               android:textColor="@color/white"
+               android:textSize="30dp"></TextView>
+
+       </LinearLayout>
+
+       <!-- User Profiles Recycle View -->
+
+       <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+           xmlns:tools="http://schemas.android.com/tools"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
            android:padding="16dp"
-           tools:context=".RecycleView.HikesActivity">
-
+           android:layout_weight="2"
+           tools:context=".RecycleView.HikesActivity"
+           android:id="@+id/fl_frag_masterlist_container_phone"
+           android:background="@android:color/transparent"
+           android:layout_above="@id/create_a_profile_btn" >
        </FrameLayout>
 
        <LinearLayout
