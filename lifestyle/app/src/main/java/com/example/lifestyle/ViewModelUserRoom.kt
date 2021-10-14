@@ -3,7 +3,6 @@ package com.example.lifestyle
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import java.util.*
 
 class ViewModelUserRoom(application: Application) : AndroidViewModel(application!!)
 {
@@ -16,18 +15,18 @@ class ViewModelUserRoom(application: Application) : AndroidViewModel(application
         uuidList= roomRepository!!.getAllUsers()
     }
 
-      fun insertMultipleUsers(users: RoomUserClass.User) {
+      fun insertMultipleUsers(users: UserTable) {
          roomRepository?.insert(users)
     }
 
      fun getAllUsers():  LiveData<List<String>> {
         return  uuidList
     }
-    fun getBmi(uuid: String):  Int? {
+    fun getBmi(uuid: String):  Float? {
         return  roomRepository?.getBmi(uuid)
     }
 //
-//    suspend fun deleteUser(user: RoomUserClass.User) {
+//    suspend fun deleteUser(user: UserTable) {
 //        dao.delete(user)
 //    }
 }

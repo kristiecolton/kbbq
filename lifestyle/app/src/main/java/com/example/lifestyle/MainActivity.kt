@@ -94,10 +94,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
 
         // Get user's uuid from previous activity
-//        this.uuid = intent.getExtras()?.getString("uuid")!!
+        this.uuid = intent.getExtras()?.getString("uuid")!!
 
         // Get user's uuid from Repository
-        this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
+        // this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
 
 
         cals= dataBase.getCals(uuid)
@@ -107,17 +107,17 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         // Create a DBManager object
         mDBManager = DBManager(this);
 //
-//        try {
-//
-//            // Get the user's info from the database
-//            this.user = mDBManager.getUser(uuid!!)
-//
-//        } catch (e: Exception) {
-//            this.user = UserModel()
-//        }
+        try {
 
-        // Get user object from repository instead
-        this.user = Repository.getUserFromLocalDatabase()!!
+            // Get the user's info from the database
+            this.user = mDBManager.getUser(uuid!!)
+
+        } catch (e: Exception) {
+            this.user = UserModel()
+        }
+
+//        // Get user object from repository instead
+//        this.user = Repository.getUserFromLocalDatabase()!!
 
         this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
 
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
         Log.d("LOG", "CurrentBMIOnStart: $curr_bmi")
-        Log.d("LOG", "CurrentBMIFromRepoOnStart: ${Repository.getUserFromLocalDatabase()?.BMI}")
+
         if (user.BMI != curr_bmi) {
             // Update the user's info
             this.user = mDBManager.getUser(this.uuid)

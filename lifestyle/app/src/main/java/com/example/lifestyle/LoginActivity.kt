@@ -11,7 +11,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.room.Room
 import kotlin.concurrent.thread
 
 
@@ -44,7 +43,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
         var neverGoingToWork=viewModel.getAllUsers()
         thread {
             viewModel.insertMultipleUsers(
-                RoomUserClass.User(
+                UserTable(
                     "10294031",
                     "braden",
                     "mcclean",
