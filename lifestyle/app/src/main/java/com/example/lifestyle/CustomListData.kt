@@ -34,19 +34,6 @@ class CustomListData : Parcelable {
         //and populate the details list with details at the same time
         mItemList = names
         mItemDetails = uuids
-//        var dbManager : DBManager = DBManager(this);
-//        // Get a list of all uuids saved in the database
-//        var uuids =dbManager.getAllUuids()
-//
-//        uuids.forEach{
-//            val firstName : String = dbManager.getFirstName(it)
-//            val lastName : String = dbManager.getLastName(it)
-//            val fullName = firstName + " " + lastName
-//
-//            (mItemList as ArrayList<String>).add(fullName)
-//            (mItemDetails as ArrayList<String>).add(it)
-//
-//        }
 
     }
 

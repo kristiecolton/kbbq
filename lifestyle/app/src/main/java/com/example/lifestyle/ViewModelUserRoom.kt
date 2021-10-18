@@ -7,23 +7,18 @@ import androidx.lifecycle.LiveData
 class ViewModelUserRoom(application: Application) : AndroidViewModel(application!!)
 {
 
-    private var roomRepository:Repository?=null
-    lateinit var  uuidList: LiveData<List<String>>
+    private var userRepository:UserRepository?=null
 
     init {
-        roomRepository = Repository(application)
-        uuidList= roomRepository!!.getAllUsers()
+        userRepository = UserRepository(application)
     }
 
       fun insertMultipleUsers(users: UserTable) {
-         roomRepository?.insert(users)
+         userRepository?.insert(users)
     }
 
-     fun getAllUsers():  LiveData<List<String>> {
-        return  uuidList
-    }
     fun getBmi(uuid: String):  Float? {
-        return  roomRepository?.getBmi(uuid)
+        return  userRepository?.getBmi(uuid)
     }
 //
 //    suspend fun deleteUser(user: UserTable) {

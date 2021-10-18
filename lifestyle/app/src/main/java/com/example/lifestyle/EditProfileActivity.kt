@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import java.lang.Exception
 import android.view.Gravity
 import android.widget.*
 
@@ -20,7 +19,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mDBManager: DBManager
 
     // The user's info
-    lateinit var user : UserModel
+    lateinit var user : UserData
 
     // UI Elements
     lateinit var mFirstName_et : EditText
@@ -115,11 +114,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 //            this.user = mDBManager.getUser(uuid!!)
 //
 //        } catch (e: Exception) {
-//            this.user = UserModel()
+//            this.user = UserData()
 //        }
 
-        // Get user object from Repository instead
-//        this.user = Repository.getUserFromLocalDatabase()!!
+        // Get user object from UserRepository instead
+//        this.user = UserRepository.getUserFromLocalDatabase()!!
 
         if (user.profilePicture == "") {
             mProfilePicture.setImageResource(R.drawable.ic_user)
@@ -245,7 +244,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    /* Update the user : UserModel member variable with the current
+    /* Update the user : UserData member variable with the current
      info inside the edit text fields*/
     fun saveUserInput() {
         this.user.firstName = mFirstName_et.text.toString()

@@ -30,6 +30,7 @@ abstract class UserRoomDatabase : RoomDatabase() {
 
         }
 
+
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 // Empty implementation, because the schema isn't changing.

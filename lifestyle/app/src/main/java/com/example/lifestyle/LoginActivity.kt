@@ -11,14 +11,19 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import kotlin.concurrent.thread
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.DataPasser {
-
+    /* UI Elements */
     lateinit var mCreateAProfileBtn: Button;
     private var mMasterListFragment: MasterListFragment? = null
     private val locationPermissionCode = 2
+
+    private lateinit var mLoginViewModel : LoginViewModel
+
     // Contains all the user's data for the recycle view
     lateinit var mCustomListData : CustomListData
 
@@ -38,85 +43,91 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
 
 
         // Get all users' data for "Select a Profile" Recycle View
-        var dbManager : DBManager = DBManager(this);
-        var viewModel:ViewModelUserRoom=ViewModelUserRoom(application)
-        var neverGoingToWork=viewModel.getAllUsers()
-        thread {
-            viewModel.insertMultipleUsers(
-                UserTable(
-                    "10294031",
-                    "braden",
-                    "mcclean",
-                    25,
-                    1,
-                    6,
-                    1,
-                    220,
-                    "lehi",
-                    "usa",
-                    null,
-                    null,
-                    1,
-                    200,
-                    300,
-                    false,
-                    2103,
-                    23.0f
-                )
-            )
-        }
+ //       var dbManager : DBManager = DBManager(this);
+//        var viewModel:ViewModelUserRoom=ViewModelUserRoom(application)
+//        var neverGoingToWork=viewModel.getAllUUIDs()
+//        thread {
+//            viewModel.insertMultipleUsers(
+//                UserTable(
+//                    "10294031",
+//                    "braden",
+//                    "mcclean",
+//                    25,
+//                    1,
+//                    6,
+//                    1,
+//                    220,
+//                    "lehi",
+//                    "usa",
+//                    null,
+//                    null,
+//                    1,
+//                    200,
+//                    300,
+//                    false,
+//                    2103,
+//                    23.0f
+//                )
+//            )
+//        }
 
         // Get a list of all uuids saved in the database
-        var uuids =dbManager.getAllUuids().toCollection(ArrayList())
+ //       var uuids =dbManager.getAllUuids().toCollection(ArrayList())
 
         //Populate the item list with data
         //and populate the details list with details at the same time
-        var names : ArrayList<String> = ArrayList()
+ //       var names : ArrayList<String> = ArrayList()
 
 
-
-        uuids.forEach{
-            val firstName : String = dbManager.getFirstName(it)
-            val lastName : String = dbManager.getLastName(it)
-            val fullName = firstName + " " + lastName
-
-            names.add(fullName)
-
-        }
-        mCustomListData = CustomListData(names, uuids)
-
-        //Put this into a bundle
-        val fragmentBundle = Bundle()
-        fragmentBundle.putParcelable("item_list", mCustomListData)
-
-        //Create the fragment
-        mMasterListFragment = MasterListFragment()
-
-        //Pass data to the fragment
-        mMasterListFragment!!.arguments = fragmentBundle
-
-        val fTrans = supportFragmentManager.beginTransaction()
-        fTrans.replace(
-            R.id.fl_frag_masterlist_container_phone,
-            mMasterListFragment!!,
-            "frag_masterlist"
-        )
-
-//        if (isTablet()) {
-//            //Pane 1: Master list
-//            fTrans.replace(
-//                R.id.fl_frag_masterlist_container_tablet,
-//                mMasterListFragment!!,
-//                "frag_masterlist"
-//            )
-//        } else {
-//            fTrans.replace(
-//                R.id.fl_frag_masterlist_container_phone,
-//                mMasterListFragment,
-//                "frag_masterlist"
-//            )
+//        uuids.forEach{
+//            val firstName : String = dbManager.getFirstName(it)
+//            val lastName : String = dbManager.getLastName(it)
+//            val fullName = firstName + " " + lastName
+//
+//            names.add(fullName)
+//
 //        }
-        fTrans.commit()
+//        mCustomListData = CustomListData(names, uuids)
+
+        //Create the view model
+        mLoginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+        //Set the observer
+        // mLoginViewModel.getCustomListData().observe(this, nameObserver)
+        mLoginViewModel.getCustomListDataItems().observe(this, nameObserver)
+
+//        //Put this into a bundle
+//        val fragmentBundle = Bundle()
+//        fragmentBundle.putParcelable("item_list", mCustomListData)
+//
+//        //Create the fragment
+//        mMasterListFragment = MasterListFragment()
+//
+//        //Pass data to the fragment
+//        mMasterListFragment!!.arguments = fragmentBundle
+//
+//        val fTrans = supportFragmentManager.beginTransaction()
+//        fTrans.replace(
+//            R.id.fl_frag_masterlist_container_phone,
+//            mMasterListFragment!!,
+//            "frag_masterlist"
+//        )
+//
+////        if (isTablet()) {
+////            //Pane 1: Master list
+////            fTrans.replace(
+////                R.id.fl_frag_masterlist_container_tablet,
+////                mMasterListFragment!!,
+////                "frag_masterlist"
+////            )
+////        } else {
+////            fTrans.replace(
+////                R.id.fl_frag_masterlist_container_phone,
+////                mMasterListFragment,
+////                "frag_masterlist"
+////            )
+////        }
+//        fTrans.commit()
 
 //        var dbManager : DBManager = DBManager(this);
 //        var usersUIDArray=dbManager.getAllUid()
@@ -143,8 +154,46 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
         mCreateAProfileBtn=findViewById(R.id.create_a_profile_btn) as Button;
         mCreateAProfileBtn.setOnClickListener(this);
 
-
     }
+
+    // Create an observer that watches the LiveData<CustomListData> object
+    val nameObserver: Observer<List<CustomListDataItem>> =
+        Observer<List<CustomListDataItem>> { customListDataItems ->
+            // Update the recycle view if the custom list data changes
+            if (customListDataItems != null) {
+                // Create the Custom List Data for the "Select a Profile" Recycle view
+                var names : ArrayList<String> = ArrayList()
+                var uuids : ArrayList<String> = ArrayList()
+
+                customListDataItems.forEach{
+                    uuids.add(it.uuid!!)
+
+                    val firstName : String = it.firstName!!
+                    val lastName : String = it.lastName!!
+                    val fullName = firstName + " " + lastName
+                    names.add(fullName)
+                }
+
+                mCustomListData = CustomListData(names, uuids)
+
+                //Put this into a bundle
+                val fragmentBundle = Bundle()
+                fragmentBundle.putParcelable("item_list", mCustomListData)
+
+                //Create the fragment
+                mMasterListFragment = MasterListFragment()
+
+                //Pass data to the fragment
+                mMasterListFragment!!.arguments = fragmentBundle
+
+                val fTrans = supportFragmentManager.beginTransaction()
+                fTrans.replace(
+                        R.id.fl_frag_masterlist_container_phone,
+                        mMasterListFragment!!,
+                        "frag_masterlist")
+                fTrans.commit()
+            }
+        }
 
     override fun onClick(v: View?) {
         if (v != null) {

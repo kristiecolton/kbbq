@@ -89,12 +89,12 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         var dbManager = DBManager(this);
 
         // Create a user object
-        this.uuid = UserModel.generateUUID()
-        val user: UserModel = UserModel(uuid, firstName, lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserModel.calculateRecommendedDailyCalories(UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserModel.calculateBMR(lbs,feet,inches,age,sex,isActive), UserModel.calculateBMI(lbs,feet,inches))
+        this.uuid = UserData.generateUUID()
+        val user: UserData = UserData(uuid, firstName, lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserData.calculateRecommendedDailyCalories(UserData.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserData.calculateBMR(lbs,feet,inches,age,sex,isActive), UserData.calculateBMI(lbs,feet,inches))
 
 
 //        // Add the user to the database
-//        var addUserDidSucceed : Boolean = Repository.addUser(user, dbManager);
+//        var addUserDidSucceed : Boolean = UserRepository.addUser(user, dbManager);
 
         // Navigate to home page
         val intent = Intent(this, MainActivity::class.java)

@@ -5,7 +5,7 @@ import android.util.Log
 import kotlin.math.pow
 
 //  A class to represent a user
-class UserModel {
+class UserData {
     // A unique identifier to identify users by
     var uuid : String = "";
     var firstName : String = "";
@@ -214,7 +214,7 @@ class UserModel {
 
 
     override fun toString(): String {
-        return "UserModel(uuid='$uuid', firstName='$firstName', lastName='$lastName', age=$age, sex=$sex, feet=$feet, inches=$inches, lbs=$lbs, city='$city', country='$country', profilePicture='$profilePicture', backgroundPicture='$backgroundPicture', goalType=$goalType, lbsPerWeek=$lbsPerWeek, recommendedDailyCalories=$recommendedDailyCalories, isActive=$isActive, BMR=$BMR, BMI=$BMI)"
+        return "UserData(uuid='$uuid', firstName='$firstName', lastName='$lastName', age=$age, sex=$sex, feet=$feet, inches=$inches, lbs=$lbs, city='$city', country='$country', profilePicture='$profilePicture', backgroundPicture='$backgroundPicture', goalType=$goalType, lbsPerWeek=$lbsPerWeek, recommendedDailyCalories=$recommendedDailyCalories, isActive=$isActive, BMR=$BMR, BMI=$BMI)"
     }
 
 

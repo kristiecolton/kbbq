@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     var cals:String=""
     var bmiString:String=""
 
-    var user : UserModel= UserModel()
+    var user : UserData= UserData()
     lateinit var mDBManager: DBManager
     var bmi : Float = 0F
 
@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         // Get user's uuid from previous activity
         this.uuid = intent.getExtras()?.getString("uuid")!!
 
-        // Get user's uuid from Repository
-        // this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
+        // Get user's uuid from UserRepository
+        // this.uuid = UserRepository.getUserFromLocalDatabase()?.uuid.toString()
 
 
         cals= dataBase.getCals(uuid)
@@ -113,15 +113,15 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             this.user = mDBManager.getUser(uuid!!)
 
         } catch (e: Exception) {
-            this.user = UserModel()
+            this.user = UserData()
         }
 
 //        // Get user object from repository instead
-//        this.user = Repository.getUserFromLocalDatabase()!!
+//        this.user = UserRepository.getUserFromLocalDatabase()!!
 
-        this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
+        this.bmi = UserData.calculateBMI(user.lbs, user.feet, user.inches )
 
-        val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+        val idealWeight : Int = UserData.calculateIdealWeight(user.lbs, user.feet, user.inches)
         if (idealWeight == 0) { // not enough data to calculate weight properly
 
         } else {
@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         if (user.BMI != curr_bmi) {
             // Update the user's info
             this.user = mDBManager.getUser(this.uuid)
-            val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+            val idealWeight : Int = UserData.calculateIdealWeight(user.lbs, user.feet, user.inches)
 
             if (idealWeight == 0) { // not enough data to calculate weight properly
 

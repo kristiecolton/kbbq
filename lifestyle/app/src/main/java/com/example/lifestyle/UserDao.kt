@@ -1,6 +1,7 @@
 package com.example.lifestyle
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -28,6 +29,11 @@ interface UserDao {
 
     @Query("SELECT UUID FROM user_table")
     fun getAllUUIDs(): LiveData<List<String>>
+
+    // A method to return the uuid, first name, and last name of all our users
+    // (to be used in the recycle view oh the login activity)
+    @Query("SELECT UUID, FIRST_NAME, LAST_NAME FROM user_table")
+    fun getCustomListDataItems(): LiveData<List<CustomListDataItem>>
 
     @Query("SELECT LAST_NAME FROM user_table WHERE UUID = :uuid")
     fun getLastName(uuid: String): String
