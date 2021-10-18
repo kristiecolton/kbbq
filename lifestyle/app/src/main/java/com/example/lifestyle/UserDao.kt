@@ -10,7 +10,7 @@ interface UserDao {
     // or multiple hence the vararg
     //you need to make a class ROOMDBMANGER.user which requires all the columns
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertAll(vararg users: UserTable?)
+    suspend fun insertAll(vararg user: UserTable?)
 
     //uses a primary key UUID to find user, returns the number of columns changed
     //can take multiple users for deletion needs UUIDS

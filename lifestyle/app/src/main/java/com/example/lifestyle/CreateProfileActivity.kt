@@ -137,6 +137,10 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 
     }
 
+    private fun addUserToDB() {
+
+    }
+
     private fun showMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

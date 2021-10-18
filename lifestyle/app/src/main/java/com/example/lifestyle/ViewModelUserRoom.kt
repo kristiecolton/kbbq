@@ -2,7 +2,6 @@ package com.example.lifestyle
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 
 class ViewModelUserRoom(application: Application) : AndroidViewModel(application!!)
 {
@@ -13,9 +12,9 @@ class ViewModelUserRoom(application: Application) : AndroidViewModel(application
         userRepository = UserRepository(application)
     }
 
-      fun insertMultipleUsers(users: UserTable) {
-         userRepository?.insert(users)
-    }
+//      fun insertMultipleUsers(users: UserTable) {
+//         userRepository?.insertAll(users)
+//    }
 
     fun getBmi(uuid: String):  Float? {
         return  userRepository?.getBmi(uuid)

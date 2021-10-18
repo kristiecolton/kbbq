@@ -14,7 +14,6 @@ class UserRepository {
 
 
     /* Login View Model Data */
-    // private var mCustomListData = MutableLiveData<CustomListData>()
     private var mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>()
 
     companion object {
@@ -42,22 +41,6 @@ class UserRepository {
             // Data, so we must manually cast it to Mutable Live Data in the Repository
             var customListDataItems : LiveData<List<CustomListDataItem>> = mUserDao!!.getCustomListDataItems()
             mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>(customListDataItems.value)
-            // Load all the data we'll need for the various view models
-
-//            // Get a list of names to create a CustomListData object (used in the Login View Model)
-//            val uuids : ArrayList<String> = mUserDao!!.getAllUUIDs().toCollection(ArrayList())
-//            var names : ArrayList<String> = ArrayList()
-//
-//            uuids.forEach{
-//                val firstName : String = mUserDao!!.getFirstName(it)
-//                val lastName : String = mUserDao!!.getLastName(it)
-//                val fullName = firstName + " " + lastName
-//
-//                names.add(fullName)
-//
-//            }
-            // mCustomListData = CustomListData(names, uuids)
-//            mCustomListData = MutableLiveData<CustomListData>(CustomListData(names, uuids))
 
         }
 
@@ -65,13 +48,15 @@ class UserRepository {
 
     /* Methods for Login View Model */
 
-//    fun getAllUUIDs(): LiveData<List<String>> {
-//        return mUUIDs
-//    }
-
     fun getCustomListDataItems(): MutableLiveData<List<CustomListDataItem>> {
         return mCustomListDataItems
     }
+
+    /* Methods for Create User Profile View Model */
+    suspend fun insertAll(user: UserTable?) {
+        mUserDao!!.insertAll(user)
+    }
+
 
     fun getBmi(uuid: String): Float? {
         return mUserDao?.getBMI(uuid)
@@ -82,9 +67,7 @@ class UserRepository {
         return users
     }
 
-     fun insert(user: UserTable?) {
-         mUserDao!!.insertAll(user)
-    }
+
 
 
 

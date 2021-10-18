@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import androidx.lifecycle.ViewModelProvider
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 
 class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, FragmentAgeHeightWeight.OnDataPass, FragmentCityCountry.OnDataPass, FragmentProfileAndBackgroundPicture.OnDataPassProfileAndBackgroundPicture {
@@ -31,9 +32,16 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     private var _binding: FragmentProfileAndBackgroundPictureBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var mCreateUserProfileViewModel : CreateUserProfileViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user_profile)
+
+        //Create the view model
+        mCreateUserProfileViewModel = ViewModelProvider(this)[CreateUserProfileViewModel::class.java]
+
     }
 
     override fun onDataPassFirstAndLastName(firstName: String, lastName: String) {
@@ -85,13 +93,31 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
     }
 
     fun addUserToDatabase() {
-        // Create a DBManager object
-        var dbManager = DBManager(this);
-
+//        // Create a DBManager object
+//        var dbManager = DBManager(this);
+//
         // Create a user object
         this.uuid = UserData.generateUUID()
-        val user: UserData = UserData(uuid, firstName, lastName,age,sex,feet,inches,lbs,city,country,profilePicture,backgroundPicture,goalType,lbsPerWeek*goalType,isActive,UserData.calculateRecommendedDailyCalories(UserData.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),UserData.calculateBMR(lbs,feet,inches,age,sex,isActive), UserData.calculateBMI(lbs,feet,inches))
+        val user: UserTable = UserTable(uuid,
+            firstName,
+            lastName,
+            age,
+            sex,
+            feet,
+            inches,
+            lbs,
+            city,
+            country,
+            profilePicture,
+            backgroundPicture,
+            goalType,
+            lbsPerWeek*goalType,
+            UserData.calculateRecommendedDailyCalories(UserData.calculateBMR(lbs,feet,inches,age,sex,isActive),goalType,lbsPerWeek),
+            isActive,
+            UserData.calculateBMR(lbs,feet,inches,age,sex,isActive),
+            UserData.calculateBMI(lbs,feet,inches))
 
+        mCreateUserProfileViewModel.insertAll(user)
 
 //        // Add the user to the database
 //        var addUserDidSucceed : Boolean = UserRepository.addUser(user, dbManager);
@@ -100,10 +126,6 @@ class CreateUserProfile : AppCompatActivity(), FirstAndLastName.OnDataPass, Frag
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("uuid", this.uuid);
         startActivity(intent)
-
-        Log.d("LOG", "Sex: $sex")
-//        Log.d("LOG", "Database adding result: $addUserDidSucceed")
-        Log.d("LOG", this.profilePicture)
     }
 
     fun onRadioButtonClicked(view: View) {
