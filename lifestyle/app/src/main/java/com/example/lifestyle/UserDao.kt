@@ -18,14 +18,17 @@ interface UserDao {
     fun delete(vararg user: UserTable)
 
     //uses a primary key UUID to find user, returns the number of columns changed
-    @Update
-    fun updateUser(vararg users: UserTable)
+//    @Update
+//    fun updateUser(vararg users: UserTable)
+
+    @Query("UPDATE user_table SET first_name = :firstName, last_name = :lastName, age = :age, sex = :sex, feet= :feet, inches = :inches, lbs = :lbs, city = :city, country = :country, recommended_daily_calories = :recommendedDailyCalories, is_active = :isActive, goal_type = :goalType, lbs_per_week = :lbsPerWeek, bmi = :bmi, bmr = :bmr WHERE uuid LIKE :uuid ")
+    suspend fun updateUser(uuid: String, firstName: String, lastName : String, age : Int, sex : Int, feet : Int, inches : Int,  lbs : Int, city : String, country : String, recommendedDailyCalories : Int, isActive : Boolean, goalType : Int, lbsPerWeek : Int, bmi : Float, bmr : Int ): Int
 
     @Query("SELECT * FROM user_table")
     fun getAllUsers(): List<UserTable>
 
     @Query("SELECT * FROM user_table WHERE UUID = :uuid")
-    fun getUser(uuid: String): UserTable
+    fun getUser(uuid: String): LiveData<UserTable>
 
     @Query("SELECT UUID FROM user_table")
     fun getAllUUIDs(): LiveData<List<String>>

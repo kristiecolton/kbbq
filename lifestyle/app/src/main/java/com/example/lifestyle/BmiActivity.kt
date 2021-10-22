@@ -11,7 +11,6 @@ class BmiActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmi)
 
-
         this.uuid = intent.getExtras()?.getString("uuid")!!
 
         supportFragmentManager

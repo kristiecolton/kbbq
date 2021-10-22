@@ -12,7 +12,6 @@ class UserRepository {
     var db: UserRoomDatabase? = null
     var mUserDao:UserDao?=null
 
-
     /* Login View Model Data */
     private var mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>()
 
@@ -47,28 +46,30 @@ class UserRepository {
     }
 
     /* Methods for Login View Model */
-
     fun getCustomListDataItems(): MutableLiveData<List<CustomListDataItem>> {
+        var customListDataItems : LiveData<List<CustomListDataItem>> = mUserDao!!.getCustomListDataItems()
+        mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>(customListDataItems.value)
         return mCustomListDataItems
     }
 
-    /* Methods for Create User Profile View Model */
+    /* Method for Create User Profile View Model */
     suspend fun insertAll(user: UserTable?) {
         mUserDao!!.insertAll(user)
     }
 
+    /* Methods for Edit User Profile View Model */
+    suspend fun updateUser(uuid: String, firstName: String, lastName : String, age : Int, sex : Int, feet : Int, inches : Int,  lbs : Int, city : String, country : String, recommendedDailyCalories : Int, isActive : Boolean, goalType : Int, lbsPerWeek : Int, bmi : Float, bmr : Int ) {
+        mUserDao!!.updateUser(uuid, firstName, lastName, age, sex, feet, inches, lbs, city, country, recommendedDailyCalories, isActive, goalType, lbsPerWeek, bmi, bmr)
+    }
 
     fun getBmi(uuid: String): Float? {
         return mUserDao?.getBMI(uuid)
     }
 
-    fun getOneUser(uuid:String): UserTable{
-        users= mUserDao?.getUser(uuid)!!
-        return users
+    fun getUser(uuid:String): LiveData<UserTable>{
+        var user : LiveData<UserTable> = mUserDao?.getUser(uuid)!!
+        return user
     }
-
-
-
 
 
 }
