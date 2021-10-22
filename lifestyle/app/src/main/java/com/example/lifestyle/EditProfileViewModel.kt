@@ -45,10 +45,4 @@ class EditProfileViewModel(application: Application?) : AndroidViewModel(applica
         }
     }
 
-    fun insertAll(user: UserTable?) {
-        viewModelScope.launch {
-            mUserRepository.insertAll(user)
-        }
-    }
-
 }

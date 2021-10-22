@@ -188,11 +188,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     override fun onStart() {
         super.onStart()
 
-        // Check if the user has changed their profile picture
-//        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
-//            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
-//        }
-
         val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
         Log.d("LOG", "CurrentBMIOnStart: $curr_bmi")
 

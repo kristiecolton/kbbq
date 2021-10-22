@@ -62,8 +62,8 @@ class UserRepository {
         mUserDao!!.updateUser(uuid, firstName, lastName, age, sex, feet, inches, lbs, city, country, recommendedDailyCalories, isActive, goalType, lbsPerWeek, bmi, bmr)
     }
 
-    fun getBmi(uuid: String): Float? {
-        return mUserDao?.getBMI(uuid)
+    fun getBBMI(uuid: String): LiveData<Float?> {
+        return mUserDao?.getBMI(uuid)!!
     }
 
     fun getUser(uuid:String): LiveData<UserTable>{

@@ -12,9 +12,9 @@ class ViewModelUserRoom(application: Application) : AndroidViewModel(application
         userRepository = UserRepository(application)
     }
 
-    fun getBmi(uuid: String):  Float? {
-        return  userRepository?.getBmi(uuid)
-    }
+//    fun getBmi(uuid: String):  Float? {
+//        return  userRepository?.getBmi(uuid)
+//    }
 //
 //    suspend fun deleteUser(user: UserTable) {
 //        dao.delete(user)
