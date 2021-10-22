@@ -66,6 +66,10 @@ class UserRepository {
         return mUserDao?.getBMI(uuid)!!
     }
 
+    fun getRecommendedDailyCalories(uuid: String): LiveData<Int?> {
+        return mUserDao?.getRecommendedDailyCalories(uuid)!!
+    }
+
     fun getUser(uuid:String): LiveData<UserTable>{
         var user : LiveData<UserTable> = mUserDao?.getUser(uuid)!!
         return user

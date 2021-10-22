@@ -57,6 +57,10 @@ interface UserDao {
     @Query("SELECT BMI FROM user_table WHERE UUID = :uuid")
     fun getBMI(uuid: String): LiveData<Float?>
 
+    //Same problem as before where i returned a string in the DBgetter
+    @Query("SELECT recommended_daily_calories FROM user_table WHERE UUID = :uuid")
+    fun getRecommendedDailyCalories(uuid: String): LiveData<Int?>
+
 }
 
 

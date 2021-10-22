@@ -24,7 +24,6 @@ class BmiActivity : AppCompatActivity()
         //Set the observer
         mBMIViewModel!!.getBMI().observe(this, nameObserver)
 
-
     }
 
     // Create an observer that watches the LiveData<List<UserTable>> object
