@@ -8,16 +8,18 @@ import androidx.lifecycle.MutableLiveData
 
 class LoginViewModel(application: Application?) : AndroidViewModel(application!!) {
     // A list that contains the first name, last name, and uuid of all users in the db
-    private val mCustomListDataItems: MutableLiveData<List<CustomListDataItem>>
+    private var mCustomListDataItems: LiveData<List<CustomListDataItem>>? = null
     private val mUserRepository: UserRepository
 
     init {
         mUserRepository = UserRepository.getInstance(application)!!
-        mCustomListDataItems = mUserRepository.getCustomListDataItems()
     }
 
-    fun getCustomListDataItems() : MutableLiveData<List<CustomListDataItem>> {
-        return mCustomListDataItems
+    fun getCustomListDataItems() : LiveData<List<CustomListDataItem>> {
+        if (mCustomListDataItems == null) {
+            mCustomListDataItems = mUserRepository.getCustomListDataItems()
+        }
+        return mCustomListDataItems!!
     }
 
 }

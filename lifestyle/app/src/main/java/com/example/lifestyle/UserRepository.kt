@@ -12,9 +12,6 @@ class UserRepository {
     var db: UserRoomDatabase? = null
     var mUserDao:UserDao?=null
 
-    /* Login View Model Data */
-    private var mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>()
-
     companion object {
         private var instance: UserRepository? = null
 
@@ -36,20 +33,13 @@ class UserRepository {
             // Populate all the data our app will need
             mUserDao = db!!.userDao()
 
-            // Convert LiveData object to MutableLiveData object (the DAO cannot return Mutable Live
-            // Data, so we must manually cast it to Mutable Live Data in the Repository
-            var customListDataItems : LiveData<List<CustomListDataItem>> = mUserDao!!.getCustomListDataItems()
-            mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>(customListDataItems.value)
-
         }
 
     }
 
     /* Methods for Login View Model */
-    fun getCustomListDataItems(): MutableLiveData<List<CustomListDataItem>> {
-        var customListDataItems : LiveData<List<CustomListDataItem>> = mUserDao!!.getCustomListDataItems()
-        mCustomListDataItems = MutableLiveData<List<CustomListDataItem>>(customListDataItems.value)
-        return mCustomListDataItems
+    fun getCustomListDataItems(): LiveData<List<CustomListDataItem>> {
+        return mUserDao!!.getCustomListDataItems()
     }
 
     /* Method for Create User Profile View Model */
