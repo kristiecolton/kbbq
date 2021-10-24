@@ -26,11 +26,11 @@ class HealthMetricUtils {
             Log.d("LOG",intBMR.toString()+" BMR" )
             return intBMR.toInt();
         }
-//    Calories burned per minute = 90* (0.035  X 0.453592 * lbs) +
-//    ((1.78816 ^ 2) / (0.0254*Height in inches))) X (0.029) X ( 0.453592 * lbs)
+        //    Calories burned per minute = 90* (0.035  X 0.453592 * lbs) +
+        //    ((1.78816 ^ 2) / (0.0254*Height in inches))) X (0.029) X ( 0.453592 * lbs)
 
         //    Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) – (4.7 x age in years)
-//    Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) – (6.8 x age in years)
+        //    Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) – (6.8 x age in years)
         // Calculates BMI using a user's weight and height
         fun calculateBMI(lbs: Int, feet: Int, inches: Int) : Float {
             if (feet == 0) { // check if height has been entered
@@ -49,8 +49,9 @@ class HealthMetricUtils {
             return cals ;
         }
 
+
         /* Calculates the nearest weight a person should be to achieve a healthy BMI. Returns
-         the user's current weight if their BMI is healthy. */
+        the user's current weight if their BMI is healthy. */
         fun calculateIdealWeight(lbs: Int, feet: Int, inches  : Int) : Int {
             // calculate current BMI
             val bmi : Float = calculateBMI(lbs, feet, inches)
