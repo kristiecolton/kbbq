@@ -1,12 +1,14 @@
 package com.example.lifestyle
 
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-
+import java.io.ByteArrayOutputStream
 class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
 {
 
@@ -107,6 +109,7 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
                     // All the following variables are jst dummmy values/
                     // These variables will represent file paths to the photos
                     val profilePicture = ""
+
                     val backgroundPicture = ""
                     // male = 0, female = 1
                     val sex= 0
@@ -146,6 +149,8 @@ class CreateProfileActivity : AppCompatActivity(),View.OnClickListener
         val intent = Intent(this, CreateUserProfile::class.java)
         startActivity(intent)
     }
+
+
 }
 
 

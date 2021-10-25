@@ -29,7 +29,7 @@ class Repository {
     fun getAllUsers(): LiveData<List<String>> {
         return mUidds
     }
-    fun getBmi(uuid: String): Int? {
+    fun getBmi(uuid: String): Float? {
         return mDaoRoom?.getBMI(uuid)
     }
 

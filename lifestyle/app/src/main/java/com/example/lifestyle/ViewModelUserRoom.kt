@@ -23,10 +23,10 @@ class ViewModelUserRoom(application: Application) : AndroidViewModel(application
      fun getAllUsers():  LiveData<List<String>> {
         return  uuidList
     }
-    fun getBmi(uuid: String):  Int? {
+    fun getBmi(uuid: String):  Float? {
         return  roomRepository?.getBmi(uuid)
     }
-//
+////
 //    suspend fun deleteUser(user: RoomUserClass.User) {
 //        dao.delete(user)
 //    }

@@ -47,9 +47,9 @@ interface DAORoom {
     fun getFirstName(uuid: String): String
 
 
-    //Same problem as before where i returned a string in the DBgetter
+//    Same problem as before where i returned a string in the DBgetter
     @Query("SELECT BMI FROM user WHERE UUID = :uuid")
-    fun getBMI(uuid: String): Int?
+    fun getBMI(uuid: String): Float?
 
 }
 
