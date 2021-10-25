@@ -3,7 +3,6 @@ package com.example.lifestyle
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -14,6 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+
+import android.Manifest;
+import android.graphics.Color
+import android.graphics.Color.*
+import android.view.ViewGroup
+import android.widget.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -21,21 +28,16 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 
-import android.Manifest;
-import android.util.Log
-import android.widget.*
-import androidx.core.net.toUri
-
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
 
     // User's uuid
-    var uuid : String = ""
+    var muuid : String = ""
 
     var cals:String=""
     var bmiString:String=""
 
-    var user : UserModel= UserModel()
+    var user : UserData= UserData()
     lateinit var mDBManager: DBManager
     var bmi : Float = 0F
 
@@ -58,23 +60,20 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
 
-    var dataBase:DBManager= DBManager(this)
+    // View Model
+    private var mMainViewModel: MainViewModel? = null
+
+    // var dataBase:DBManager= DBManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(isTablet())
         {
-            Log.d("LOG","is Tablet")
             setContentView(R.layout.activity_main_tablet)
-
-
-
         }else{
-            Log.d("LOG","is NOT A TAB")
             setContentView(R.layout.activity_main)
-
-
         }
+
         bmiButton=findViewById(R.id.BmiButton) as Button;
         bmiButton.setOnClickListener(this);
 
@@ -91,158 +90,69 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         editProfileButton.setOnClickListener(this)
 
 
-
-
         // Get user's uuid from previous activity
-//        this.uuid = intent.getExtras()?.getString("uuid")!!
+        muuid = intent.getExtras()?.getString("uuid")!!
 
-        // Get user's uuid from Repository
-//        this.uuid = Repository.getUserFromLocalDatabase()?.uuid.toString()
-
-
-        cals= dataBase.getCals(uuid)
-        bmiString= dataBase.getBMI(uuid)
-
-
-        // Create a DBManager object
-        mDBManager = DBManager(this);
-
-//
-//        try {
-//
-//            // Get the user's info from the database
-//            this.user = mDBManager.getUser(uuid!!)
-//
-//        } catch (e: Exception) {
-//            this.user = UserModel()
-//        }
-
-        // Get user object from repository instead
-//        this.user = Repository.getUserFromLocalDatabase()!!
-
-        this.bmi = UserModel.calculateBMI(user.lbs, user.feet, user.inches )
-
-        val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
-        if (idealWeight == 0) { // not enough data to calculate weight properly
-
-        } else {
-            val pieChart = findViewById<PieChart>(R.id.pieChart)
-            val Cal = ArrayList<PieEntry>()
-
-            var dataSet : PieDataSet;
-
-            if (user.lbs < idealWeight) { // underweight
-                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                Cal.add(PieEntry((idealWeight-user.lbs).toFloat(), "Pounds to gain"))
-                dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
-            } else if (user.lbs == idealWeight) { // healthy weight
-                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                Cal.add(PieEntry(0f, "Pounds to gain"))
-                dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
-            } else { // overweight
-                Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                Cal.add(PieEntry((user.lbs - idealWeight).toFloat(), "Pounds to lose"))
-                dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
-            }
-
-            dataSet.setDrawIcons(false)
-            dataSet.sliceSpace = 3f
-            dataSet.iconsOffset = MPPointF(0F, 40F)
-            dataSet.selectionShift = 5f
-            dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
-            val data = PieData(dataSet)
-            data.setValueTextSize(11f)
-            data.setValueTextColor(Color.WHITE)
-            pieChart.data = data
-            pieChart.highlightValues(null)
-            pieChart.invalidate()
-            pieChart.getDescription().setEnabled(false)
-            pieChart.setCenterTextColor(Color.GREEN)
-            pieChart.animateXY(5000, 5000)
-
-        }
-        mProfilePicture = findViewById(R.id.imageView1)
-        Log.d("LOG","this is the issue  "+user.profilePicture)
-        if (this.user.profilePicture != "") { // Check if the user has a profile picture to show
-            var profile_pic_uri : Uri = user.profilePicture.toUri()
-            Log.d("LOG","this is the issue  "+user.profilePicture.toUri())
-            mProfilePicture.setImageURI(profile_pic_uri)
-
-        }
-
-
-
-
-
-
+        // Create the view model
+        mMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        // Set the uuid for the view model
+        mMainViewModel!!.setUUID(muuid!!)
+        //Set the observer
+        mMainViewModel!!.getUser().observe(this, nameObserver)
 
 
     }
 
-    /* Note: This method gets called after we navigate back to the Main Activity from a different
-     activity. In the case of Edit Profile, the Main Activity does not get re-created after
-     navigating back from the Edit Profile activity.  Thus, we need to check for changes that
-     may have been saved to the database, but are not reflected in MainActivity.user
-     (like a different BMI or profile picture) since these affect the main activity UI */
-    override fun onStart() {
-        super.onStart()
 
-        // Check if the user has changed their profile picture
-//        if (this.user.profilePicture != mDBManager.getProfilePictureURI(this.uuid)) {
-//            mProfilePicture.setImageURI( mDBManager.getProfilePictureURI(this.uuid).toUri())
-//        }
+    // Create an observer that watches the LiveData<List<UserTable>> object
+    val nameObserver: Observer<UserTable> =
+        Observer<UserTable> { user ->
+            if (user != null) {
+                // this.bmi = UserData.calculateBMI(user.lbs, user.feet, user.inches )
 
-        val curr_bmi : Float = mDBManager.getBMI(this.uuid).toFloat()
+                val idealWeight : Int = HealthMetricUtils.calculateIdealWeight(user.COLUMN_LBS!!, user.COLUMN_FEET!!, user.COLUMN_INCHES!!)
+                if (idealWeight == 0) { // not enough data to calculate weight properly, do nothing!
 
-        Log.d("LOG", "CurrentBMIOnStart: $curr_bmi")
-//        Log.d("LOG", "CurrentBMIFromRepoOnStart: ${Repository.getUserFromLocalDatabase()?.BMI}")
-        if (user.BMI != curr_bmi) {
-            // Update the user's info
-            this.user = mDBManager.getUser(this.uuid)
-            val idealWeight : Int = UserModel.calculateIdealWeight(user.lbs, user.feet, user.inches)
+                } else {
+                    val pieChart = findViewById<PieChart>(R.id.pieChart)
+                    val Cal = ArrayList<PieEntry>()
 
-            if (idealWeight == 0) { // not enough data to calculate weight properly
+                    var dataSet : PieDataSet;
 
-            } else {
-                val pieChart = findViewById<PieChart>(R.id.pieChart)
-                val Cal = ArrayList<PieEntry>()
+                    if (user.COLUMN_LBS < idealWeight) { // underweight
+                        Cal.add(PieEntry(user.COLUMN_LBS!!.toFloat(), "Current weight"))
+                        Cal.add(PieEntry((idealWeight-user.COLUMN_LBS.toFloat()), "Pounds to gain"))
+                        dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                    } else if (user.COLUMN_LBS == idealWeight) { // healthy weight
+                        Cal.add(PieEntry(user.COLUMN_LBS.toFloat(), "Current weight"))
+                        Cal.add(PieEntry(0f, "Pounds to gain"))
+                        dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
+                    } else { // overweight
+                        Cal.add(PieEntry(user.COLUMN_LBS.toFloat(), "Current weight"))
+                        Cal.add(PieEntry((user.COLUMN_LBS - idealWeight).toFloat(), "Pounds to lose"))
+                        dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
+                    }
 
-                var dataSet : PieDataSet;
+                    dataSet.setDrawIcons(false)
+                    dataSet.sliceSpace = 3f
+                    dataSet.iconsOffset = MPPointF(0F, 40F)
+                    dataSet.selectionShift = 5f
+                    dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
 
-                if (user.lbs < idealWeight) { // underweight
-                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                    Cal.add(PieEntry((idealWeight-user.lbs).toFloat(), "Pounds to gain"))
-                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
-                } else if (user.lbs == idealWeight) { // healthy weight
-                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                    Cal.add(PieEntry(0f, "Pounds to gain"))
-                    dataSet = PieDataSet(Cal, "Pounds To Gain For Healthy BMI")
-                } else { // overweight
-                    Cal.add(PieEntry(user.lbs.toFloat(), "Current weight"))
-                    Cal.add(PieEntry((user.lbs - idealWeight).toFloat(), "Pounds to lose"))
-                    dataSet = PieDataSet(Cal, "Pounds To Lose For Healthy BMI")
+                    val data = PieData(dataSet)
+                    pieChart.data = data
+                    pieChart.highlightValues(null)
+                    pieChart.invalidate()
+                    pieChart.getDescription().setEnabled(false)
+                    pieChart.setEntryLabelColor(WHITE)
+                    pieChart.setHoleColor(TRANSPARENT)
+                    pieChart.legend.setTextColor(WHITE)
+                    pieChart.legend.setTextSize(11f)
+                    pieChart.animateXY(5000, 5000)
+
                 }
-
-                dataSet.setDrawIcons(false)
-                dataSet.sliceSpace = 3f
-                dataSet.iconsOffset = MPPointF(0F, 40F)
-                dataSet.selectionShift = 5f
-                dataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
-                val data = PieData(dataSet)
-                data.setValueTextSize(11f)
-                data.setValueTextColor(Color.WHITE)
-                pieChart.data = data
-                pieChart.highlightValues(null)
-                pieChart.invalidate()
-                pieChart.getDescription().setEnabled(false)
-                pieChart.setCenterTextColor(Color.GREEN)
-                pieChart.animateXY(5000, 5000)
-
             }
         }
-    }
 
     override fun onClick(v: View?)
     {
@@ -306,7 +216,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                 }
                 R.id.edit_profile_btn -> {
                     val intent = Intent(this, EditProfileActivity::class.java)
-                    intent.putExtra("uuid", this.uuid);
+                    intent.putExtra("uuid", this.muuid);
                     startActivity(intent)
                 }
                 R.id.Cal_btn->
@@ -343,12 +253,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     }
     private fun showBMIActivity() {
         val intent = Intent(this, BmiActivity::class.java)
-        intent.putExtra("uuid",uuid)
+        intent.putExtra("uuid",muuid)
         startActivity(intent)
     }
     private fun showCalActivity() {
         val intent = Intent(this, CalTracker::class.java)
-        intent.putExtra("uuid",uuid)
+        intent.putExtra("uuid",muuid)
         startActivity(intent)
     }
 

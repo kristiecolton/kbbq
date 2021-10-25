@@ -5,7 +5,7 @@ import android.util.Log
 import kotlin.math.pow
 
 //  A class to represent a user
-class UserModel {
+class UserData {
     // A unique identifier to identify users by
     var uuid : String = "";
     var firstName : String = "";
@@ -183,38 +183,38 @@ class UserModel {
             return cals ;
         }
 
-        /* Calculates the nearest weight a person should be to achieve a healthy BMI. Returns
-         the user's current weight if their BMI is healthy. */
-        fun calculateIdealWeight(lbs: Int, feet: Int, inches  : Int) : Int {
-            // calculate current BMI
-            val bmi : Float = calculateBMI(lbs, feet, inches)
-
-            if (bmi == 0F) { // no data entered
-                return 0
-            }
-
-            // calculate the person's height in inches
-            val heightInInches: Double = feet.toFloat() * 12.0 + inches.toFloat()
-
-            var idealWeight : Int;
-            if (bmi<19) { // underweight
-                idealWeight = (19* heightInInches.pow(2.0) / 703).toInt()
-            } else if(bmi<25) { // healthy
-                // ideal weight is the person's current weight
-                idealWeight = lbs
-            }else { // overweight
-                idealWeight = (24.9* heightInInches.pow(2.0) / 703).toInt()
-            }
-            return idealWeight
-
-        }
+//        /* Calculates the nearest weight a person should be to achieve a healthy BMI. Returns
+//         the user's current weight if their BMI is healthy. */
+//        fun calculateIdealWeight(lbs: Int, feet: Int, inches  : Int) : Int {
+//            // calculate current BMI
+//            val bmi : Float = calculateBMI(lbs, feet, inches)
+//
+//            if (bmi == 0F) { // no data entered
+//                return 0
+//            }
+//
+//            // calculate the person's height in inches
+//            val heightInInches: Double = feet.toFloat() * 12.0 + inches.toFloat()
+//
+//            var idealWeight : Int;
+//            if (bmi<19) { // underweight
+//                idealWeight = (19* heightInInches.pow(2.0) / 703).toInt()
+//            } else if(bmi<25) { // healthy
+//                // ideal weight is the person's current weight
+//                idealWeight = lbs
+//            }else { // overweight
+//                idealWeight = (24.9* heightInInches.pow(2.0) / 703).toInt()
+//            }
+//            return idealWeight
+//
+//        }
     }
 
 
 
 
     override fun toString(): String {
-        return "UserModel(uuid='$uuid', firstName='$firstName', lastName='$lastName', age=$age, sex=$sex, feet=$feet, inches=$inches, lbs=$lbs, city='$city', country='$country', profilePicture='$profilePicture', backgroundPicture='$backgroundPicture', goalType=$goalType, lbsPerWeek=$lbsPerWeek, recommendedDailyCalories=$recommendedDailyCalories, isActive=$isActive, BMR=$BMR, BMI=$BMI)"
+        return "UserData(uuid='$uuid', firstName='$firstName', lastName='$lastName', age=$age, sex=$sex, feet=$feet, inches=$inches, lbs=$lbs, city='$city', country='$country', profilePicture='$profilePicture', backgroundPicture='$backgroundPicture', goalType=$goalType, lbsPerWeek=$lbsPerWeek, recommendedDailyCalories=$recommendedDailyCalories, isActive=$isActive, BMR=$BMR, BMI=$BMI)"
     }
 
 

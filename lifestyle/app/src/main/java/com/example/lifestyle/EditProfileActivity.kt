@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import java.lang.Exception
 import android.view.Gravity
 import android.widget.*
 
@@ -13,6 +12,8 @@ import android.content.Intent
 import android.net.Uri
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,7 +21,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mDBManager: DBManager
 
     // The user's info
-    lateinit var user : UserModel
+    lateinit var user : UserData
 
     // UI Elements
     lateinit var mFirstName_et : EditText
@@ -51,6 +52,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mSaveButton : Button
     lateinit var mEditProfilePictureButton : Button
     lateinit var mDeleteProfileButton : Button
+
+    private var mEditProfileViewModel: EditProfileViewModel? = null
+
+    private var muuid : String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,114 +107,87 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         mEditProfilePictureButton.setOnClickListener(this)
 
         // Get the user's uuid from previous activity
-        val uuid : String? = intent.getExtras()?.getString("uuid")
+        muuid = intent.getExtras()?.getString("uuid")
 
-
-
-        // Create a DBManager object
-        mDBManager = DBManager(this);
-
-//        try {
-//
-//            // Get the user's info from the database
-//            this.user = mDBManager.getUser(uuid!!)
-//
-//        } catch (e: Exception) {
-//            this.user = UserModel()
-//        }
-
-        // Get user object from Repository instead
-//        this.user = Repository.getUserFromLocalDatabase()!!
-
-        if (user.profilePicture == "") {
-            mProfilePicture.setImageResource(R.drawable.ic_user)
-        }
-
-        // Set the user's profile picture
-        var profile_pic_uri : Uri = user.profilePicture.toUri()
-        mProfilePicture.setImageURI(profile_pic_uri)
-
-        // Set the text with user's details
-        mFirstName_et.setText(user.firstName)
-        mLastName_et.setText(user.lastName)
-        mAge_et.setText(user.age.toString())
-        mHeightFeet_et.setText(user.feet.toString())
-        mHeightInches_et.setText(user.inches.toString())
-        mWeight_et.setText(user.lbs.toString())
-        if (user.sex == 1) { // user is female
-            mSex_rgroup.check(mSex_female_rbtn.id)
-        } else { // user is male
-            mSex_rgroup.check(mSex_male_rbtn.id)
-        }
-        mCity_et.setText(user.city)
-        mCountry_et.setText(user.country)
-        if (user.isActive) { // user is active
-            mAreYouActive_rgroup.check(mIsActive_rbtn.id)
-        } else { // user is sedentary (not active)
-            mAreYouActive_rgroup.check(mIsNotActive_rbtn.id)
-        }
-
-        if (user.goalType == -1) { // lose weight
-            mWeightGoal_rgroup.check(mLoseWeight_rbtn.id)
-        } else if (user.goalType == 0) {  // maintain weight
-            mWeightGoal_rgroup.check(mMaintainWeight_rbtn.id)
-        } else { // gain weight
-            mWeightGoal_rgroup.check(mGainWeight_rbtn.id)
-        }
-
-        if (user.goalType == 0) {
-            val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
-            // Changes the height and width to the specified *pixels*
-            params.height = 0
-            mLbsPerWeek_linear_layout.setLayoutParams(params)
-        }
-        else if ((user.goalType == -1) || (user.goalType == 1)) {
-            val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
-            // Changes the height and width to the specified *pixels*
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-            mLbsPerWeek_linear_layout.setLayoutParams(params)
-
-            if (user.lbsPerWeek == 1) { // lose/gain 1 lb per week
-                mLbsPerWeek_rgroup.check(mOneLb_rbtn.id)
-            } else {
-                mLbsPerWeek_rgroup.check(mTwoLbs_rbtn.id)
-            }
-        }
+        // Create the view model
+        mEditProfileViewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
+        // Set the uuid for the view model
+        mEditProfileViewModel!!.setUUID(muuid!!)
+        //Set the observer
+        mEditProfileViewModel!!.getUser().observe(this, nameObserver)
 
     }
+
+    // Create an observer that watches the LiveData<List<UserTable>> object
+    val nameObserver: Observer<UserTable> =
+        Observer<UserTable> { user ->
+            if (user != null) {
+                if (user.COLUMN_PROFILE_PICTURE == "") {
+                    mProfilePicture.setImageResource(R.drawable.ic_user)
+                }
+
+                // Set the text with user's details
+                mFirstName_et.setText(user.COLUMN_FIRST_NAME)
+                mLastName_et.setText(user.COLUMN_LAST_NAME)
+                mAge_et.setText(user.COLUMN_AGE.toString())
+                mHeightFeet_et.setText(user.COLUMN_FEET.toString())
+                mHeightInches_et.setText(user.COLUMN_INCHES.toString())
+                mWeight_et.setText(user.COLUMN_LBS.toString())
+                if (user.COLUMN_SEX == 1) { // user is female
+                    mSex_rgroup.check(mSex_female_rbtn.id)
+                } else { // user is male
+                    mSex_rgroup.check(mSex_male_rbtn.id)
+                }
+                mCity_et.setText(user.COLUMN_CITY)
+                mCountry_et.setText(user.COLUMN_COUNTRY)
+                if (user.COLUMN_IS_ACTIVE!!) { // user is active
+                    mAreYouActive_rgroup.check(mIsActive_rbtn.id)
+                } else { // user is sedentary (not active)
+                    mAreYouActive_rgroup.check(mIsNotActive_rbtn.id)
+                }
+
+                if (user.COLUMN_GOAL_TYPE == -1) { // lose weight
+                    mWeightGoal_rgroup.check(mLoseWeight_rbtn.id)
+                } else if (user.COLUMN_GOAL_TYPE == 0) {  // maintain weight
+                    mWeightGoal_rgroup.check(mMaintainWeight_rbtn.id)
+                } else { // gain weight
+                    mWeightGoal_rgroup.check(mGainWeight_rbtn.id)
+                }
+
+                if (user.COLUMN_GOAL_TYPE == 0) {
+                    val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+                    // Changes the height and width to the specified *pixels*
+                    params.height = 0
+                    mLbsPerWeek_linear_layout.setLayoutParams(params)
+                } else if ((user.COLUMN_GOAL_TYPE == -1) || (user.COLUMN_GOAL_TYPE == 1)) {
+                    val params: ViewGroup.LayoutParams = mLbsPerWeek_linear_layout.getLayoutParams()
+                    // Changes the height and width to the specified *pixels*
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    mLbsPerWeek_linear_layout.setLayoutParams(params)
+
+                    if (user.COLUMN_LBS_PER_WEEK == 1) { // lose/gain 1 lb per week
+                        mLbsPerWeek_rgroup.check(mOneLb_rbtn.id)
+                    } else {
+                        mLbsPerWeek_rgroup.check(mTwoLbs_rbtn.id)
+                    }
+                }
+            }
+        }
 
     override fun onClick(v: View?) {
         if (v != null)
             when (v.id)
             {
                 R.id.edit_profile_save_btn -> {
-                    Log.d("LOG", "SAVE BUTTON IS PRESSED")
                     // Saves the current edit text input to the activity (not to the database)
                     saveUserInput()
-                    // Saves the changes to the database
-                    //CHANGE THIS
-                    var updateSuccessful : Boolean = true
-
-                    if (updateSuccessful) {
-                        val toast = Toast.makeText(this, "Changes Successfully Saved", Toast.LENGTH_LONG)
-                        toast.setGravity(Gravity.CENTER, 0, 0)
-                        toast.show()
-                    } else {
-                        val toast = Toast.makeText(this, "Something Went Wrong.", Toast.LENGTH_LONG)
-                        toast.setGravity(Gravity.CENTER, 0, 0)
-                        toast.show()
-                    }
+                    val toast = Toast.makeText(this, "Changes Successfully Saved", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
 
                 }
                 R.id.edit_profile_edit_profile_picture_btn -> {
-//                    val getImage = registerForActivityResult(
-//                        ActivityResultContracts.GetContent()
-//                    ) { uri: Uri? ->
-//                        this.mProfilePicture?.setImageURI(uri)
-//                        //  Update the user model variable. When Save button gets taped, it saves the user model  associated with the activity
-//                        this.user.profilePicture = uri.toString()
-//                    }
-//                    getImage.launch("image/*")
+                    // TODO
 
                 }
                 R.id.edit_profile_lose_weight_rbtn -> {
@@ -245,29 +223,24 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    /* Update the user : UserModel member variable with the current
+    /* Update the user : UserData member variable with the current
      info inside the edit text fields*/
     fun saveUserInput() {
-        this.user.firstName = mFirstName_et.text.toString()
-        this.user.lastName = mLastName_et.text.toString()
-        this.user.age = mAge_et.text.toString().toInt()
-        this.user.feet = mHeightFeet_et.text.toString().toInt()
-        this.user.inches = mHeightInches_et.text.toString().toInt()
-        this.user.lbs = mWeight_et.text.toString().toInt()
+
+        var sex : Int
         if (mSex_female_rbtn.isChecked) {
-            this.user.sex = 1
+            sex = 1
         } else {
-            this.user.sex = 0
+            sex = 0
         }
-        this.user.city = mCity_et.text.toString()
-        this.user.country = mCountry_et.text.toString()
-        this.user.isActive = mIsActive_rbtn.isChecked
+
+        var goalType : Int
         if (mLoseWeight_rbtn.isChecked) {
-            this.user.goalType = -1
+            goalType = -1
         } else if (mMaintainWeight_rbtn.isChecked) {
-            this.user.goalType = 0
+            goalType = 0
         } else {
-            this.user.goalType = 1
+            goalType = 1
         }
 
         var lbsPerWeek : Int = 0
@@ -276,9 +249,13 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         } else if (mTwoLbs_rbtn.isChecked) {
             lbsPerWeek = 2
         }
-        this.user.lbsPerWeek = lbsPerWeek
 
-        return
+        mEditProfileViewModel!!.updateUser(muuid!!, mFirstName_et.text.toString(),
+            mLastName_et.text.toString(), mAge_et.text.toString().toInt(), sex,
+            mHeightFeet_et.text.toString().toInt(), mHeightInches_et.text.toString().toInt(),
+            mWeight_et.text.toString().toInt(), mCity_et.text.toString(), mCountry_et.text.toString(),
+            mIsActive_rbtn.isChecked, goalType, lbsPerWeek)
+
     }
 
    

@@ -9,6 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         />
 
     <LinearLayout
@@ -20,21 +21,21 @@
 
         <TextView
             android:id="@+id/cals_string_tv_frag"
-            android:layout_width="320dp"
-            android:layout_height="217dp"
-            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
             android:text="Your Daily Calories"
             android:textColor="@color/white"
-            android:textSize="50sp" />
+            android:textSize="60dp" />
 
         <TextView
             android:id="@+id/cals_tv_frag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
             android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="75sp" />
+            android:textColor="?attr/colorSecondary"
+            android:textSize="60dp" />
     </LinearLayout>
 
 </FrameLayout>

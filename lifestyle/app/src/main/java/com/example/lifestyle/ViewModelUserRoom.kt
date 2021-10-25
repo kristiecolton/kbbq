@@ -2,32 +2,26 @@ package com.example.lifestyle
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import java.util.*
 
 class ViewModelUserRoom(application: Application) : AndroidViewModel(application!!)
 {
 
-    private var roomRepository:Repository?=null
-    lateinit var  uuidList: LiveData<List<String>>
+    private var userRepository:UserRepository?=null
 
     init {
-        roomRepository = Repository(application)
-        uuidList= roomRepository!!.getAllUsers()
+        userRepository = UserRepository(application)
     }
 
-      fun insertMultipleUsers(users: RoomUserClass.User) {
-         roomRepository?.insert(users)
-    }
 
-     fun getAllUsers():  LiveData<List<String>> {
-        return  uuidList
-    }
-    fun getBmi(uuid: String):  Float? {
-        return  roomRepository?.getBmi(uuid)
-    }
 ////
 //    suspend fun deleteUser(user: RoomUserClass.User) {
+
+//    fun getBmi(uuid: String):  Float? {
+//        return  userRepository?.getBmi(uuid)
+//    }
+//
+//    suspend fun deleteUser(user: UserTable) {
+
 //        dao.delete(user)
 //    }
 }

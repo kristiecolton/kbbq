@@ -72,7 +72,7 @@ class DBManager : SQLiteOpenHelper  {
 
     /* Adds a  user to the user table. Returns true if the user was added successfully,
      false otherwise */
-    fun addUser(user: UserModel) : Boolean {
+    fun addUser(user: UserData) : Boolean {
         var db : SQLiteDatabase = this.writableDatabase;
         var cv : ContentValues = ContentValues();
 
@@ -100,7 +100,7 @@ class DBManager : SQLiteOpenHelper  {
     }
 
     /* Returns the user with the given uuid */
-    fun getUser(uuid: String) : UserModel {
+    fun getUser(uuid: String) : UserData {
         var query : String = "SELECT * FROM " + USER_TABLE + "WHERE UUID = " + uuid;
         var db : SQLiteDatabase = this.readableDatabase;
         var cursor : Cursor = db.rawQuery("SELECT * FROM USER WHERE UUID = ?", arrayOf(uuid));
@@ -126,19 +126,19 @@ class DBManager : SQLiteOpenHelper  {
             var BMR : Int = cursor.getInt(16);
             var BMI : Float = cursor.getFloat(16);
 
-            var user : UserModel = UserModel(uuid, firstName, lastName, age, sex, feet, inches, lbs, city, country, profilePicture, backgroundPicture,
+            var user : UserData = UserData(uuid, firstName, lastName, age, sex, feet, inches, lbs, city, country, profilePicture, backgroundPicture,
                 goalType, lbsPerWeek, isActive, recommendedDailyCalories, BMR, BMI);
 
             return user;
         } else {
             print("No user found.");
-            // Return default UserModel object
-            return UserModel();
+            // Return default UserData object
+            return UserData();
         }
     }
 
     /* Updates a  user's info in the db */
-    fun updateUser(user: UserModel) : Boolean {
+    fun updateUser(user: UserData) : Boolean {
         var db : SQLiteDatabase = this.writableDatabase;
         var cv : ContentValues = ContentValues();
 
@@ -157,13 +157,13 @@ class DBManager : SQLiteOpenHelper  {
         cv.put(COLUMN_LBS_PER_WEEK, user.lbsPerWeek);
 
         // Update user's biometric data (BMR, recommmended daily calories, BMI)
-        val bmr : Int = UserModel.calculateBMR(user.lbs, user.feet, user.inches, user.age, user.sex, user.isActive)
+        val bmr : Int = UserData.calculateBMR(user.lbs, user.feet, user.inches, user.age, user.sex, user.isActive)
         cv.put(COLUMN_BMR, bmr);
 
-        val recommendedDailyCalories : Int = UserModel.calculateRecommendedDailyCalories(bmr, user.goalType, user.lbsPerWeek)
+        val recommendedDailyCalories : Int = UserData.calculateRecommendedDailyCalories(bmr, user.goalType, user.lbsPerWeek)
         cv.put(COLUMN_RECOMMENDED_DAILY_CALORIES, recommendedDailyCalories);
 
-        val bmi : Float = UserModel.calculateBMI(user.lbs, user.feet, user.inches)
+        val bmi : Float = UserData.calculateBMI(user.lbs, user.feet, user.inches)
         cv.put(COLUMN_BMI, bmi);
 
         val whereClause : String = COLUMN_UUID+" = " + user.uuid

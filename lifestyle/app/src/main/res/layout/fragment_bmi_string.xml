@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/BMIString_tv"
-        android:textColor="@color/dark_red"
+        android:textColor="?attr/colorSecondary"
         android:layout_width="296dp"
         android:layout_height="128dp"
         android:layout_gravity="center"
