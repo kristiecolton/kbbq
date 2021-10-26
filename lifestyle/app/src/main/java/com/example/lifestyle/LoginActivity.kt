@@ -2,14 +2,17 @@ package com.example.lifestyle
 
 import android.Manifest
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -20,6 +23,7 @@ import kotlin.concurrent.thread
 class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.DataPasser {
     /* UI Elements */
     lateinit var mCreateAProfileBtn: Button;
+    lateinit var switchBtn: ImageButton
     private var mMasterListFragment: MasterListFragment? = null
     private val locationPermissionCode = 2
 
@@ -33,15 +37,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+        if ((ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED)
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                locationPermissionCode
+            )
         }
 
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+        if ((ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED)
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                locationPermissionCode
+            )
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
                 requestPermissions(permissions, PERMISSION_CODE)
             }
@@ -55,8 +75,32 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
         mLoginViewModel.getCustomListDataItems().observe(this, nameObserver)
 
         // Set click listener for Create a Profile Button
-        mCreateAProfileBtn=findViewById(R.id.create_a_profile_btn) as Button;
+        mCreateAProfileBtn = findViewById(R.id.create_a_profile_btn) as Button;
         mCreateAProfileBtn.setOnClickListener(this);
+
+        // switch night and day mode
+        val appSettingPreferences: SharedPreferences = getSharedPreferences("AppSettingPrfs", 0)
+        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPreferences.edit()
+        val isNightModeOn: Boolean = appSettingPreferences.getBoolean("NightMode", false)
+
+        if (isNightModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        switchBtn = findViewById(R.id.Swift_Btn) as ImageButton
+        switchBtn.setOnClickListener(View.OnClickListener {
+            if (isNightModeOn) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefsEdit.putBoolean("NightMode", false)
+                sharedPrefsEdit.apply()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefsEdit.putBoolean("NightMode", true)
+                sharedPrefsEdit.apply()
+            }
+        })
 
     }
 
