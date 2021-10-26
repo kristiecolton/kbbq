@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.room.Room
 import java.util.concurrent.Executors
 
-@Database(entities = arrayOf(UserTable::class), version = 1)
+@Database(entities = arrayOf(UserTable::class), version = 2)
 abstract class UserRoomDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 

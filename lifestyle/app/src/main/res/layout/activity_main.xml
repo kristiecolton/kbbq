@@ -57,13 +57,10 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="138dp"
-            android:layout_height="135dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_width="135dp"
+            android:layout_height="124dp"
             android:src="@drawable/ic_user"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="211dp">
+            >
 
         </ImageView>
     </androidx.cardview.widget.CardView>

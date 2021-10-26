@@ -125,6 +125,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 if (user.COLUMN_PROFILE_PICTURE == "") {
                     mProfilePicture.setImageResource(R.drawable.ic_user)
                 }
+                var imageView=findViewById<ImageView>(R.id.edit_profile_profile_picture)
+//                user.COLUMN_PROFILE_PICTURE?.let { Log.d("LOG", it) }
+//                Log.d("LOG", "user.profilePicture")
+                imageView.setImageBitmap(ImageEnDeCoder.decodeImage(user.COLUMN_PROFILE_PICTURE))
 
                 // Set the text with user's details
                 mFirstName_et.setText(user.COLUMN_FIRST_NAME)

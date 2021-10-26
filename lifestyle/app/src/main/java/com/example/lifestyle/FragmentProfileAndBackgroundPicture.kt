@@ -1,6 +1,8 @@
 package com.example.lifestyle
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.lifestyle.databinding.FragmentProfileAndBackgroundPictureBinding
 import android.net.Uri
+import android.util.Base64
 import androidx.activity.result.contract.ActivityResultContracts
+import java.io.ByteArrayOutputStream
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 
 class FragmentProfileAndBackgroundPicture : Fragment() {
@@ -25,6 +32,7 @@ class FragmentProfileAndBackgroundPicture : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +47,13 @@ class FragmentProfileAndBackgroundPicture : Fragment() {
 
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
-        ) { uri: Uri? ->
+        ) { uri: Uri ->
             binding.profilePicture?.setImageURI(uri)
-            passData(uri.toString())
-        }
 
+            passData(ImageEnDeCoder.encodeImage(ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uri))))
+        }
+//        getImage.hashCode()
+//        val bitmap = (getImage.as BitmapDrawable).bitmap
         binding.uploadProfilePictureBtn.setOnClickListener {
             getImage.launch("image/*")
         }
@@ -63,6 +73,9 @@ class FragmentProfileAndBackgroundPicture : Fragment() {
     fun passData(data: String) {
         dataPasser.onDataPassProfileAndBackgroundPicture(data)
     }
+
+
+
 }
 
 //        val loadImage = registerForActivityResult(ActivityResultContracts.TakePicture(),

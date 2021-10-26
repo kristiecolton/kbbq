@@ -15,9 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 import android.Manifest;
-import android.graphics.Color
 import android.graphics.Color.*
-import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +25,13 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+
+import android.graphics.Bitmap
+import android.util.Base64
+import java.io.ByteArrayOutputStream
+import android.graphics.BitmapFactory
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 {
@@ -74,6 +79,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
             setContentView(R.layout.activity_main)
         }
 
+
+
+
+
+
+
         bmiButton=findViewById(R.id.BmiButton) as Button;
         bmiButton.setOnClickListener(this);
 
@@ -108,6 +119,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     val nameObserver: Observer<UserTable> =
         Observer<UserTable> { user ->
             if (user != null) {
+                var imageView=findViewById<ImageView>(R.id.imageView1)
+//                user.COLUMN_PROFILE_PICTURE?.let { Log.d("LOG", it) }
+//                Log.d("LOG", "user.profilePicture")
+                imageView.setImageBitmap(ImageEnDeCoder.decodeImage(user.COLUMN_PROFILE_PICTURE))
+//        imageView.setImageBitmap(decodeImage(user.profilePicture))
+
+
                 // this.bmi = UserData.calculateBMI(user.lbs, user.feet, user.inches )
 
                 val idealWeight : Int = HealthMetricUtils.calculateIdealWeight(user.COLUMN_LBS!!, user.COLUMN_FEET!!, user.COLUMN_INCHES!!)
@@ -295,6 +313,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     fun isTablet(): Boolean {
         return resources.getBoolean(R.bool.isTablet)
     }
+
 
 }
 

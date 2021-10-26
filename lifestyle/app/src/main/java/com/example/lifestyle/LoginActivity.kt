@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
 
     // Contains all the user's data for the recycle view
     lateinit var mCustomListData : CustomListData
-
+    private val PERMISSION_CODE = 1001;
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +40,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, PERMISSION_CODE)
+            }
+        }
+
 
         //Create the view model
         mLoginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
