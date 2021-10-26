@@ -61,7 +61,7 @@
             style="@style/dark_button"
             android:text="Edit Profile Picture"-->
 
-        <Button
+        <!--Button
             android:id="@+id/edit_profile_save_btn"
             style="@style/samll_button"
             android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="10dp"
             android:text="Save" />
-        <!-- not sure if this is better
+        not sure if this is better
             android:background="@android:color/transparent"
             android:text="Save"
             android:textSize="16dp"-->
@@ -543,10 +543,10 @@
 
                 <!-- Lbs Per Week  -->
                 <LinearLayout
+                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/edit_profile_lbs_per_week_linear_layout"
                     android:orientation="vertical">
 
                     <TextView
@@ -589,7 +589,7 @@
 
                 </LinearLayout>
 
-                <Button
+                <!--Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/samll_button"
@@ -598,7 +598,15 @@
                     android:backgroundTint="@color/delete_profile_red"
                     android:layout_gravity="center_horizontal">
 
-                </Button>
+                </Button>-->
+                <Button
+                    android:id="@+id/edit_profile_save_btn"
+                    style="@style/samll_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/delete_profile_red"
+                    android:text="Save" />
 
 
             </LinearLayout>

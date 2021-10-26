@@ -99,8 +99,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         mSaveButton.setOnClickListener(this)
 
         // Get the delete profile button
-        mDeleteProfileButton = findViewById<Button>(R.id.delete_profile_btn)
-        mDeleteProfileButton.setOnClickListener(this)
+        //mDeleteProfileButton = findViewById<Button>(R.id.delete_profile_btn)
+        //mDeleteProfileButton.setOnClickListener(this)
 
         // Get the Edit Profile Picture button
         mEditProfilePictureButton = findViewById(R.id.edit_profile_edit_profile_picture_btn)
@@ -189,6 +189,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     toast.setGravity(Gravity.CENTER, 0, 0)
                     toast.show()
 
+                    // Head back to main page
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
                 }
                 R.id.edit_profile_edit_profile_picture_btn -> {
                     // TODO
@@ -213,7 +217,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     params.height = ViewGroup.LayoutParams.WRAP_CONTENT
                     mLbsPerWeek_linear_layout.setLayoutParams(params)
                 }
-                R.id.delete_profile_btn -> {
+                /*R.id.delete_profile_btn -> {
                     // Delete the user's profile from the database
                     mDBManager.deleteUser(user.uuid)
 
@@ -221,7 +225,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
 
-                }
+                }*/
 
             }
 

@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var weatherButton: Button
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
+    lateinit var signoutButton : Button
 
     // View Model
     private var mMainViewModel: MainViewModel? = null
@@ -99,6 +100,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         editProfileButton = findViewById(R.id.edit_profile_btn)
         editProfileButton.setOnClickListener(this)
+
+        signoutButton = findViewById(R.id.sign_out)
+        signoutButton.setOnClickListener(this)
 
 
         // Get user's uuid from previous activity
@@ -260,6 +264,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                         showCalActivity()
                     }
 
+                }
+                R.id.sign_out->{
+                    // Head back to login page
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
                 }
 
 

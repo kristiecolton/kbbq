@@ -61,7 +61,7 @@
             style="@style/dark_button"
             android:text="Edit Profile Picture"-->
 
-        <Button
+        <!--Button
             android:id="@+id/edit_profile_save_btn"
             style="@style/samll_button"
             android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:text="Save" />
-        <!-- not sure if this is better
+        not sure if this is better
             android:background="@android:color/transparent"
             android:text="Save"
             android:textSize="16dp"-->
@@ -590,7 +590,7 @@
                 </LinearLayout>
 
 
-                <Button
+                <!--Button
                     android:id="@+id/delete_profile_btn"
                     style="@style/samll_button"
                     android:layout_width="wrap_content"
@@ -599,7 +599,15 @@
                     android:backgroundTint="@color/delete_profile_red"
                     android:text="Delete Profile">
 
-                </Button>
+                </Button>-->
+                <Button
+                    android:id="@+id/edit_profile_save_btn"
+                    style="@style/samll_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/delete_profile_red"
+                    android:text="Save" />
 
 
             </LinearLayout>
