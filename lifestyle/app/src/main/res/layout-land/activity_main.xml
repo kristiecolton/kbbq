@@ -60,17 +60,17 @@
         app:layout_constraintBottom_toTopOf="@id/BmiButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Hiking" />
+        app:layout_constraintTop_toBottomOf="@id/Swift_Btn" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/Hiking"
         style="@style/main_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="T"
+        android:text="H"
         android:layout_marginStart="550dp"
         android:layout_marginLeft="550dp"
-        app:layout_constraintBottom_toTopOf="@id/Hiking"
+        app:layout_constraintBottom_toTopOf="@id/Swift_Btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_btn" />
@@ -83,12 +83,28 @@
         android:layout_marginStart="550dp"
         android:layout_marginLeft="550dp"
         android:text="W"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/Hiking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/Swift_Btn"
+        style="@style/main_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="550dp"
+        android:layout_marginLeft="550dp"
+        android:background="@drawable/swift"
+        android:text="S"
+        app:layout_constraintBottom_toTopOf="@id/Cal_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Hiking"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <!--<Button
         android:id="@+id/Hiking"
         style="@style/main_button"
         android:layout_width="50dp"
@@ -100,8 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent" />-->
 
     <Button
         android:id="@+id/edit_profile_btn"

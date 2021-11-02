@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 import android.Manifest;
+import android.content.SharedPreferences
 import android.graphics.Color.*
 import android.widget.*
 import androidx.lifecycle.Observer
@@ -31,6 +32,7 @@ import android.util.Base64
 import java.io.ByteArrayOutputStream
 import android.graphics.BitmapFactory
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 
 
 class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var editProfileButton : Button
     lateinit var calButton : Button
     lateinit var signoutButton : Button
+    lateinit var switchBtn: Button
 
     // View Model
     private var mMainViewModel: MainViewModel? = null
@@ -114,6 +117,30 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
         mMainViewModel!!.setUUID(muuid!!)
         //Set the observer
         mMainViewModel!!.getUser().observe(this, nameObserver)
+
+        // switch night and day mode
+        val appSettingPreferences: SharedPreferences = getSharedPreferences("AppSettingPrfs", 0)
+        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPreferences.edit()
+        val isNightModeOn: Boolean = appSettingPreferences.getBoolean("NightMode", false)
+
+        if (isNightModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        switchBtn = findViewById(R.id.Swift_Btn) as Button
+        switchBtn.setOnClickListener(View.OnClickListener {
+            if (isNightModeOn) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefsEdit.putBoolean("NightMode", false)
+                sharedPrefsEdit.apply()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefsEdit.putBoolean("NightMode", true)
+                sharedPrefsEdit.apply()
+            }
+        })
 
 
     }
@@ -169,7 +196,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     pieChart.setEntryLabelColor(WHITE)
                     pieChart.setHoleColor(TRANSPARENT)
                     pieChart.legend.setTextColor(WHITE)
-                    pieChart.legend.setTextSize(11f)
+                    pieChart.legend.setTextSize(20f)
                     pieChart.animateXY(5000, 5000)
 
                 }

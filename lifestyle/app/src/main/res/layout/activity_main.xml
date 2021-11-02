@@ -57,12 +57,16 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="135dp"
-            android:layout_height="124dp"
-            android:src="@drawable/ic_user"
-            >
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user" >
         </ImageView>
+
+        <!--android:layout_width="135dp"
+            android:layout_height="124dp"-->
+
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -110,7 +114,7 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <Button
-        android:id="@+id/t_button"
+        android:id="@+id/Hiking"
         style="@style/main_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -118,11 +122,12 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="30dp"
-        android:text="T"
+        android:text="H"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Hiking"
+        app:layout_constraintStart_toEndOf="@+id/Swift_Btn"
         app:layout_constraintTop_toBottomOf="@id/pieChart"
         app:layout_constraintVertical_bias="0.512" />
+    <!--android:id="@+id/t_button"-->
 
     <Button
         android:id="@+id/weather_btn"
@@ -137,11 +142,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toEndOf="@+id/t_button"
+        app:layout_constraintStart_toEndOf="@+id/Hiking"
         app:layout_constraintTop_toBottomOf="@id/pieChart"
         app:layout_constraintVertical_bias="0.979" />
 
     <Button
+        android:id="@+id/Swift_Btn"
+        style="@style/main_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="40dp"
+        android:text="S"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Cal_btn"
+        app:layout_constraintTop_toBottomOf="@id/pieChart"
+        app:layout_constraintVertical_bias="0.358"
+        android:background="@drawable/swift"/>
+
+    <!--<Button
         android:id="@+id/Hiking"
         style="@style/main_button"
         android:layout_width="50dp"
@@ -154,7 +175,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Cal_btn"
         app:layout_constraintTop_toBottomOf="@id/pieChart"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.358" />-->
 
     <Button
         android:id="@+id/edit_profile_btn"
