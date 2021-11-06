@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
     // Contains all the user's data for the recycle view
     lateinit var mCustomListData : CustomListData
     private val PERMISSION_CODE = 1001;
+    private val PERMISSION_CODES= 1001;
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener,  MyRVAdapter.Da
                 locationPermissionCode
             )
         }
+
 
         if ((ContextCompat.checkSelfPermission(
                 this,

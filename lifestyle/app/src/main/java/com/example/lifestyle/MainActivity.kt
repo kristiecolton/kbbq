@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import android.Manifest;
 import android.content.SharedPreferences
 import android.graphics.Color.*
+import android.util.Log
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,11 +28,6 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 
-import android.graphics.Bitmap
-import android.util.Base64
-import java.io.ByteArrayOutputStream
-import android.graphics.BitmapFactory
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 
 
@@ -68,6 +64,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     lateinit var calButton : Button
     lateinit var signoutButton : Button
     lateinit var switchBtn: Button
+    lateinit var stepButton:Button
 
     // View Model
     private var mMainViewModel: MainViewModel? = null
@@ -106,6 +103,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
         signoutButton = findViewById(R.id.sign_out)
         signoutButton.setOnClickListener(this)
+
+        stepButton = findViewById(R.id.Step_button)
+        stepButton.setOnClickListener(this)
+
 
 
         // Get user's uuid from previous activity
@@ -196,7 +197,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                     pieChart.setEntryLabelColor(WHITE)
                     pieChart.setHoleColor(TRANSPARENT)
                     pieChart.legend.setTextColor(WHITE)
-                    pieChart.legend.setTextSize(20f)
+                    pieChart.legend.setTextSize(11f)
                     pieChart.animateXY(5000, 5000)
 
                 }
@@ -270,6 +271,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                 }
                 R.id.Cal_btn->
                 {
+
+                    Log.d("LOG", "this is bullshit")
                     if(isTablet())
                     {
 //
@@ -288,6 +291,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
 
                     }else
                     {
+                        Log.d("LOG", "BeforeAct")
+//                        showStepCounterActivity()
                         showCalActivity()
                     }
 
@@ -299,10 +304,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
                 }
 
 
+                R.id.Step_button->{
 
-
-
+                    showStepCounterActivity()
                 }
+
+
+
+            }
 
     }
     private fun showBMIActivity() {
@@ -312,6 +321,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener, LocationListener
     }
     private fun showCalActivity() {
         val intent = Intent(this, CalTracker::class.java)
+        intent.putExtra("uuid",muuid)
+        startActivity(intent)
+    }
+    private fun showStepCounterActivity() {
+        val intent = Intent(this, StepCounterActivity::class.java)
         intent.putExtra("uuid",muuid)
         startActivity(intent)
     }

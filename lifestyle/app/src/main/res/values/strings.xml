@@ -49,6 +49,7 @@
     <string name="two">2</string>
     <string name="how_many_lbs">How many pounds you want to gain/lose?</string>
     <string name="Background" />
+    <string name="title_activity_step_counter">StepCounter</string>
 
 
 </resources>

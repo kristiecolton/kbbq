@@ -15,7 +15,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/BMI_text"
+            android:id="@+id/Steps_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
